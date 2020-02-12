@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d5b4f161b05b08b51fc7940a4bc7ae4",
+    "content-hash": "362262abe85b8eecc46366d65c322d15",
     "packages": [
         {
             "name": "dibi/dibi",
@@ -3079,7 +3079,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.1",
+        "php": "^7.4",
         "ext-json": "*",
         "ext-pdo": "*"
     },

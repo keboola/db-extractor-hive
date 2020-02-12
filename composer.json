@@ -1,4 +1,8 @@
 {
+    "name": "keboola/db-extractor-hive",
+    "license": "MIT",
+    "type": "project",
+    "description": "Reads data from Hive databases for Keboola Connection",
     "require": {
         "php": "^7.4",
         "ext-json": "*",
