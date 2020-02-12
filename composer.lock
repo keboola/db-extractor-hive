@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfd6d7351b20e774d19e0f4fa9a3a2f5",
+    "content-hash": "5d5b4f161b05b08b51fc7940a4bc7ae4",
     "packages": [
         {
             "name": "dibi/dibi",
@@ -69,6 +69,43 @@
                 "sqlsrv"
             ],
             "time": "2019-11-19T19:15:32+00:00"
+        },
+        {
+            "name": "keboola/common-exceptions",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/keboola/common-exceptions.git",
+                "reference": "44bff6e6d1f8edfb81af7662bc231566dcecb241"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/keboola/common-exceptions/zipball/44bff6e6d1f8edfb81af7662bc231566dcecb241",
+                "reference": "44bff6e6d1f8edfb81af7662bc231566dcecb241",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "keboola/coding-standard": ">=7.0.2",
+                "keboola/php-temp": "^1.0",
+                "phpstan/phpstan-shim": "^0.10.6",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Keboola\\CommonExceptions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Common exceptions shared between different applications",
+            "time": "2019-11-21T11:09:10+00:00"
         },
         {
             "name": "keboola/csv",
@@ -284,6 +321,49 @@
             ],
             "description": "Create SSH tunnel for DB Extractors",
             "time": "2019-10-03T14:15:53+00:00"
+        },
+        {
+            "name": "keboola/db-extractor-table-format",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/keboola/db-extractor-table-format.git",
+                "reference": "a0d1ff6219f4a8dd58e459a270b217dccd9f3302"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/keboola/db-extractor-table-format/zipball/a0d1ff6219f4a8dd58e459a270b217dccd9f3302",
+                "reference": "a0d1ff6219f4a8dd58e459a270b217dccd9f3302",
+                "shasum": ""
+            },
+            "require": {
+                "keboola/common-exceptions": "^1.0",
+                "keboola/php-utils": "^4.1",
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "keboola/coding-standard": "^9.0",
+                "phpstan/phpstan": "^0.12.2",
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Keboola\\": "src/Keboola/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Keboola",
+                    "email": "devel@keboola.com"
+                }
+            ],
+            "description": "PHP class for formating table result",
+            "time": "2020-01-30T12:52:19+00:00"
         },
         {
             "name": "keboola/php-component",
