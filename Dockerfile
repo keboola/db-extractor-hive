@@ -7,9 +7,9 @@ ENV COMPOSER_PROCESS_TIMEOUT 3600
 
 WORKDIR /code/
 
-COPY docker/php-prod.ini /usr/local/etc/php/php.ini
-COPY docker/composer-install.sh /tmp/composer-install.sh
-COPY docker/clouderahiveodbc_2.5.25.1020-2_amd64.deb /tmp/hive-odbc.deb
+COPY docker/php/php-prod.ini /usr/local/etc/php/php.ini
+COPY docker/php/composer-install.sh /tmp/composer-install.sh
+COPY docker/php/clouderahiveodbc_2.5.25.1020-2_amd64.deb /tmp/hive-odbc.deb
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git \

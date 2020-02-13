@@ -12,6 +12,7 @@ use Keboola\DbExtractor\DbRetryProxy;
 use Keboola\DbExtractor\Exception\ApplicationException;
 use Keboola\DbExtractor\Exception\DeadConnectionException;
 use Keboola\DbExtractor\Exception\UserException;
+use Keboola\DbExtractor\HiveOdbcDriver;
 use Keboola\DbExtractor\TableResultFormat\Table;
 use Keboola\DbExtractor\TableResultFormat\TableColumn;
 
@@ -23,6 +24,16 @@ class Hive extends Extractor
     public const NUMERIC_BASE_TYPES = ['INTEGER', 'NUMERIC', 'FLOAT'];
 
     private const DEFAULT_PORT = 10000;
+
+    public static function createConnectionDns(string $host, int $port, string $database): string
+    {
+        return sprintf(
+            'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=%s;Port=%s;Schema=%s;AuthMech=3;',
+            $host,
+            $port,
+            $database,
+        );
+    }
 
     /**
      * @inheritDoc
@@ -36,15 +47,14 @@ class Hive extends Extractor
             }
         }
 
-        $dsn = sprintf(
-            'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=%s;Port=%s;Schema=%s;AuthMech=3',
+        $dsn = self::createConnectionDns(
             $params['host'],
-            isset($params['port']) ? $params['port'] : self::DEFAULT_PORT,
+            isset($params['port']) ? (int) $params['port'] : self::DEFAULT_PORT,
             $params['database'],
         );
 
         return new Connection([
-            'driver' => 'odbc',
+            'driver' => HiveOdbcDriver::class,
             'dsn' => $dsn,
             'username' => $params['user'],
             'password' => $params['#password'],

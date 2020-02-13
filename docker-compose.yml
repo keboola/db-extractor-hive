@@ -26,15 +26,18 @@ services:
       LDAP_DOMAIN: keboola-test.com
       LDAP_ADMIN_PASSWORD: p#a!s@sw:o&r%^d
 
-
   # Hive infrastructure
   # From: https://github.com/big-data-europe/docker-hive/blob/master/docker-compose.yml
   # Test cmd: docker-compose exec hive-server beeline -u jdbc:hive2://localhost:10000 -n admin -p 'p#a!s@sw:o&r%^d' -e "SHOW TABLES;"
   hive-server:
-    image: bde2020/hive:2.3.2-postgresql-metastore
+    build: ./docker/hive-server
     env_file:
-      - docker-hive/hadoop-hive.env
+      - docker/hive-env/hadoop-hive.env
     environment:
+      # Credentials for docker/hive-server/custom-init.sh (same as in ldap server)
+      HIVE_DB_USER: admin
+      HIVE_DB_PASSWORD: p#a!s@sw:o&r%^d
+      HIVE_DB_PORT: 10000
       HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
       SERVICE_PRECONDITION: "hive-metastore:9083"
       HIVE_SITE_CONF_hive_server2_use_SSL: 'false'
@@ -42,8 +45,6 @@ services:
       HIVE_SITE_CONF_hive_server2_authentication_ldap_url: ldap://ldap:389
       HIVE_SITE_CONF_hive_server2_authentication_ldap_baseDN: dc=keboola-test,dc=com
       HIVE_SITE_CONF_hive_server2_authentication_ldap_userDNPattern: cn=%s,dc=keboola-test,dc=com
-      HIVE_SITE_CONF_hive_server2_logging_operation_enabled: 'true'
-      HIVE_SITE_CONF_hive_server2_logging_operation_level: VERBOSE
     links:
       - ldap
       - namenode
@@ -58,19 +59,19 @@ services:
     environment:
       - CLUSTER_NAME=test
     env_file:
-      - docker-hive/hadoop-hive.env
+      - docker/hive-env/hadoop-hive.env
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
     volumes:
       - datanode:/hadoop/dfs/data
     env_file:
-      - docker-hive/hadoop-hive.env
+      - docker/hive-env/hadoop-hive.env
     environment:
       SERVICE_PRECONDITION: "namenode:50070"
   hive-metastore:
     image: bde2020/hive:2.3.2-postgresql-metastore
     env_file:
-      - docker-hive/hadoop-hive.env
+      - docker/hive-env/hadoop-hive.env
     command: /opt/hive/bin/hive --service metastore
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432"
