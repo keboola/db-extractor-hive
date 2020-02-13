@@ -37,12 +37,10 @@ class Hive extends Extractor
         }
 
         $dsn = sprintf(
-            'Cloudera ODBC Driver for Apache Hive 64-bit;HOST=%s;PORT=%s;Database=%s;UID=%s;PWD=%s;AuthMech=3;',
+            'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=%s;Port=%s;Schema=%s;AuthMech=3',
             $params['host'],
             isset($params['port']) ? $params['port'] : self::DEFAULT_PORT,
             $params['database'],
-            $params['user'],
-            $params['#password'],
         );
 
         return new Connection([

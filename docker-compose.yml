@@ -2,8 +2,14 @@ version: '3'
 services:
   dev:
     build: .
-    entrypoint: [sh, -c, wait-for-it -t 100 hive-server:10000 && exec "$$@", -]
+    entrypoint: [sh, -c, wait-for-it -t 100 hive-server:10000 && sleep 1 && exec "$$@", -]
     command: bash
+    environment:
+      HIVE_DB_HOST: hive-server
+      HIVE_DB_PORT: 10000
+      HIVE_DB_DATABASE: default
+      HIVE_DB_USER: admin
+      HIVE_DB_PASSWORD: p#a!s@sw:o&r%^d
     volumes:
       - ./:/code
     links:
@@ -31,10 +37,13 @@ services:
     environment:
       HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
       SERVICE_PRECONDITION: "hive-metastore:9083"
+      HIVE_SITE_CONF_hive_server2_use_SSL: 'false'
       HIVE_SITE_CONF_hive_server2_authentication: LDAP
       HIVE_SITE_CONF_hive_server2_authentication_ldap_url: ldap://ldap:389
       HIVE_SITE_CONF_hive_server2_authentication_ldap_baseDN: dc=keboola-test,dc=com
       HIVE_SITE_CONF_hive_server2_authentication_ldap_userDNPattern: cn=%s,dc=keboola-test,dc=com
+      HIVE_SITE_CONF_hive_server2_logging_operation_enabled: 'true'
+      HIVE_SITE_CONF_hive_server2_logging_operation_level: VERBOSE
     links:
       - ldap
       - namenode

@@ -9,7 +9,7 @@ WORKDIR /code/
 
 COPY docker/php-prod.ini /usr/local/etc/php/php.ini
 COPY docker/composer-install.sh /tmp/composer-install.sh
-COPY docker/clouderahiveodbc_2.6.4.1004-2_amd64.deb /tmp/hive-odbc.deb
+COPY docker/clouderahiveodbc_2.5.25.1020-2_amd64.deb /tmp/hive-odbc.deb
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
@@ -18,7 +18,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wait-for-it \
         unixodbc \
         unixodbc-dev \
+        libsasl2-dev \
+        libsasl2-2 \
+        libsasl2-modules \
+        libsasl2-modules-db \
+        libsasl2-modules-sql \
         libsasl2-modules-gssapi-mit \
+        libsasl2-modules-ldap \
 	&& rm -r /var/lib/apt/lists/* \
 	&& sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
 	&& locale-gen \
@@ -42,6 +48,7 @@ RUN set -ex; \
 
 # Hive Driver
 RUN dpkg -i /tmp/hive-odbc.deb
+RUN cp /opt/cloudera/hiveodbc/Setup/odbc.ini /etc/odbc.ini
 RUN cp /opt/cloudera/hiveodbc/Setup/odbcinst.ini /etc/odbcinst.ini
 
 ENV LANGUAGE=en_US.UTF-8
