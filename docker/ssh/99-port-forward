@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+
+sed -i '/^AllowTcpForwarding/c\AllowTcpForwarding yes' /etc/ssh/sshd_config
+sed -i '/^GatewayPorts/c\GatewayPorts yes' /etc/ssh/sshd_config

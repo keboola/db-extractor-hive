@@ -42,3 +42,4 @@ while (true) {
         sleep(1);
     }
 }
+$connection->disconnect();

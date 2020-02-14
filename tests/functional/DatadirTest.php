@@ -6,7 +6,7 @@ namespace Keboola\DbExtractor\FunctionalTests;
 
 use Keboola\DatadirTests\DatadirTestCase;
 
-class DatadirTest extends DatadirTestCase
-{
-
-}
+//class DatadirTest extends DatadirTestCase
+//{
+//
+//}
