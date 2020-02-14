@@ -21,8 +21,7 @@ beeline -u "jdbc:hive2://localhost:$HIVE_DB_PORT" -n "$HIVE_DB_USER" -p "$HIVE_D
 ";
 beeline -u "jdbc:hive2://localhost:$HIVE_DB_PORT" -n "$HIVE_DB_USER" -p "$HIVE_DB_PASSWORD" -e "
   CREATE EXTERNAL TABLE IF NOT EXISTS sales (usergender varchar(255), usercity varchar(255), usersentiment int, zipcode varchar(255), sku varchar(255), createdat varchar(255), category varchar(255), price float, county varchar(255), countycode varchar(255), userstate varchar(255), categorygroup varchar(255));
-  TRUNCATE TABLE sales;
-  LOAD DATA LOCAL INPATH '/fixtures/sales.csv' OVERWRITE INTO TABLE sales;
+  LOAD DATA LOCAL INPATH '/fixtures/sales_without_header.csv' OVERWRITE INTO TABLE sales;
 ";
 echo "OK. Testing data imported.";
 
