@@ -1,0 +1,18 @@
+{
+  "parameters": {
+    "db": {
+      "host": "hive-server",
+      "port": 10000,
+      "database": "default",
+      "user": "admin",
+      "#password": "p#a!s@sw:o&r%^d"
+    },
+    "id": 0,
+    "name": "sales",
+    "query": "SELECT * FROM sales LIMIT 100",
+    "outputTable": "in.c-main.sales",
+    "incremental": false,
+    "primaryKey": [],
+    "enabled": true
+  }
+}

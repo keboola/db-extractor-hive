@@ -1,0 +1,23 @@
+{
+  "parameters": {
+    "db": {
+      "host": "hive-server",
+      "port": 10000,
+      "database": "default",
+      "user": "admin",
+      "#password": "p#a!s@sw:o&r%^d"
+    },
+    "id": 0,
+    "name": "incremental",
+    "table": {
+      "tableName": "incremental",
+      "schema": "default"
+    },
+    "outputTable": "in.c-main.incremental",
+    "primaryKey": ["id"],
+    "enabled": true,
+    "incremental": true,
+    "incrementalFetchingColumn": "timestamp_col",
+    "incrementalFetchingLimit": 5
+  }
+}
