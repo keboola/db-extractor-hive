@@ -8,6 +8,10 @@
       "#password": "p#a!s@sw:o&r%^d"
     },
     "query": "SELECT * FROM sales LIMIT 100",
-    "outputTable": "in.c-main.sales"
+    "outputTable": "in.c-main.sales",
+    "enabled": true,
+    "id": 0,
+    "name": "sales",
+    "primaryKey": []
   }
 }
