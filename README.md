@@ -23,8 +23,8 @@ The configuration `config.json` contains following properties in `parameters` ke
     - `ssh` - object (optional): Settings for SSH tunnel
         - `enabled` - bool (required):  Enables SSH tunnel
         - `sshHost` - string (required): IP address or hostname of SSH server
-        - `sshPort` - int (optional): SSH server port (default port is `22`)
-        - `localPort` - int (required): SSH tunnel local port (in Docker container, default `33006`)
+        - `sshPort` - integer (optional): SSH server port (default port is `22`)
+        - `localPort` - integer (required): SSH tunnel local port in Docker container (default `33006`)
         - `user` - string (optional): SSH user (default same as `db.user`)
         - `compression`  - bool (optional): Enables SSH tunnel compression (default `false`)
         - `keys` - object (optional): SSH keys
@@ -32,15 +32,15 @@ The configuration `config.json` contains following properties in `parameters` ke
             - `private` / `#private` - string (optional): Private SSH key
 - `query` - string (optional): SQL query whose output will be extracted
 - `table` - object (optional): Table whose will be extracted
-    - `tableName` - string (required):
-    - `schema` - string (required):
+    - `tableName` - string (required)
+    - `schema` - string (required)
 - `columns` - array (optional): List of columns to export (default all columns)
 - `outputTable` - string (required): Name of the output table 
 - `incremental` - bool (optional):  Enables [Incremental Fetching](https://help.keboola.com/components/extractors/database/#incremental-fetching)
 - `incrementalFetchingColumn` - string (optional): Name of column for [Incremental Fetching](https://help.keboola.com/components/extractors/database/#incremental-fetching)
-- `incrementalFetchingLimit` - int (optional): Max number of rows fetched per one run
+- `incrementalFetchingLimit` - integer (optional): Max number of rows fetched per one run
 - `primaryKey` - string (optional): Sets primary key to specified column in output table
-- `retries` - int (optional): Number of retries if an error occurred
+- `retries` - integer (optional): Number of retries if an error occurred
 
 ## Examples
 
