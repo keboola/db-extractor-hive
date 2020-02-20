@@ -1,7 +1,103 @@
-version: '2'
+version: '3'
 services:
-  dev:
+  tests: &tests
     build: .
+    image: keboola-component-db-extractor-hive
+    entrypoint: ["sh", "-c", "wait-for-it -t 100 hive-server:10000 && sleep 1 && exec \"$$@\"", "-"]
+    command: bash
+    environment:
+      # Db credentials
+      HIVE_DB_HOST: hive-server
+      HIVE_DB_PORT: 10000
+      HIVE_DB_DATABASE: default
+      HIVE_DB_USER: admin
+      HIVE_DB_PASSWORD: p#a!s@sw:o&r%^d
+      # SSH container credentials
+      SSH_DB_HOST: hive-server-behind-ssh
+      SSH_HOST: ssh-tunnel
+      SSH_PORT: 2222
+      SSH_USER: ssh-user
+      SSH_PUBLIC_KEY: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCrUKHPfcj3bv9JMcxa88Abt+2EBQCj3LOYssY7jewDW/e/GazYmhO229XBH0nfcEk3jM/em+yKMLR01xqeaqV/J9XWpMbOoXgSwIPcnViB5rGvu2r8/kPUD5HW1DkFoLjliZCWlJgde0tqoMvQfad7eC6UKVe4wGtyCMaLns9X8P2dG52rex9Qx2MDyinF5/a6O33/llJEF0Tb81asdfO6cZ/4k8a7gof/3ltmsYcnMOFKhrIOE9J1hPZ6dgv0eS9+OStlFIY1UCDQd8iHbkVu49jpgSrUPa+Br8Lyt+uYgbBhlarpSC+WMGKu8WVeqG9PmYBv9eCjNDEdKh504hpfPaaMsAzUDtk8Emmt8Skl7/nRoWGcQhTbkR0WFZTurtgT+eCLD9UPvVBOPy1ZRLutpEmmYVBgeehv0XagDmjq8rXsG4/JrjNk6TBLzJm07FwZuOKsUBzipGweyQlx48RVprN9WOx4WrB/WERzVXSFx9SllF2RBqZ38ZIOJY2llUM= ssh-user@tunnel"
+      SSH_PRIVATE_KEY: "-----BEGIN OPENSSH PRIVATE KEY-----\n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\n-----END OPENSSH PRIVATE KEY-----\n"
+    links:
+      - hive-server
+      - ssh-tunnel
+
+  dev:
+    <<: *tests
     volumes:
       - ./:/code
-      - ./data:/data
+
+  # SSH tunnel
+  ssh-tunnel:
+    image: linuxserver/openssh-server:amd64-8.1_p1-r0-ls10
+    environment:
+      USER_NAME: ssh-user
+      PUBLIC_KEY: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCrUKHPfcj3bv9JMcxa88Abt+2EBQCj3LOYssY7jewDW/e/GazYmhO229XBH0nfcEk3jM/em+yKMLR01xqeaqV/J9XWpMbOoXgSwIPcnViB5rGvu2r8/kPUD5HW1DkFoLjliZCWlJgde0tqoMvQfad7eC6UKVe4wGtyCMaLns9X8P2dG52rex9Qx2MDyinF5/a6O33/llJEF0Tb81asdfO6cZ/4k8a7gof/3ltmsYcnMOFKhrIOE9J1hPZ6dgv0eS9+OStlFIY1UCDQd8iHbkVu49jpgSrUPa+Br8Lyt+uYgbBhlarpSC+WMGKu8WVeqG9PmYBv9eCjNDEdKh504hpfPaaMsAzUDtk8Emmt8Skl7/nRoWGcQhTbkR0WFZTurtgT+eCLD9UPvVBOPy1ZRLutpEmmYVBgeehv0XagDmjq8rXsG4/JrjNk6TBLzJm07FwZuOKsUBzipGweyQlx48RVprN9WOx4WrB/WERzVXSFx9SllF2RBqZ38ZIOJY2llUM= ssh-user@tunnel"
+      PASSWORD_ACCESS: 'false'
+    volumes:
+      # Enable SSH tunnel
+      - ./docker/ssh/99-port-forward:/etc/cont-init.d/99-port-forward:ro
+    links:
+      - hive-server:hive-server-behind-ssh
+
+  # LDAP authentication server for Hive (external auth must be provided)
+  # Test cmd: docker-compose exec ldap ldapsearch -x -H ldap://localhost -b dc=keboola-test,dc=com -D "cn=admin,dc=keboola-test,dc=com" -w 'p#a!s@sw:o&r%^d'
+  ldap:
+    image: osixia/openldap:1.3.0-amd64
+    command: --copy-service
+    environment:
+      LDAP_TLS: 'false'
+      LDAP_ORGANISATION: Keboola Test
+      LDAP_DOMAIN: keboola-test.com
+      LDAP_ADMIN_PASSWORD: p#a!s@sw:o&r%^d
+
+  # Hive infrastructure
+  # From: https://github.com/big-data-europe/docker-hive/blob/master/docker-compose.yml
+  # Test cmd: docker-compose exec hive-server beeline -u jdbc:hive2://localhost:10000 -n admin -p 'p#a!s@sw:o&r%^d' -e "SHOW TABLES;"
+  hive-server:
+    build: ./docker/hive-server
+    env_file:
+      - docker/hive-env/hadoop-hive.env
+    environment:
+      # Credentials for docker/hive-server/custom-init.sh (same as in ldap server)
+      HIVE_DB_USER: admin
+      HIVE_DB_PASSWORD: p#a!s@sw:o&r%^d
+      HIVE_DB_PORT: 10000
+      HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
+      SERVICE_PRECONDITION: "hive-metastore:9083"
+      HIVE_SITE_CONF_hive_server2_use_SSL: 'false'
+      HIVE_SITE_CONF_hive_server2_authentication: LDAP
+      HIVE_SITE_CONF_hive_server2_authentication_ldap_url: ldap://ldap:389
+      HIVE_SITE_CONF_hive_server2_authentication_ldap_baseDN: dc=keboola-test,dc=com
+      HIVE_SITE_CONF_hive_server2_authentication_ldap_userDNPattern: cn=%s,dc=keboola-test,dc=com
+    links:
+      - ldap
+      - namenode
+      - datanode
+      - presto-coordinator
+      - hive-metastore
+      - hive-metastore-postgresql
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
+    environment:
+      - CLUSTER_NAME=test
+    env_file:
+      - docker/hive-env/hadoop-hive.env
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
+    env_file:
+      - docker/hive-env/hadoop-hive.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070"
+  hive-metastore:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    env_file:
+      - docker/hive-env/hadoop-hive.env
+    command: /opt/hive/bin/hive --service metastore
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432"
+  hive-metastore-postgresql:
+    image: bde2020/hive-metastore-postgresql:2.3.0
+  presto-coordinator:
+    image: shawnzhu/prestodb:0.181
