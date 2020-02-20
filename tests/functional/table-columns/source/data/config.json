@@ -7,16 +7,11 @@
       "user": "admin",
       "#password": "p#a!s@sw:o&r%^d"
     },
-    "id": 0,
-    "name": "sales",
     "table": {
       "tableName": "internal",
       "schema": "default"
     },
     "columns": ["price", "product_name"],
-    "outputTable": "in.c-main.internal",
-    "incremental": false,
-    "primaryKey": [],
-    "enabled": true
+    "outputTable": "in.c-main.internal"
   }
 }
