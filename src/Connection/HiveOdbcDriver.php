@@ -8,7 +8,7 @@ use Dibi\Drivers\OdbcDriver;
 
 /**
  * This driver is used to load a list of tables through a call to odbc_tables().
- * List of tables cannot be loaded from Hive DB by SQL: SHOW TABLES.
+ * List of tables cannot be loaded from Hive DB by SQL: eg. SHOW TABLES (not supported by Hive ODBC driver).
  */
 class HiveOdbcDriver extends OdbcDriver
 {
