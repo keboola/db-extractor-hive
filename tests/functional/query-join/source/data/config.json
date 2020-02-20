@@ -8,6 +8,6 @@
       "#password": "p#a!s@sw:o&r%^d"
     },
     "query": "SELECT s.*, i.price AS internal_price FROM sales s LEFT JOIN internal i ON (s.price = i.price) LIMIT 100",
-    "outputTable": "in.c-main.sales",
+    "outputTable": "in.c-main.sales"
   }
 }

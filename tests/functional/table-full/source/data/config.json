@@ -11,6 +11,6 @@
       "tableName": "internal",
       "schema": "default"
     },
-    "outputTable": "in.c-main.internal",
+    "outputTable": "in.c-main.internal"
   }
 }
