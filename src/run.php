@@ -1,5 +1,5 @@
 <?php
-// phpcs:disable
+
 declare(strict_types=1);
 
 use Keboola\DbExtractor\Exception\UserException;
