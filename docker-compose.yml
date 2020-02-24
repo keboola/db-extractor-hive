@@ -3,7 +3,6 @@ services:
   tests: &tests
     build: .
     image: keboola-component-db-extractor-hive
-    entrypoint: ["sh", "-c", "wait-for-it -t 100 hive-server:10000 && sleep 1 && exec \"$$@\"", "-"]
     command: bash
     environment:
       # Db credentials
@@ -28,6 +27,15 @@ services:
     volumes:
       - ./:/code
       - ssh-keys:/root/.ssh:ro
+
+  wait:
+    image: waisbrot/wait
+    depends_on:
+      - hive-server
+      - ssh-tunnel
+    environment:
+      - TARGETS=hive-server:10000,ssh-tunnel:22
+      - TIMEOUT=120
 
   # SSH tunnel
   ssh-tunnel:

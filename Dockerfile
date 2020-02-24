@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         locales \
         unzip \
-        wait-for-it \
         unixodbc \
         unixodbc-dev \
         libsasl2-dev \

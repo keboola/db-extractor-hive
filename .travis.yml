@@ -10,6 +10,7 @@ before_script:
   - docker -v
   - docker-compose -v
   - docker build -t $APP_IMAGE .
+  - docker-compose run --rm wait
   - docker-compose run --rm tests composer ci
 
   # push test image to ECR
