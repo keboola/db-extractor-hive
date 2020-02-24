@@ -21,6 +21,11 @@ class HiveOdbcResult extends Dibi\Drivers\OdbcResult
         parent::__construct($resultSet);
     }
 
+    public function unescapeBinary(string $value): string
+    {
+        return base64_encode($value);
+    }
+
     public function getResultColumns(): array
     {
         $count = odbc_num_fields($this->resultSet);
@@ -30,7 +35,9 @@ class HiveOdbcResult extends Dibi\Drivers\OdbcResult
             $type = $nativeType;
 
             // Don't convert date types to object
-            if (in_array($nativeType, self::KEEP_TEXT_TYPES, true)) {
+            if ($nativeType === 'BINARY') {
+                $type = Dibi\Type::BINARY;
+            } elseif (in_array($nativeType, self::KEEP_TEXT_TYPES, true)) {
                 $type = Dibi\Type::TEXT;
             }
 
@@ -42,6 +49,7 @@ class HiveOdbcResult extends Dibi\Drivers\OdbcResult
                 'nativetype' => $nativeType,
             ];
         }
+
         return $columns;
     }
 }

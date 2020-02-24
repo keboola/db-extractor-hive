@@ -192,6 +192,60 @@ class GetTablesTest extends TestCase
                         ],
                     ],
                 ],
+                [
+                    'name' => 'special_types',
+                    'schema' => 'default',
+                    'columns' => [
+                        [
+                            'name' => 'id',
+                            'sanitizedName' => 'id',
+                            'type' => 'INTEGER',
+                            'primaryKey' => false,
+                            'uniqueKey' => false,
+
+                        ],
+                        [
+                            'name' => 'bin',
+                            'sanitizedName' => 'bin',
+                            'type' => 'STRING',
+                            'primaryKey' => false,
+                            'uniqueKey' => false,
+
+                        ],
+                        [
+                            'name' => 'map',
+                            'sanitizedName' => 'map',
+                            'type' => 'STRING',
+                            'primaryKey' => false,
+                            'uniqueKey' => false,
+
+                        ],
+                        [
+                            'name' => 'array',
+                            'sanitizedName' => 'array',
+                            'type' => 'STRING',
+                            'primaryKey' => false,
+                            'uniqueKey' => false,
+
+                        ],
+                        [
+                            'name' => 'union',
+                            'sanitizedName' => 'union',
+                            'type' => 'STRING',
+                            'primaryKey' => false,
+                            'uniqueKey' => false,
+
+                        ],
+                        [
+                            'name' => 'struct',
+                            'sanitizedName' => 'struct',
+                            'type' => 'STRING',
+                            'primaryKey' => false,
+                            'uniqueKey' => false,
+
+                        ],
+                    ],
+                ],
             ],
         ];
     }

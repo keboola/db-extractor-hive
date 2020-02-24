@@ -10,7 +10,7 @@ use Keboola\DbExtractor\Connection\HiveConnectionFactory;
 require __DIR__ . '/../../vendor/autoload.php';
 
 // Wait for test data, see docker/hive-server/custom-init.sh
-$maxRetries = 30;
+$maxRetries = 60;
 $i = 0;
 echo 'boostrap.php: Waiting for testing data ...';
 while (true) {
