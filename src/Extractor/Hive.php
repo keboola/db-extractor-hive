@@ -112,18 +112,18 @@ class Hive extends Extractor
     {
         $tableInfo = $this->getTables([$table])[0] ?? null;
         if (!$tableInfo) {
-            throw new UserException(sprintf('Table [%s] not found.', $table['tableName']));
+            throw new UserException(sprintf('Table "%s" not found.', $table['tableName']));
         }
 
         $column = current(array_filter($tableInfo['columns'], fn($item) => $item['name'] === $columnName));
         if (!$column) {
-            throw new UserException(sprintf('Incremental fetching column [%s] not found.', $columnName));
+            throw new UserException(sprintf('Incremental fetching column "%s" not found.', $columnName));
         }
 
         $datatype = new GenericStorage($column['type']);
         if (!in_array($datatype->getBasetype(), self::INCREMENTAL_TYPES, true)) {
             throw new UserException(sprintf(
-                'Unexpected type [%s] of incremental fetching column [%s]. Expected types: %s.',
+                'Unexpected type "%s" of incremental fetching column "%s". Expected types: %s.',
                 $column['type'],
                 $columnName,
                 implode(', ', self::INCREMENTAL_TYPES),

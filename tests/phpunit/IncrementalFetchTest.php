@@ -28,20 +28,20 @@ class IncrementalFetchTest extends TestCase
     {
         return [
             'missing column' => [
-                'Incremental fetching column [foo] not found.',
+                'Incremental fetching column "foo" not found.',
                 [
                     'incrementalFetchingColumn' => 'foo',
                 ],
             ],
             'unexpected column type' => [
-                'Unexpected type [STRING] of incremental fetching column [string_col]. ' .
+                'Unexpected type "STRING" of incremental fetching column "string_col". ' .
                 'Expected types: INTEGER, NUMERIC, FLOAT, TIMESTAMP, DATE.',
                 [
                     'incrementalFetchingColumn' => 'string_col',
                 ],
             ],
             'missing table' => [
-                'Table [bar] not found.',
+                'Table "bar" not found.',
                 [
                     'incrementalFetchingColumn' => 'double_col',
                     'table' => [
