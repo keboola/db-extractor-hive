@@ -59,10 +59,11 @@ class Hive extends Extractor
                 continue;
             }
 
-            $tableDefs[] = $tableFormat = new Table();
+            $tableFormat = new Table();
             $tableFormat
                 ->setName($tableName)
                 ->setSchema($databaseName);
+            $tableDefs[] = $tableFormat;
 
             $columns = $reflector->getColumns($tableName);
             foreach ($columns as $column) {
