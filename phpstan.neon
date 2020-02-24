@@ -4,3 +4,4 @@ parameters:
         - src/run.php
     ignoreErrors:
         - "#Offset '.*' does not exist on array\\|null\\.#"
+        - "#Cannot call method toArray\\(\\) on \\(array\\)\\|Dibi\\\\Row#"

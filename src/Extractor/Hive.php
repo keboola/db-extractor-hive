@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Extractor;
 
-use Throwable;
-use PDOStatement;
 use Dibi\Connection;
-use Dibi\Drivers\PdoResult;
 use Keboola\DbExtractor\Connection\HiveConnectionFactory;
 use Keboola\DbExtractorLogger\Logger;
 use Keboola\Datatype\Definition\GenericStorage;
-use Keboola\DbExtractor\DbRetryProxy;
 use Keboola\DbExtractor\Exception\UserException;
 use Keboola\DbExtractor\TableResultFormat\Table;
 use Keboola\DbExtractor\TableResultFormat\TableColumn;
 
 class Hive extends Extractor
 {
+    use DibiSupportExtractorTrait;
+
     public const INCREMENTAL_TYPES = ['INTEGER', 'NUMERIC', 'FLOAT', 'TIMESTAMP', 'DATE'];
 
     /** @var Connection */
@@ -167,42 +165,5 @@ class Hive extends Extractor
         }
 
         return $query;
-    }
-
-    protected function executePreparedQuery(array $args, ?string $errorMessage = null): PDOStatement
-    {
-        try {
-            $query = (string) $this->db->translate(...$args);
-            return $this->executeQuery($query, DbRetryProxy::DEFAULT_MAX_TRIES);
-        } catch (\Throwable $exception) {
-            if ($errorMessage) {
-                throw new UserException($errorMessage . ': ' . $exception->getMessage(), 0, $exception);
-            }
-
-            throw $exception;
-        }
-    }
-
-    protected function executeQuery(string $query, ?int $maxTries): PDOStatement
-    {
-        $proxy = new DbRetryProxy($this->logger, $maxTries);
-
-        return $proxy->call(function () use ($query) {
-            try {
-                // We are using Dibi library PDO wrapper,
-                // ... therefore it is necessary to convert
-                // ... result type to PDOStatement used in db-extractor common.
-                // Besides, the code is identical to the parent class.
-                $result = $this->db->query($query)->getResultDriver();
-                assert($result instanceof PdoResult);
-                return $result->getResultResource();
-            } catch (Throwable $e) {
-                try {
-                    $this->db = $this->createConnection($this->getDbParameters());
-                } catch (Throwable $e) {
-                }
-                throw $e;
-            }
-        });
     }
 }

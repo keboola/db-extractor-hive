@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Dibi\Connection;
 use Dibi\DriverException;
-use Keboola\DbExtractor\Connection\HivePdoOdbcDriver;
+use Keboola\DbExtractor\Connection\HiveOdbcDriver;
 use Keboola\DbExtractor\Connection\HiveConnectionFactory;
 
 require __DIR__ . '/../../vendor/autoload.php';
@@ -19,7 +19,7 @@ while (true) {
     try {
         // Create connections
         $connection = new Connection([
-            'driver' => HivePdoOdbcDriver::class,
+            'driver' => HiveOdbcDriver::class,
             'dsn' => HiveConnectionFactory::createDns(
                 (string) getenv('HIVE_DB_HOST'),
                 (int) getenv('HIVE_DB_PORT'),

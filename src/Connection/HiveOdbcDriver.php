@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Keboola\DbExtractor\Connection;
 
 use Dibi\Drivers\OdbcDriver;
+use Dibi\Reflector;
 
 /**
  * This driver is used to load a list of tables through a call to odbc_tables().
@@ -12,5 +13,30 @@ use Dibi\Drivers\OdbcDriver;
  */
 class HiveOdbcDriver extends OdbcDriver
 {
-    use HiveEscapingTrait;
+
+    public function __construct(array $config)
+    {
+        parent::__construct($config);
+
+        // Don't prefix columns in result with table name, ... eg. 'price', NOT 'product.price'
+        $this->query('set hive.resultset.use.unique.column.names=false');
+    }
+
+    public function escapeIdentifier(string $value): string
+    {
+        return '`' . str_replace('`', '``', $value) . '`';
+    }
+
+    public function getReflector(): Reflector
+    {
+        return new HiveOdbcReflector($this);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function createResultDriver($resource): HiveOdbcResult
+    {
+        return new HiveOdbcResult($resource);
+    }
 }

@@ -44,7 +44,7 @@ class HiveConnectionFactory
     public function createConnection(array $params): Connection
     {
         return new Connection([
-            'driver' => HivePdoOdbcDriver::class,
+            'driver' => HiveOdbcDriver::class,
             'dsn' => self::createDnsFromParams($params),
             'username' => $params['user'],
             'password' => $params['#password'],
