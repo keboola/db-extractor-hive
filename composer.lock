@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a1a88857571a96fe11a10b266e01280",
+    "content-hash": "abd858d222a05a0d54e58495bc6239d3",
     "packages": [
         {
             "name": "dibi/dibi",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/dibi.git",
-                "reference": "9d4bef53d3b9750512b04f61abe00b608d3adc2e"
+                "reference": "f18056a0664a8d86406394e80081427a81cf5435"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/dibi/zipball/9d4bef53d3b9750512b04f61abe00b608d3adc2e",
-                "reference": "9d4bef53d3b9750512b04f61abe00b608d3adc2e",
+                "url": "https://api.github.com/repos/dg/dibi/zipball/f18056a0664a8d86406394e80081427a81cf5435",
+                "reference": "f18056a0664a8d86406394e80081427a81cf5435",
                 "shasum": ""
             },
             "require": {
@@ -28,6 +28,7 @@
             },
             "require-dev": {
                 "nette/tester": "~2.0",
+                "phpstan/phpstan": "^0.12",
                 "tracy/tracy": "~2.2"
             },
             "type": "library",
@@ -44,8 +45,8 @@
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
+                "GPL-2.0-only",
+                "GPL-3.0-only"
             ],
             "authors": [
                 {
@@ -68,7 +69,7 @@
                 "sqlite",
                 "sqlsrv"
             ],
-            "time": "2019-11-19T19:15:32+00:00"
+            "time": "2020-02-23T17:50:27+00:00"
         },
         {
             "name": "keboola/common-exceptions",
@@ -814,45 +815,6 @@
                 "validation"
             ],
             "time": "2019-11-19T00:32:02+00:00"
-        },
-        {
-            "name": "phpstan/phpstan",
-            "version": "0.12.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "ca5f2b7cf81c6d8fba74f9576970399c5817e03b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ca5f2b7cf81c6d8fba74f9576970399c5817e03b",
-                "reference": "ca5f2b7cf81c6d8fba74f9576970399c5817e03b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1"
-            },
-            "bin": [
-                "phpstan",
-                "phpstan.phar"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.12-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2020-02-16T14:00:29+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -1985,6 +1947,45 @@
                 "stub"
             ],
             "time": "2020-01-20T15:57:02+00:00"
+        },
+        {
+            "name": "phpstan/phpstan",
+            "version": "0.12.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan.git",
+                "reference": "ca5f2b7cf81c6d8fba74f9576970399c5817e03b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ca5f2b7cf81c6d8fba74f9576970399c5817e03b",
+                "reference": "ca5f2b7cf81c6d8fba74f9576970399c5817e03b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "bin": [
+                "phpstan",
+                "phpstan.phar"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.12-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan - PHP Static Analysis Tool",
+            "time": "2020-02-16T14:00:29+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
