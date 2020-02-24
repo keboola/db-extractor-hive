@@ -6,13 +6,14 @@ namespace Keboola\DbExtractor\Tests;
 
 use Keboola\DbExtractor\Exception\UserException;
 use Keboola\DbExtractor\Tests\Traits\CreateApplicationTrait;
-
+use Keboola\DbExtractor\Tests\Traits\SshKeysTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;
 
 class TestConnectionTest extends TestCase
 {
     use CreateApplicationTrait;
+    use SshKeysTrait;
 
     protected function tearDown(): void
     {
@@ -74,8 +75,8 @@ class TestConnectionTest extends TestCase
                                 'sshPort' => (int) getenv('SSH_PORT'),
                                 'user' => getenv('SSH_USER'),
                                 'keys' => [
-                                    'public' => getenv('SSH_PUBLIC_KEY'),
-                                    '#private'=> getenv('SSH_PRIVATE_KEY'),
+                                    'public' => $this->getPublicKey(),
+                                    '#private'=> $this->getPrivateKey(),
                                 ],
                             ],
                         ],
