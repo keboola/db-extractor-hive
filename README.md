@@ -29,7 +29,7 @@ The configuration `config.json` contains following properties in `parameters` ke
         - `compression`  - bool (optional): Enables SSH tunnel compression (default `false`)
         - `keys` - object (optional): SSH keys
             - `public` - string (optional): Public SSH key
-            - `private` / `#private` - string (optional): Private SSH key
+            - `#private` - string (optional): Private SSH key
 - `query` - string (optional): SQL query whose output will be extracted
 - `table` - object (optional): Table whose will be extracted
     - `tableName` - string (required)
