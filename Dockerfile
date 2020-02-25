@@ -46,10 +46,6 @@ RUN set -ex; \
     docker-php-ext-install odbc; \
     docker-php-source delete
 
-# PDO
-RUN docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
-    && docker-php-ext-install pdo_odbc
-
 # Hive Driver
 RUN curl http://package.mapr.com/tools/MapR-ODBC/MapR_Hive/MapRHive_odbc_2.6.1.1001/MapRHiveODBC-2.6.1.1001-1.x86_64.rpm -o /tmp/hive-odbc.rpm \
     && alien -i /tmp/hive-odbc.rpm \
