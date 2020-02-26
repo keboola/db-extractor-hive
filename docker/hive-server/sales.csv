@@ -1,0 +1,500 @@
+usergender,usercity,usersentiment,zipcode,sku,createdat,category,price,county,countycode,userstate,group
+Female,Mize,-1,39153,ZD111318,2013-09-23 22:38:29,Cameras,708.0,Smith,28129,Mississippi,Electronics
+Male,The Lakes,1,89124,ZD111402,2013-09-23 22:38:30,Televisions,1546.0,Clark,32003,Nevada,Electronics
+Male,Baldwin,1,21020,ZD111483,2013-09-23 22:38:31,Loose Stones,1262.0,Baltimore,24005,Maryland,Jewelry
+Female,Archbald,1,18501,ZD111395,2013-09-23 22:38:32,Stereo,104.0,Lackawanna,42069,Pennsylvania,Electronics
+Male,Berea,0,44127,ZD111451,2013-09-23 22:38:33,Earings,1007.0,Cuyahoga,39035,Ohio,Jewelry
+Male,Baldwin,0,21219,ZD111471,2013-09-23 22:38:34,Jewelry Boxes,103.0,Baltimore,24005,Maryland,Jewelry
+Male,Phoenix,1,85083,ZD111228,2013-09-23 22:38:35,Reference,18.0,Maricopa,04013,Arizona,Books
+Female,Martinsburg,-1,25428,ZD111340,2013-09-23 22:38:36,Dvd/Vcr Players,197.0,Berkeley,54003,West Virginia,Electronics
+Male,Los Angeles,0,91328,ZD111595,2013-09-23 22:38:37,Maternity,67.0,Los Angeles,06037,California,Women
+Female,Bolton,1,28455,ZD111577,2013-09-23 22:38:38,Dresses,61.0,Columbus,37047,North Carolina,Women
+Female,Cranford,-1,07974,ZD111274,2013-09-23 22:38:39,Sports,17.0,Union,34039,New Jersey,Books
+Female,Troy,1,48359,ZD111146,2013-09-23 22:38:40,Cooking,6.0,Oakland,26125,Michigan,Books
+Female,East Mansfield,1,02764,ZD111542,2013-09-23 22:38:41,Pants,99.0,Bristol,25005,Massachusetts,Men
+Male,Bixby,0,74156,ZD111603,2013-09-23 22:38:42,Maternity,65.0,Tulsa,40143,Oklahoma,Women
+Female,Buena Park,0,92806,ZD111450,2013-09-23 22:38:43,Earings,1808.0,Orange,06059,California,Jewelry
+Male,Annapolis Junction,0,21029,ZD111548,2013-09-23 22:38:44,Pants,52.0,Howard,24027,Maryland,Men
+Male,Bellarthur,-1,27837,ZD111577,2013-09-23 22:38:45,Dresses,61.0,Pitt,37147,North Carolina,Women
+Male,Longmont,1,80615,ZD111438,2013-09-23 22:38:46,Diamonds,1057.0,Weld,08123,Colorado,Jewelry
+Female,Allenton,0,63126,ZD111296,2013-09-23 22:38:47,Audio,909.0,St. Louis,29189,Missouri,Electronics
+Female,Red Creek,-1,14551,ZD111287,2013-09-23 22:38:48,Audio,542.0,Wayne,36117,New York,Electronics
+Male,Knightstown,-1,47351,ZD111532,2013-09-23 22:38:49,Accessories,68.0,Henry,18065,Indiana,Men
+Female,Kimball,0,56372,ZD111535,2013-09-23 22:38:50,Accessories,69.0,Stearns,27145,Minnesota,Men
+Female,Brighton,1,48836,ZD111227,2013-09-23 22:38:51,Reference,12.0,Livingston,26093,Michigan,Books
+Female,Coloma,-1,96155,ZD111113,2013-09-23 22:38:52,Arts,11.0,El Dorado,06017,California,Books
+Male,Basehor,0,66027,ZD111391,2013-09-23 22:38:53,Stereo,125.0,Leavenworth,20103,Kansas,Electronics
+Male,Alma Center,0,54643,ZD111232,2013-09-23 22:38:54,Romance,14.0,Jackson,55053,Wisconsin,Books
+Female,Monroe,0,71291,ZD111431,2013-09-23 22:38:55,Diamonds,1763.0,Ouachita,22073,Louisiana,Jewelry
+Male,Arlington Heights,0,60630,ZD111287,2013-09-23 22:38:56,Audio,542.0,Cook,17031,Illinois,Electronics
+Male,Englewood,1,34231,ZD111135,2013-09-23 22:38:57,Computers,20.0,Sarasota,12115,Florida,Books
+Female,Allen Park,1,48210,ZD111201,2013-09-23 22:38:58,Mystery,11.0,Wayne,26163,Michigan,Books
+Female,Los Angeles,1,91328,ZD111423,2013-09-23 22:38:59,Bracelets,1540.0,Los Angeles,06037,California,Jewelry
+Female,Los Angeles,-1,91386,ZD111512,2013-09-23 22:39:00,Rings,2717.0,Los Angeles,06037,California,Jewelry
+Male,Charlottesville,1,22940,ZD111374,2013-09-23 22:39:01,Portable,105.0,Albemarle,51003,Virginia,Electronics
+Female,Los Angeles,0,92119,ZD111455,2013-09-23 22:39:02,Gold,1987.0,San Diego County,06073,California,Jewelry
+Female,Bay Pines,0,33755,ZD111605,2013-09-23 22:39:03,Maternity,76.0,Pinellas County,12103,Florida,Women
+Female,Cornelius,1,28289,ZD111243,2013-09-23 22:39:04,Science,12.0,Mecklenburg,37119,North Carolina,Books
+Male,Clifton,1,07506,ZD111185,2013-09-23 22:39:05,History,6.0,Passaic,34031,New Jersey,Books
+Female,Corona,-1,92518,ZD111281,2013-09-23 22:39:06,Travel,6.0,Riverside,06065,California,Books
+Male,Edgard,-1,70049,ZD111253,2013-09-23 22:39:07,Science,19.0,St. John the Baptist,22095,Louisiana,Books
+Female,Durham,0,18951,ZD111238,2013-09-23 22:39:08,Romance,10.0,Bucks,42017,Pennsylvania,Books
+Male,Copperas Cove,-1,76558,ZD111184,2013-09-23 22:39:09,History,14.0,Coryell,48099,Texas,Books
+Female,Brookville,0,45403,ZD111161,2013-09-23 22:39:10,Entertainments,11.0,Montgomery,39113,Ohio,Books
+Male,Los Angeles,0,90034,ZD111455,2013-09-23 22:39:11,Gold,1987.0,Los Angeles,06037,California,Jewelry
+Male,Arkansas City,0,72379,ZD111118,2013-09-23 22:39:12,Arts,9.0,Desha,05041,Arkansas,Books
+Female,Edgewood,1,52042,ZD111451,2013-09-24 08:27:31,Earings,1007.0,Clayton,19043,Iowa,Jewelry
+Male,Eastwood,-1,40285,ZD111426,2013-09-24 08:27:34,Bracelets,202.0,Jefferson,21111,Kentucky,Jewelry
+Female,Catoosa,1,74015,ZD111500,2013-09-24 08:27:35,Pendants,1989.0,Rogers,40131,Oklahoma,Jewelry
+Female,Roy,1,84402,ZD111392,2013-09-24 08:27:36,Stereo,160.0,Weber,49057,Utah,Electronics
+Female,Los Angeles,-1,91507,ZD111524,2013-09-24 08:27:37,Womens Watch,2818.0,Los Angeles,06037,California,Jewelry
+Female,Lightfoot,-1,23694,ZD111407,2013-09-24 08:27:38,Televisions,592.0,York,51199,Virginia,Electronics
+Female,Butler,0,16046,ZD111436,2013-09-24 08:27:39,Diamonds,1813.0,Butler,42019,Pennsylvania,Jewelry
+Male,Ludlow,-1,61880,ZD111424,2013-09-24 08:27:40,Bracelets,1903.0,Champaign,17019,Illinois,Jewelry
+Female,Los Angeles,0,92038,ZD111303,2013-09-24 08:27:41,Camcorders,612.0,San Diego County,06073,California,Electronics
+Female,Cornelius,0,28217,ZD111138,2013-09-24 08:27:42,Computers,19.0,Mecklenburg,37119,North Carolina,Books
+Male,Allenton,0,63132,ZD111180,2013-09-24 08:27:43,History,14.0,St. Louis,29189,Missouri,Books
+Female,Hattiesburg,0,39402,ZD111266,2013-09-24 08:27:44,Sports,13.0,Forrest County,28035,Mississippi,Books
+Male,Nantucket,1,02564,ZD111292,2013-09-24 08:27:45,Audio,544.0,Nantucket,25019,Massachusetts,Electronics
+Female,Dania,0,33309,ZD111278,2013-09-24 08:27:46,Travel,9.0,Broward,12011,Florida,Books
+Female,Jamaica,-1,14215,ZD111127,2013-09-24 08:27:47,Business,15.0,Erie County,36029,New York,Books
+Female,Bend,0,97707,ZD111183,2013-09-24 08:27:48,History,11.0,Deschutes,41017,Oregon,Books
+Female,Dania,-1,33326,ZD111518,2013-09-24 08:27:49,Womens Watch,1586.0,Broward,12011,Florida,Jewelry
+Male,Dania,-1,33339,ZD111142,2013-09-24 08:27:50,Computers,11.0,Broward,12011,Florida,Books
+Female,West Palm Beach,0,33454,ZD111308,2013-09-24 08:27:51,Camcorders,565.0,Palm Beach,12099,Florida,Electronics
+Male,Batesburg,-1,29169,ZD111369,2013-09-24 08:27:52,Portable,123.0,Lexington,45063,South Carolina,Electronics
+Female,Atlas,0,48458,ZD111316,2013-09-24 08:27:53,Cameras,913.0,Genesee,26049,Michigan,Electronics
+Female,Andale,1,67202,ZD111364,2013-09-24 08:27:55,Portable,196.0,Sedgwick,20173,Kansas,Electronics
+Female,Discovery Bay,-1,94507,ZD111458,2013-09-24 08:27:56,Gold,749.0,Contra Costa County,06013,California,Jewelry
+Female,Monroe,0,71294,ZD111598,2013-09-24 08:27:57,Maternity,78.0,Ouachita,22073,Louisiana,Women
+Female,Bass,-1,72628,ZD111329,2013-09-24 08:27:58,Disk Drives,113.0,Newton County,05101,Arkansas,Electronics
+Male,Baldwin City,-1,66046,ZD111316,2013-09-24 08:27:59,Cameras,913.0,Douglas,20045,Kansas,Electronics
+Female,Centreville,-1,22109,ZD111181,2013-09-24 08:28:00,History,13.0,Fairfax,51059,Virginia,Books
+Male,Allenton,-1,63127,ZD111592,2013-09-24 08:28:01,Fragrances,71.0,St. Louis,29189,Missouri,Women
+Female,Okemos,1,48911,ZD111331,2013-09-24 08:28:02,Dvd/Vcr Players,104.0,Ingham,26065,Michigan,Electronics
+Female,Denver,0,80219,ZD111177,2013-09-24 08:28:03,History,20.0,Denver,08031,Colorado,Books
+Male,Gainesville,1,32606,ZD111167,2013-09-24 08:28:04,Fiction,12.0,Alachua,12001,Florida,Books
+Female,Troy,0,48086,ZD111478,2013-09-24 08:28:05,Loose Stones,570.0,Oakland,26125,Michigan,Jewelry
+Female,Bay Minette,-1,36550,ZD111425,2013-09-24 08:28:06,Bracelets,870.0,Baldwin,01003,Alabama,Jewelry
+Female,Arab,1,35957,ZD111236,2013-09-24 08:28:07,Romance,6.0,Marshall,01095,Alabama,Books
+Male,Hialeah,0,33128,ZD111190,2013-09-24 08:28:08,Home Repair,13.0,Miami-Dade,12086,Florida,Books
+Female,Sacramento,1,95887,ZD111605,2013-09-24 08:28:09,Maternity,76.0,Sacramento,06067,California,Women
+Male,McHenry,-1,62034,ZD111246,2013-09-24 08:28:10,Science,11.0,Madison County,17119,Illinois,Books
+Female,Philadelphia,-1,19128,ZD111400,2013-09-24 08:28:11,Televisions,1883.0,Philadelphia,42101,Pennsylvania,Electronics
+Female,Bradley,0,93923,ZD111166,2013-09-24 08:28:12,Fiction,15.0,Monterey,06053,California,Books
+Female,Gering,-1,69358,ZD111528,2013-09-24 08:28:13,Womens Watch,1165.0,Scotts Bluff,31157,Nebraska,Jewelry
+Female,Los Angeles,0,90223,ZD111164,2013-09-24 08:28:14,Entertainments,10.0,Los Angeles,06037,California,Books
+Female,Amboy,1,98686,ZD111196,2013-09-24 08:28:15,Home Repair,20.0,Clark,53011,Washington,Books
+Female,Barberville,1,32724,ZD111118,2013-09-24 08:28:16,Arts,9.0,Volusia,12127,Florida,Books
+Male,Carrollton,0,76258,ZD111394,2013-09-24 08:28:17,Stereo,110.0,Denton,48121,Texas,Electronics
+Female,Saint Charles,-1,63303,ZD111292,2013-09-24 08:28:18,Audio,544.0,St. Charles,29183,Missouri,Electronics
+Female,Bairdford,-1,15270,ZD111141,2013-09-24 08:28:19,Computers,18.0,Allegheny,42003,Pennsylvania,Books
+Male,Glen Oaks,0,11447,ZD111331,2013-09-24 08:28:20,Dvd/Vcr Players,104.0,Queens,36081,New York,Electronics
+Female,Addison,1,75015,ZD111338,2013-09-24 08:28:21,Dvd/Vcr Players,180.0,Dallas,48113,Texas,Electronics
+Male,Bible School Park,1,13777,ZD111460,2013-09-24 08:28:22,Gold,728.0,Broome,36007,New York,Jewelry
+Male,Jersey,1,30025,ZD111313,2013-09-24 08:28:23,Cameras,523.0,Walton,13297,Georgia,Electronics
+Male,Hanna,-1,46346,ZD111446,2013-09-24 08:28:24,Earings,313.0,LaPorte,18091,Indiana,Jewelry
+Male,Saint Paul,1,55375,ZD111466,2013-09-24 08:28:25,Jewelry Boxes,186.0,Hennepin,27053,Minnesota,Jewelry
+Female,Glen Oaks,1,11366,ZD111178,2013-09-24 08:28:26,History,9.0,Queens,36081,New York,Books
+Male,Alexandria,-1,17260,ZD111560,2013-09-24 08:28:27,Shirts,67.0,Huntingdon,42061,Pennsylvania,Men
+Male,Los Angeles,0,92124,ZD111132,2013-09-24 08:28:28,Business,12.0,San Diego County,06073,California,Books
+Male,Brooklyn,1,11201,ZD111117,2013-09-24 08:28:29,Arts,8.0,Kings,36047,New York,Books
+Male,Philadelphia,-1,19117,ZD111441,2013-09-24 08:28:30,Earings,1194.0,Philadelphia,42101,Pennsylvania,Jewelry
+Female,Bardwell,-1,75168,ZD111341,2013-09-24 08:28:31,Dvd/Vcr Players,117.0,Ellis,48139,Texas,Electronics
+Female,Show Low,-1,85933,ZD111113,2013-09-24 08:28:32,Arts,11.0,Navajo,04017,Arizona,Books
+Male,Avenel,-1,08872,ZD111146,2013-09-24 08:28:33,Cooking,6.0,Middlesex,34023,New Jersey,Books
+Male,Arlington,1,76095,ZD111491,2013-09-24 08:28:34,Mens Watch,1506.0,Tarrant County,48439,Texas,Jewelry
+Female,Amlin,-1,43068,ZD111381,2013-09-24 08:28:35,Scanners,148.0,Franklin,39049,Ohio,Electronics
+Female,Auburn,1,98073,ZD111281,2013-09-24 08:28:36,Travel,6.0,King,53033,Washington,Books
+Male,Belleville,-1,53783,ZD111299,2013-09-24 08:28:37,Camcorders,927.0,Dane,55025,Wisconsin,Electronics
+Female,Black Canyon City,1,86327,ZD111178,2013-09-24 08:28:38,History,9.0,Yavapai,04025,Arizona,Books
+Female,Sandy Ridge,1,16874,ZD111173,2013-09-24 08:28:39,Fiction,6.0,Centre,42027,Pennsylvania,Books
+Female,Los Altos,1,95151,ZD111295,2013-09-24 08:28:40,Audio,967.0,Santa Clara,06085,California,Electronics
+Male,Virginia Beach,1,23465,ZD111603,2013-09-24 08:28:41,Maternity,65.0,Virginia Beach (city),51810,Virginia,Women
+Male,Cedar Crest,-1,87115,ZD111420,2013-09-24 08:28:42,Bracelets,732.0,Bernalillo,35001,New Mexico,Jewelry
+Male,West Sacramento,-1,95606,ZD111335,2013-09-24 08:28:43,Dvd/Vcr Players,160.0,Yolo,06113,California,Electronics
+Female,Brasstown,1,28904,ZD111225,2013-09-24 08:28:44,Reference,19.0,Clay,37043,North Carolina,Books
+Male,Alameda,1,94604,ZD111252,2013-09-24 08:28:45,Science,18.0,Alameda,06001,California,Books
+Female,Monroe,0,71211,ZD111421,2013-09-24 08:28:46,Bracelets,1156.0,Ouachita,22073,Louisiana,Jewelry
+Female,Kimball,0,56368,ZD111322,2013-09-24 08:28:47,Disk Drives,173.0,Stearns,27145,Minnesota,Electronics
+Male,Castle Rock,-1,55118,ZD111287,2013-09-24 08:28:48,Audio,542.0,Dakota,27037,Minnesota,Electronics
+Male,Abbeville,-1,38673,ZD111504,2013-09-24 08:28:49,Pendants,1295.0,Lafayette,28071,Mississippi,Jewelry
+Male,Avon Park,1,33870,ZD111264,2013-09-24 08:28:50,Self-Help,5.0,Highlands,12055,Florida,Books
+Male,Agawam,-1,01069,ZD111324,2013-09-24 08:28:51,Disk Drives,120.0,Hampden,25013,Massachusetts,Electronics
+Male,Accokeek,0,20749,ZD111462,2013-09-24 08:28:52,Gold,1234.0,Prince George's,24033,Maryland,Jewelry
+Male,Anatone,0,99401,ZD111295,2013-09-24 08:28:53,Audio,967.0,Asotin,53003,Washington,Electronics
+Female,Arlington Heights,0,60652,ZD111119,2013-09-24 08:28:54,Arts,16.0,Cook,17031,Illinois,Books
+Male,Greenville,1,29650,ZD111150,2013-09-24 08:28:55,Cooking,6.0,Greenville,45045,South Carolina,Books
+Female,Annapolis,-1,63663,ZD111180,2013-09-24 08:28:56,History,14.0,Iron,29093,Missouri,Books
+Male,New York City,1,10102,ZD111579,2013-09-24 08:28:57,Dresses,52.0,New York County,36061,New York,Women
+Female,Buzzards Bay,1,02662,ZD111144,2013-09-24 08:28:58,Cooking,15.0,Barnstable,25001,Massachusetts,Books
+Female,Birch Run,0,48616,ZD111601,2013-09-24 08:28:59,Maternity,74.0,Saginaw,26145,Michigan,Women
+Male,Charleston,1,37323,ZD111520,2013-09-24 08:29:00,Womens Watch,2431.0,Bradley,47011,Tennessee,Jewelry
+Female,Nageezi,0,87421,ZD111604,2013-09-24 08:29:01,Maternity,69.0,San Juan,35045,New Mexico,Women
+Male,West Palm Beach,0,33470,ZD111567,2013-09-24 08:29:02,Sports-Apparel,76.0,Palm Beach,12099,Florida,Men
+Male,Alameda,-1,94537,ZD111137,2013-09-24 08:29:03,Computers,18.0,Alameda,06001,California,Books
+Female,Houston,0,77315,ZD111294,2013-09-24 08:29:04,Audio,743.0,Harris,48201,Texas,Electronics
+Female,Benton Harbor,1,49128,ZD111222,2013-09-24 08:29:05,Reference,18.0,Berrien,26021,Michigan,Books
+Female,Florence,-1,78627,ZD111323,2013-09-24 08:29:06,Disk Drives,113.0,Williamson,48491,Texas,Electronics
+Male,Bothell,1,98087,ZD111151,2013-09-24 08:29:07,Cooking,6.0,Snohomish,53061,Washington,Books
+Male,Houston,0,77263,ZD111584,2013-09-24 08:29:08,Fragrances,79.0,Harris,48201,Texas,Women
+Male,Bellevue,0,68133,ZD111181,2013-09-24 08:29:09,History,13.0,Sarpy,31153,Nebraska,Books
+Female,Amherst,1,01012,ZD111578,2013-09-24 08:29:10,Dresses,73.0,Hampshire,25015,Massachusetts,Women
+Male,West Memphis,0,72332,ZD111278,2013-09-24 08:29:11,Travel,9.0,Crittenden,05035,Arkansas,Books
+Male,Aquashicola,-1,18229,ZD111499,2013-09-24 08:29:12,Pendants,1433.0,Carbon,42025,Pennsylvania,Jewelry
+Male,Terre Haute,-1,47885,ZD111608,2013-09-24 08:29:13,Swimwear,52.0,Vigo,18167,Indiana,Women
+Female,Bolingbroke,-1,31086,ZD111521,2013-09-24 08:29:14,Womens Watch,2770.0,Monroe,13207,Georgia,Jewelry
+Male,Breckenridge,1,80443,ZD111369,2013-09-24 08:29:15,Portable,123.0,Summit,08117,Colorado,Electronics
+Male,Newbury Park,-1,93034,ZD111361,2013-09-24 08:29:16,Monitors,141.0,Ventura,06111,California,Electronics
+Female,North Platte,0,69170,ZD111512,2013-09-24 08:29:17,Rings,2717.0,Lincoln,31111,Nebraska,Jewelry
+Male,Alta Loma,0,91730,ZD111429,2013-09-24 08:29:18,Bracelets,1705.0,San Bernardino,06071,California,Jewelry
+Female,Amlin,-1,43017,ZD111208,2013-09-24 08:29:19,Mystery,6.0,Franklin,39049,Ohio,Books
+Female,Suburb Maryland Fac,1,20853,ZD111301,2013-09-24 08:29:20,Camcorders,965.0,Montgomery County,24031,Maryland,Electronics
+Female,Clayton,0,30552,ZD111512,2013-09-24 08:29:21,Rings,2717.0,Rabun,13241,Georgia,Jewelry
+Male,Grand Forks,-1,58214,ZD111312,2013-09-24 08:29:22,Cameras,617.0,Grand Forks,38035,North Dakota,Electronics
+Female,Houston,0,77587,ZD111356,2013-09-24 08:29:23,Monitors,154.0,Harris,48201,Texas,Electronics
+Male,Stockton,-1,95296,ZD111609,2013-09-24 08:29:24,Swimwear,91.0,San Joaquin,06077,California,Women
+Female,Wichita Falls,-1,76369,ZD111344,2013-09-24 08:29:25,Memory,151.0,Wichita,48485,Texas,Electronics
+Male,Idalou,1,79403,ZD111443,2013-09-24 08:29:26,Earings,1911.0,Lubbock,48303,Texas,Jewelry
+Female,Los Angeles,0,90250,ZD111446,2013-09-24 08:29:27,Earings,313.0,Los Angeles,06037,California,Jewelry
+Male,Virginia Beach,-1,23456,ZD111483,2013-09-24 08:29:28,Loose Stones,1262.0,Virginia Beach (city),51810,Virginia,Jewelry
+Male,Ashland,-1,71411,ZD111115,2013-09-24 08:29:29,Arts,20.0,Natchitoches,22069,Louisiana,Books
+Female,Corona,-1,92530,ZD111252,2013-09-24 08:29:30,Science,18.0,Riverside,06065,California,Books
+Female,Cudahy,-1,53207,ZD111328,2013-09-24 08:29:31,Disk Drives,136.0,Milwaukee,55079,Wisconsin,Electronics
+Male,Charlottesville,-1,22904,ZD111398,2013-09-24 08:29:32,Televisions,1330.0,Charlottesville (city),51540,Virginia,Electronics
+Male,Bothell,0,98046,ZD111168,2013-09-24 08:29:33,Fiction,19.0,Snohomish,53061,Washington,Books
+Male,Brownsville,-1,78553,ZD111504,2013-09-24 08:29:34,Pendants,1295.0,Cameron,48061,Texas,Jewelry
+Male,Auburn,1,95658,ZD111554,2013-09-24 08:29:35,Shirts,76.0,Placer,06061,California,Men
+Male,Red Bank,-1,07754,ZD111325,2013-09-24 08:29:36,Disk Drives,151.0,Monmouth,34025,New Jersey,Electronics
+Female,Byron,0,53065,ZD111182,2013-09-24 08:29:37,History,10.0,Fond du Lac,55039,Wisconsin,Books
+Male,Aurora,0,80234,ZD111185,2013-09-24 08:29:38,History,6.0,Adams,08001,Colorado,Books
+Male,Thornville,-1,43076,ZD111327,2013-09-24 08:29:39,Disk Drives,169.0,Perry,39127,Ohio,Electronics
+Female,Addison,1,75396,ZD111481,2013-09-24 08:29:40,Loose Stones,1722.0,Dallas,48113,Texas,Jewelry
+Female,Pleasantville,-1,10804,ZD111178,2013-09-24 08:29:41,History,9.0,Westchester County,36119,New York,Books
+Female,Warren,-1,08876,ZD111193,2013-09-24 08:29:42,Home Repair,13.0,Somerset,34035,New Jersey,Books
+Male,Los Angeles,0,93553,ZD111534,2013-09-24 08:29:43,Accessories,87.0,Los Angeles,06037,California,Men
+Male,Floral Park,0,11566,ZD111117,2013-09-24 08:29:44,Arts,8.0,Nassau,36059,New York,Books
+Male,Castle Rock,1,55077,ZD111467,2013-09-24 08:29:45,Jewelry Boxes,126.0,Dakota,27037,Minnesota,Jewelry
+Female,Red Bank,1,07757,ZD111606,2013-09-24 08:29:46,Swimwear,95.0,Monmouth,34025,New Jersey,Women
+Male,Dania,0,33022,ZD111373,2013-09-24 08:29:47,Portable,147.0,Broward,12011,Florida,Electronics
+Female,Los Angeles,0,91001,ZD111204,2013-09-24 08:29:48,Mystery,17.0,Los Angeles,06037,California,Books
+Male,Custer,-1,49454,ZD111593,2013-09-24 08:29:49,Fragrances,79.0,Mason,26105,Michigan,Women
+Female,Corona,-1,92515,ZD111392,2013-09-24 08:29:50,Stereo,160.0,Riverside,06065,California,Electronics
+Male,Sacramento,-1,95851,ZD111470,2013-09-24 08:29:51,Jewelry Boxes,187.0,Sacramento,06067,California,Jewelry
+Female,Rolla,0,65436,ZD111336,2013-09-24 08:29:52,Dvd/Vcr Players,191.0,Phelps,29161,Missouri,Electronics
+Female,Norcross,-1,30226,ZD111279,2013-09-24 08:29:53,Travel,14.0,Gwinnett,13135,Georgia,Books
+Male,Hialeah,-1,33156,ZD111436,2013-09-24 08:29:54,Diamonds,1813.0,Miami-Dade,12086,Florida,Jewelry
+Male,Elizabethtown,-1,17560,ZD111355,2013-09-24 08:29:55,Monitors,152.0,Lancaster,42071,Pennsylvania,Electronics
+Female,Dugway,0,84083,ZD111447,2013-09-24 08:29:56,Earings,1149.0,Tooele,49045,Utah,Jewelry
+Female,Cherrylog,1,30540,ZD111313,2013-09-24 08:29:57,Cameras,523.0,Gilmer,13123,Georgia,Electronics
+Male,Mount Vernon,0,37804,ZD111236,2013-09-24 08:29:58,Romance,6.0,Blount County,47009,Tennessee,Books
+Male,Alleman,0,50243,ZD111460,2013-09-24 08:29:59,Gold,728.0,Polk,19153,Iowa,Jewelry
+Male,Centenary,0,29589,ZD111116,2013-09-24 08:30:00,Arts,11.0,Marion,45067,South Carolina,Books
+Female,Alexandria,-1,43008,ZD111501,2013-09-24 08:30:01,Pendants,571.0,Licking,39089,Ohio,Jewelry
+Male,Hialeah,-1,33152,ZD111507,2013-09-24 08:30:02,Rings,2849.0,Miami-Dade,12086,Florida,Jewelry
+Male,Bay Pines,-1,33772,ZD111170,2013-09-24 08:30:03,Fiction,11.0,Pinellas County,12103,Florida,Books
+Female,Lebanon,0,06360,ZD111577,2013-09-24 08:30:04,Dresses,61.0,New London,09011,Connecticut,Women
+Female,Branch,1,70531,ZD111205,2013-09-24 08:30:05,Mystery,11.0,Acadia,22001,Louisiana,Books
+Male,Pocatello,0,83246,ZD111300,2013-09-24 08:30:06,Camcorders,952.0,Bannock,16005,Idaho,Electronics
+Male,Conner,-1,59827,ZD111290,2013-09-24 08:30:07,Audio,790.0,Ravalli,30081,Montana,Electronics
+Male,Kalamazoo,1,49074,ZD111156,2013-09-24 08:30:08,Entertainments,10.0,Kalamazoo,26077,Michigan,Books
+Male,Advance,0,27014,ZD111397,2013-09-24 08:30:09,Televisions,1091.0,Davie,37059,North Carolina,Electronics
+Male,Kalispell,-1,59926,ZD111589,2013-09-24 08:30:10,Fragrances,88.0,Flathead,30029,Montana,Women
+Male,Kimball,-1,56356,ZD111584,2013-09-24 08:30:11,Fragrances,79.0,Stearns,27145,Minnesota,Women
+Male,Canastota,-1,13151,ZD111258,2013-09-24 08:30:12,Self-Help,8.0,Madison,36053,New York,Books
+Female,Ajo,1,85731,ZD111134,2013-09-24 08:30:13,Computers,7.0,Pima,04019,Arizona,Books
+Male,Lovejoy,-1,62220,ZD111323,2013-09-24 08:30:14,Disk Drives,113.0,St. Clair,17163,Illinois,Electronics
+Female,Bairdford,1,15015,ZD111396,2013-09-24 08:30:15,Stereo,184.0,Allegheny,42003,Pennsylvania,Electronics
+Male,Saint Louis,-1,63158,ZD111405,2013-09-24 08:30:16,Televisions,1783.0,St. Louis (city),29510,Missouri,Electronics
+Male,Bolton,0,39209,ZD111233,2013-09-24 08:30:17,Romance,11.0,Hinds,28049,Mississippi,Books
+Female,East Mansfield,-1,02745,ZD111162,2013-09-24 08:30:18,Entertainments,6.0,Bristol,25005,Massachusetts,Books
+Female,Cudahy,1,53277,ZD111487,2013-09-24 08:30:19,Mens Watch,516.0,Milwaukee,55079,Wisconsin,Jewelry
+Female,Altamonte Springs,1,32730,ZD111429,2013-09-24 08:30:20,Bracelets,1705.0,Seminole,12117,Florida,Jewelry
+Female,Apulia Station,0,13090,ZD111214,2013-09-24 08:30:21,Parenting,18.0,Onondaga,36067,New York,Books
+Male,Cranford,0,07027,ZD111161,2013-09-24 08:30:22,Entertainments,11.0,Union,34039,New Jersey,Books
+Male,Cedar Crest,1,87158,ZD111428,2013-09-24 08:30:23,Bracelets,1413.0,Bernalillo,35001,New Mexico,Jewelry
+Female,Canton,0,63438,ZD111250,2013-09-24 08:30:24,Science,5.0,Lewis,29111,Missouri,Books
+Female,Berea,0,44129,ZD111133,2013-09-24 08:30:25,Computers,9.0,Cuyahoga,39035,Ohio,Books
+Male,Brazoria,0,77581,ZD111581,2013-09-24 08:30:26,Dresses,84.0,Brazoria,48039,Texas,Women
+Female,Adamsville,0,35294,ZD111542,2013-09-24 08:30:27,Pants,99.0,Jefferson,01073,Alabama,Men
+Male,Ashland,-1,71411,ZD111286,2013-09-24 08:30:28,Travel,8.0,Natchitoches,22069,Louisiana,Books
+Male,Intercession City,1,34745,ZD111206,2013-09-24 08:30:29,Mystery,16.0,Osceola,12097,Florida,Books
+Male,Buena Park,1,92628,ZD111129,2013-09-24 08:30:30,Business,10.0,Orange,06059,California,Books
+Female,Atascosa,1,78231,ZD111454,2013-09-24 08:30:31,Gold,1015.0,Bexar,48029,Texas,Jewelry
+Female,Inglefield,0,47722,ZD111217,2013-09-24 08:30:32,Parenting,7.0,Vanderburgh,18163,Indiana,Books
+Male,Durham,1,19056,ZD111501,2013-09-24 08:30:33,Pendants,571.0,Bucks,42017,Pennsylvania,Jewelry
+Female,Fraser,1,80468,ZD111123,2013-09-24 08:30:34,Business,19.0,Grand,08049,Colorado,Books
+Female,Berrysburg,1,17108,ZD111137,2013-09-24 08:30:35,Computers,18.0,Dauphin,42043,Pennsylvania,Books
+Male,Holtsville,-1,11952,ZD111299,2013-09-24 08:30:36,Camcorders,927.0,Suffolk,36103,New York,Electronics
+Female,Anna,-1,45360,ZD111584,2013-09-24 08:30:37,Fragrances,79.0,Shelby,39149,Ohio,Women
+Male,Edgemont,0,57747,ZD111324,2013-09-24 08:30:38,Disk Drives,120.0,Fall River,46047,South Dakota,Electronics
+Male,Accokeek,-1,20762,ZD111264,2013-09-24 08:30:39,Self-Help,5.0,Prince George's,24033,Maryland,Books
+Male,Brea,1,93715,ZD111348,2013-09-24 08:30:40,Memory,154.0,Fresno County,06019,California,Electronics
+Male,Baltimore,0,21279,ZD111230,2013-09-24 08:30:41,Reference,9.0,Baltimore (city),24510,Maryland,Books
+Male,New Orleans,0,70190,ZD111594,2013-09-24 08:30:42,Fragrances,81.0,Orleans,22071,Louisiana,Women
+Male,Medford,-1,97504,ZD111249,2013-09-24 08:30:43,Science,12.0,Jackson,41029,Oregon,Books
+Male,Baxley,0,31515,ZD111487,2013-09-24 08:30:44,Mens Watch,516.0,Appling,13001,Georgia,Jewelry
+Female,Andover,1,01860,ZD111146,2013-09-24 08:30:45,Cooking,6.0,Essex,25009,Massachusetts,Books
+Female,Norcross,1,30245,ZD111256,2013-09-24 08:30:46,Self-Help,20.0,Gwinnett,13135,Georgia,Books
+Male,Houston,0,77250,ZD111180,2013-09-24 08:30:47,History,14.0,Harris,48201,Texas,Books
+Female,Batesburg,1,29072,ZD111125,2013-09-24 08:30:48,Business,19.0,Lexington,45063,South Carolina,Books
+Female,Lizella,1,31296,ZD111511,2013-09-24 08:30:49,Rings,1356.0,Bibb,13021,Georgia,Jewelry
+Female,New York City,0,10047,ZD111123,2013-09-24 08:30:50,Business,19.0,New York County,36061,New York,Books
+Male,Los Altos,0,95011,ZD111224,2013-09-24 08:30:51,Reference,19.0,Santa Clara,06085,California,Books
+Male,Hammonton,-1,08404,ZD111512,2013-09-24 08:30:52,Rings,2717.0,Atlantic,34001,New Jersey,Jewelry
+Male,Ardmore,1,19089,ZD111179,2013-09-24 08:30:53,History,5.0,Delaware,42045,Pennsylvania,Books
+Male,Coventry,-1,02889,ZD111509,2013-09-24 08:30:54,Rings,426.0,Kent,44003,Rhode Island,Jewelry
+Male,Midlothian,0,23838,ZD111589,2013-09-24 08:30:55,Fragrances,88.0,Chesterfield,51041,Virginia,Women
+Female,Avenel,1,08831,ZD111267,2013-09-24 08:30:56,Sports,12.0,Middlesex,34023,New Jersey,Books
+Female,Anthony,0,79937,ZD111200,2013-09-24 08:30:57,Mystery,14.0,El Paso,48141,Texas,Books
+Female,Bronson,1,32668,ZD111537,2013-09-24 08:30:58,Accessories,60.0,Levy,12075,Florida,Men
+Female,Coles Point,-1,22443,ZD111267,2013-09-24 08:30:59,Sports,12.0,Westmoreland,51193,Virginia,Books
+Male,Gold Canyon,0,85140,ZD111157,2013-09-24 08:31:00,Entertainments,10.0,Pinal,04021,Arizona,Books
+Male,Bingham Canyon,0,84170,ZD111166,2013-09-24 08:31:01,Fiction,15.0,Salt Lake,49035,Utah,Books
+Female,Amlin,0,43210,ZD111476,2013-09-24 08:31:02,Loose Stones,1690.0,Franklin,39049,Ohio,Jewelry
+Female,Monroe,0,71294,ZD111212,2013-09-24 08:31:03,Parenting,19.0,Ouachita,22073,Louisiana,Books
+Male,Hereford,-1,19518,ZD111425,2013-09-24 08:31:04,Bracelets,870.0,Berks,42011,Pennsylvania,Jewelry
+Female,Lakeland,-1,33823,ZD111448,2013-09-24 08:31:05,Earings,1034.0,Polk,12105,Florida,Jewelry
+Male,Bairdford,1,15136,ZD111290,2013-09-24 08:31:06,Audio,790.0,Allegheny,42003,Pennsylvania,Electronics
+Female,Appleton,1,14067,ZD111393,2013-09-24 08:31:07,Stereo,112.0,Niagara,36063,New York,Electronics
+Female,New Orleans,1,70142,ZD111612,2013-09-24 08:31:08,Swimwear,51.0,Orleans,22071,Louisiana,Women
+Male,Antioch,1,37229,ZD111497,2013-09-24 08:31:09,Pendants,1778.0,Davidson,47037,Tennessee,Jewelry
+Male,Los Angeles,-1,91756,ZD111239,2013-09-24 08:31:10,Romance,14.0,Los Angeles,06037,California,Books
+Female,Butte,0,59701,ZD111564,2013-09-24 08:31:11,Sports-Apparel,60.0,Silver Bow,30093,Montana,Men
+Female,Virginia Beach,-1,23463,ZD111566,2013-09-24 08:31:12,Sports-Apparel,53.0,Virginia Beach (city),51810,Virginia,Men
+Male,Axton,0,24054,ZD111245,2013-09-24 08:31:13,Science,6.0,Henry,51089,Virginia,Books
+Male,Hialeah,0,33035,ZD111241,2013-09-24 08:31:14,Romance,19.0,Miami-Dade,12086,Florida,Books
+Male,Roy,0,84403,ZD111225,2013-09-24 08:31:15,Reference,19.0,Weber,49057,Utah,Books
+Male,Cranford,1,07201,ZD111513,2013-09-24 08:31:16,Rings,743.0,Union,34039,New Jersey,Jewelry
+Female,Alpine,1,86502,ZD111361,2013-09-24 08:31:17,Monitors,141.0,Apache,04001,Arizona,Electronics
+Male,Alabaster,0,35147,ZD111371,2013-09-24 08:31:18,Portable,198.0,Shelby,01117,Alabama,Electronics
+Female,Chitina,0,99574,ZD111135,2013-09-24 08:31:19,Computers,20.0,Valdez-Cordova (CA),02261,Alaska,Books
+Female,Ardmore,0,19041,ZD111522,2013-09-24 08:31:20,Womens Watch,2167.0,Delaware,42045,Pennsylvania,Jewelry
+Female,Denver,1,80248,ZD111320,2013-09-24 08:31:21,Disk Drives,177.0,Denver,08031,Colorado,Electronics
+Female,Bingham Canyon,0,84126,ZD111377,2013-09-24 08:31:22,Scanners,110.0,Salt Lake,49035,Utah,Electronics
+Male,Aurora,1,80154,ZD111513,2013-09-24 08:31:23,Rings,743.0,Arapahoe,08005,Colorado,Jewelry
+Female,Philadelphia,-1,19117,ZD111495,2013-09-24 08:31:24,Mens Watch,1925.0,Philadelphia,42101,Pennsylvania,Jewelry
+Female,Alameda,0,94650,ZD111161,2013-09-24 08:31:25,Entertainments,11.0,Alameda,06001,California,Books
+Male,Coffeeville,0,38948,ZD111582,2013-09-24 08:31:26,Dresses,97.0,Yalobusha,28161,Mississippi,Women
+Male,Newbury Park,0,93033,ZD111468,2013-09-24 08:31:27,Jewelry Boxes,143.0,Ventura,06111,California,Jewelry
+Female,Apex,0,27635,ZD111503,2013-09-24 08:31:28,Pendants,500.0,Wake,37183,North Carolina,Jewelry
+Male,Coy,-1,36722,ZD111293,2013-09-24 08:31:29,Audio,697.0,Wilcox,01131,Alabama,Electronics
+Male,Lovejoy,-1,62258,ZD111509,2013-09-24 08:31:30,Rings,426.0,St. Clair,17163,Illinois,Jewelry
+Female,Crystal Bay,-1,89508,ZD111209,2013-09-24 08:31:31,Mystery,17.0,Washoe,32031,Nevada,Books
+Male,Alplaus,0,12137,ZD111563,2013-09-24 08:31:32,Sports-Apparel,98.0,Schenectady,36093,New York,Men
+Female,Armada,1,48088,ZD111249,2013-09-24 08:31:33,Science,12.0,Macomb,26099,Michigan,Books
+Male,Monument,0,80924,ZD111320,2013-09-24 08:31:34,Disk Drives,177.0,El Paso,08041,Colorado,Electronics
+Male,Denton,1,27360,ZD111538,2013-09-24 08:31:35,Accessories,62.0,Davidson,37057,North Carolina,Men
+Female,Cedarville,0,61067,ZD111574,2013-09-24 08:31:36,Dresses,70.0,Stephenson,17177,Illinois,Women
+Male,Brooklyn,-1,11254,ZD111410,2013-09-24 08:31:37,Wireless,640.0,Kings,36047,New York,Electronics
+Female,Corona,1,92586,ZD111194,2013-09-24 08:31:38,Home Repair,5.0,Riverside,06065,California,Books
+Female,Blue Springs,-1,64086,ZD111342,2013-09-24 08:31:39,Memory,196.0,Jackson,29095,Missouri,Electronics
+Male,East Otis,-1,01255,ZD111437,2013-09-24 08:31:40,Diamonds,1439.0,Berkshire,25003,Massachusetts,Jewelry
+Male,Candler,1,32111,ZD111460,2013-09-24 08:31:41,Gold,728.0,Marion,12083,Florida,Jewelry
+Female,Avondale Estates,1,30084,ZD111532,2013-09-24 08:31:42,Accessories,68.0,DeKalb,13089,Georgia,Men
+Female,Arlington Heights,1,60304,ZD111358,2013-09-24 08:31:43,Monitors,120.0,Cook,17031,Illinois,Electronics
+Male,Ajo,1,85748,ZD111417,2013-09-24 08:31:44,Wireless,672.0,Pima,04019,Arizona,Electronics
+Female,North East,-1,21901,ZD111296,2013-09-24 08:31:45,Audio,909.0,Cecil,24015,Maryland,Electronics
+Male,Greenville,-1,29607,ZD111372,2013-09-24 08:31:46,Portable,173.0,Greenville,45045,South Carolina,Electronics
+Female,Apex,1,27562,ZD111494,2013-09-24 08:31:47,Mens Watch,1706.0,Wake,37183,North Carolina,Jewelry
+Female,Bolton,0,39225,ZD111217,2013-09-24 08:31:48,Parenting,7.0,Hinds,28049,Mississippi,Books
+Male,Acme,0,98281,ZD111323,2013-09-24 08:31:49,Disk Drives,113.0,Whatcom,53073,Washington,Electronics
+Male,Metairie,-1,70063,ZD111159,2013-09-24 08:31:50,Entertainments,18.0,Jefferson,22051,Louisiana,Books
+Male,Troy,-1,48076,ZD111174,2013-09-24 08:31:51,Fiction,11.0,Oakland,26125,Michigan,Books
+Male,Boonton,1,07849,ZD111505,2013-09-24 08:31:52,Pendants,1150.0,Morris,34027,New Jersey,Jewelry
+Female,New York City,-1,10272,ZD111576,2013-09-24 08:31:53,Dresses,62.0,New York County,36061,New York,Women
+Male,New York City,-1,10065,ZD111374,2013-09-24 08:31:54,Portable,105.0,New York County,36061,New York,Electronics
+Male,Boonton,0,07440,ZD111292,2013-09-24 08:31:55,Audio,544.0,Morris,34027,New Jersey,Electronics
+Female,Punta Gorda,1,33980,ZD111501,2013-09-24 08:31:56,Pendants,571.0,Charlotte,12015,Florida,Jewelry
+Female,Arvin,1,93390,ZD111409,2013-09-24 08:31:57,Wireless,539.0,Kern,06029,California,Electronics
+Female,Aberdeen,-1,45130,ZD111588,2013-09-24 08:31:58,Fragrances,59.0,Brown,39015,Ohio,Women
+Female,Adams Basin,-1,14612,ZD111132,2013-09-24 08:31:59,Business,12.0,Monroe,36055,New York,Books
+Female,Durham,1,18981,ZD111287,2013-09-24 08:32:00,Audio,542.0,Bucks,42017,Pennsylvania,Electronics
+Female,Bristol,1,60512,ZD111472,2013-09-24 08:32:01,Jewelry Boxes,94.0,Kendall,17093,Illinois,Jewelry
+Female,Concord,1,28025,ZD111248,2013-09-24 08:32:02,Science,20.0,Cabarrus,37025,North Carolina,Books
+Male,Atascosa,-1,78278,ZD111154,2013-09-24 08:32:03,Cooking,13.0,Bexar,48029,Texas,Books
+Female,Barium Springs,-1,28123,ZD111206,2013-09-24 08:32:04,Mystery,16.0,Iredell,37097,North Carolina,Books
+Female,Alplaus,1,12053,ZD111535,2013-09-24 08:32:05,Accessories,69.0,Schenectady,36093,New York,Men
+Male,Cassoday,0,67012,ZD111323,2013-09-24 08:32:06,Disk Drives,113.0,Butler,20015,Kansas,Electronics
+Female,Troy,1,48076,ZD111460,2013-09-24 08:32:07,Gold,728.0,Oakland,26125,Michigan,Jewelry
+Male,Los Angeles,-1,91002,ZD111132,2013-09-24 08:32:08,Business,12.0,Los Angeles,06037,California,Books
+Male,Apex,0,27650,ZD111589,2013-09-24 08:32:09,Fragrances,88.0,Wake,37183,North Carolina,Women
+Male,Corona,-1,92262,ZD111178,2013-09-24 08:32:10,History,9.0,Riverside,06065,California,Books
+Female,Los Angeles,-1,91495,ZD111436,2013-09-24 08:32:11,Diamonds,1813.0,Los Angeles,06037,California,Jewelry
+Female,Finksburg,1,21157,ZD111445,2013-09-24 08:32:12,Earings,1130.0,Carroll,24013,Maryland,Jewelry
+Female,Klossner,-1,56649,ZD111410,2013-09-24 08:32:13,Wireless,640.0,Koochiching County,27071,Minnesota,Electronics
+Male,Longisland,-1,28801,ZD111299,2013-09-24 08:32:14,Camcorders,927.0,Buncombe County,37021,North Carolina,Electronics
+Female,Anchorage,-1,99515,ZD111596,2013-09-24 08:32:15,Maternity,74.0,Anchorage Municipality,02020,Alaska,Women
+Male,Beecher,-1,60434,ZD111372,2013-09-24 08:32:16,Portable,173.0,Will,17197,Illinois,Electronics
+Female,Salina,-1,67470,ZD111552,2013-09-24 08:32:17,Shirts,76.0,Saline,20169,Kansas,Men
+Female,Los Angeles,0,90278,ZD111379,2013-09-24 08:32:18,Scanners,152.0,Los Angeles,06037,California,Electronics
+Male,Phoenix,0,85224,ZD111571,2013-09-24 08:32:19,Sports-Apparel,61.0,Maricopa,04013,Arizona,Men
+Female,Allenton,-1,63133,ZD111506,2013-09-24 08:32:20,Pendants,1377.0,St. Louis,29189,Missouri,Jewelry
+Female,Angola,0,46737,ZD111169,2013-09-24 08:32:21,Fiction,11.0,Steuben,18151,Indiana,Books
+Female,Newbury Park,1,91361,ZD111492,2013-09-24 08:32:22,Mens Watch,1455.0,Ventura,06111,California,Jewelry
+Female,Allenton,0,63032,ZD111404,2013-09-24 08:32:23,Televisions,617.0,St. Louis,29189,Missouri,Electronics
+Male,Corona,1,92549,ZD111448,2013-09-24 08:32:24,Earings,1034.0,Riverside,06065,California,Jewelry
+Female,Hialeah,0,33002,ZD111275,2013-09-24 08:32:25,Sports,17.0,Miami-Dade,12086,Florida,Books
+Female,Troy,0,48346,ZD111606,2013-09-24 08:32:26,Swimwear,95.0,Oakland,26125,Michigan,Women
+Male,Lehigh Valley,1,18088,ZD111616,2013-09-24 08:32:27,Swimwear,82.0,Northampton,42095,Pennsylvania,Women
+Male,Bailey Island,1,04017,ZD111144,2013-09-24 08:32:28,Cooking,15.0,Cumberland,23005,Maine,Books
+Male,Roanoke,0,24087,ZD111117,2013-09-24 08:32:30,Arts,8.0,Roanoke,51161,Virginia,Books
+Female,Troy,0,48306,ZD111473,2013-09-24 08:32:31,Jewelry Boxes,112.0,Oakland,26125,Michigan,Jewelry
+Male,Glen Allen,0,23227,ZD111367,2013-09-24 08:32:32,Portable,156.0,Henrico,51087,Virginia,Electronics
+Male,Canyon,-1,79121,ZD111262,2013-09-24 08:32:33,Self-Help,10.0,Randall,48381,Texas,Books
+Female,Buena Park,1,92647,ZD111460,2013-09-24 08:32:34,Gold,728.0,Orange,06059,California,Jewelry
+Female,Los Altos,1,94087,ZD111390,2013-09-24 08:32:35,Stereo,109.0,Santa Clara,06085,California,Electronics
+Male,Olympia,1,98506,ZD111263,2013-09-24 08:32:36,Self-Help,14.0,Thurston,53067,Washington,Books
+Female,Andover,0,01964,ZD111317,2013-09-24 08:32:37,Cameras,529.0,Essex,25009,Massachusetts,Electronics
+Female,Big Oak Flat,-1,95310,ZD111579,2013-09-24 08:32:38,Dresses,52.0,Tuolumne,06109,California,Women
+Male,Hobe Sound,0,34995,ZD111158,2013-09-24 08:32:39,Entertainments,17.0,Martin,12085,Florida,Books
+Male,Ashland,-1,65010,ZD111180,2013-09-24 08:32:40,History,14.0,Boone,29019,Missouri,Books
+Female,Norcross,0,30052,ZD111518,2013-09-24 08:32:41,Womens Watch,1586.0,Gwinnett,13135,Georgia,Jewelry
+Female,Anderson Island,-1,98390,ZD111287,2013-09-24 08:32:42,Audio,542.0,Pierce,53053,Washington,Electronics
+Female,Council Bluffs,-1,51560,ZD111452,2013-09-24 08:32:43,Gold,1855.0,Pottawattamie,19155,Iowa,Jewelry
+Female,Beavercreek,-1,97022,ZD111541,2013-09-24 08:32:44,Pants,64.0,Clackamas,41005,Oregon,Men
+Female,Anthony,0,79998,ZD111136,2013-09-24 08:32:45,Computers,11.0,El Paso,48141,Texas,Books
+Male,Denver,-1,80265,ZD111434,2013-09-24 08:32:46,Diamonds,1231.0,Denver,08031,Colorado,Jewelry
+Female,Buffalo,-1,62703,ZD111223,2013-09-24 08:32:47,Reference,18.0,Sangamon,17167,Illinois,Books
+Female,Hereford,1,19567,ZD111123,2013-09-24 08:32:48,Business,19.0,Berks,42011,Pennsylvania,Books
+Female,Cassoday,0,67017,ZD111599,2013-09-24 08:32:49,Maternity,73.0,Butler,20015,Kansas,Women
+Male,Broomfield,-1,80510,ZD111564,2013-09-24 08:32:50,Sports-Apparel,60.0,Boulder,08013,Colorado,Men
+Male,Antioch,-1,37247,ZD111376,2013-09-24 08:32:51,Scanners,138.0,Davidson,47037,Tennessee,Electronics
+Male,Belmont,-1,94063,ZD111375,2013-09-24 08:32:52,Scanners,163.0,San Mateo,06081,California,Electronics
+Male,Alliance,0,44640,ZD111501,2013-09-24 08:32:53,Pendants,571.0,Stark,39151,Ohio,Jewelry
+Female,Los Angeles,-1,90262,ZD111386,2013-09-24 08:32:54,Stereo,157.0,Los Angeles,06037,California,Electronics
+Female,Arlington Heights,1,60154,ZD111452,2013-09-24 08:32:55,Gold,1855.0,Cook,17031,Illinois,Jewelry
+Female,Macedonia,1,44316,ZD111332,2013-09-24 08:32:56,Dvd/Vcr Players,123.0,Summit,39153,Ohio,Electronics
+Male,Cincinnatus,0,13077,ZD111287,2013-09-24 08:32:57,Audio,542.0,Cortland,36023,New York,Electronics
+Female,Los Angeles,0,91010,ZD111539,2013-09-24 08:32:58,Accessories,79.0,Los Angeles,06037,California,Men
+Male,Floral Park,1,11052,ZD111363,2013-09-24 08:32:59,Monitors,124.0,Nassau,36059,New York,Electronics
+Male,Mims,1,32954,ZD111450,2013-09-24 08:33:00,Earings,1808.0,Brevard,12009,Florida,Jewelry
+Male,Bond,1,81637,ZD111572,2013-09-24 08:33:01,Sports-Apparel,99.0,Eagle,08037,Colorado,Men
+Female,Cliffside Park,-1,07644,ZD111566,2013-09-24 08:33:02,Sports-Apparel,53.0,Bergen,34003,New Jersey,Men
+Female,Altoona,0,16684,ZD111490,2013-09-24 08:33:03,Mens Watch,139.0,Blair,42013,Pennsylvania,Jewelry
+Female,Denver,0,80222,ZD111124,2013-09-24 08:33:04,Business,5.0,Denver,08031,Colorado,Books
+Female,Troy,-1,48322,ZD111265,2013-09-24 08:33:05,Sports,17.0,Oakland,26125,Michigan,Books
+Female,Bridgeton,1,28533,ZD111338,2013-09-24 08:33:06,Dvd/Vcr Players,180.0,Craven,37049,North Carolina,Electronics
+Male,Ransom,0,61350,ZD111320,2013-09-24 08:33:07,Disk Drives,177.0,La Salle,17099,Illinois,Electronics
+Female,Troy,1,48084,ZD111399,2013-09-24 08:33:08,Televisions,1799.0,Oakland,26125,Michigan,Electronics
+Male,Georgetown,-1,40370,ZD111340,2013-09-24 08:33:09,Dvd/Vcr Players,197.0,Scott,21209,Kentucky,Electronics
+Female,Cedar Crest,1,87104,ZD111405,2013-09-24 08:33:10,Televisions,1783.0,Bernalillo,35001,New Mexico,Electronics
+Male,Los Angeles,-1,91790,ZD111469,2013-09-24 08:33:11,Jewelry Boxes,96.0,Los Angeles,06037,California,Jewelry
+Male,Benton,0,17920,ZD111325,2013-09-24 08:33:12,Disk Drives,151.0,Columbia,42037,Pennsylvania,Electronics
+Female,Brainerd,1,56401,ZD111180,2013-09-24 08:33:13,History,14.0,Crow Wing,27035,Minnesota,Books
+Male,Houston,1,77049,ZD111445,2013-09-24 08:33:14,Earings,1130.0,Harris,48201,Texas,Jewelry
+Female,Benicia,0,94585,ZD111254,2013-09-24 08:33:15,Self-Help,7.0,Solano,06095,California,Books
+Female,Plattsburgh,0,12955,ZD111365,2013-09-24 08:33:16,Portable,149.0,Clinton,36019,New York,Electronics
+Female,Auburn,-1,13111,ZD111147,2013-09-24 08:33:17,Cooking,15.0,Cayuga,36011,New York,Books
+Female,Inglefield,0,47747,ZD111169,2013-09-24 08:33:18,Fiction,11.0,Vanderburgh,18163,Indiana,Books
+Male,Hazleton,-1,18234,ZD111549,2013-09-24 08:33:19,Pants,87.0,Luzerne,42079,Pennsylvania,Men
+Female,Eastwood,1,40290,ZD111449,2013-09-24 08:33:20,Earings,1171.0,Jefferson,21111,Kentucky,Jewelry
+Female,Alta Loma,1,92371,ZD111121,2013-09-24 08:33:21,Arts,8.0,San Bernardino,06071,California,Books
+Female,Los Angeles,0,91526,ZD111353,2013-09-24 08:33:22,Monitors,142.0,Los Angeles,06037,California,Electronics
+Male,Bancroft,0,48841,ZD111209,2013-09-24 08:33:23,Mystery,17.0,Shiawassee,26155,Michigan,Books
+Male,East Mansfield,0,02703,ZD111371,2013-09-24 08:33:24,Portable,198.0,Bristol,25005,Massachusetts,Electronics
+Male,Amenia,0,12511,ZD111314,2013-09-24 08:33:25,Cameras,618.0,Dutchess,36027,New York,Electronics
+Female,Buena Park,1,92864,ZD111416,2013-09-24 08:33:26,Wireless,645.0,Orange,06059,California,Electronics
+Male,Centreville,1,22060,ZD111280,2013-09-24 08:33:27,Travel,15.0,Fairfax,51059,Virginia,Books
+Female,Alden,-1,60013,ZD111263,2013-09-24 08:33:28,Self-Help,14.0,McHenry,17111,Illinois,Books
+Male,Fortville,1,46154,ZD111182,2013-09-24 08:33:29,History,10.0,Hancock,18059,Indiana,Books
+Female,Christiana,1,37089,ZD111192,2013-09-24 08:33:30,Home Repair,5.0,Rutherford,47149,Tennessee,Books
+Female,Addison,1,75187,ZD111254,2013-09-24 08:33:31,Self-Help,7.0,Dallas,48113,Texas,Books
+Male,Alta Loma,-1,92316,ZD111254,2013-09-24 08:33:32,Self-Help,7.0,San Bernardino,06071,California,Books
+Male,Lakeland,-1,33843,ZD111142,2013-09-24 08:33:33,Computers,11.0,Polk,12105,Florida,Books
+Male,Albion,1,02919,ZD111350,2013-09-24 08:33:34,Memory,154.0,Providence,44007,Rhode Island,Electronics
+Female,Ixonia,0,53538,ZD111586,2013-09-24 08:33:35,Fragrances,68.0,Jefferson,55055,Wisconsin,Women
+Male,Atlasburg,0,15345,ZD111297,2013-09-24 08:33:36,Audio,964.0,Washington,42125,Pennsylvania,Electronics
+Female,Watertown,-1,13628,ZD111295,2013-09-24 08:33:37,Audio,967.0,Jefferson,36045,New York,Electronics
+Male,Addison,0,75046,ZD111615,2013-09-24 08:33:38,Swimwear,97.0,Dallas,48113,Texas,Women
+Female,Apopka,0,32869,ZD111498,2013-09-24 08:33:39,Pendants,982.0,Orange,12095,Florida,Jewelry
+Female,San Rafael,1,94938,ZD111557,2013-09-24 08:33:40,Shirts,57.0,Marin,06041,California,Men
+Male,Cranford,-1,07027,ZD111147,2013-09-24 08:33:41,Cooking,15.0,Union,34039,New Jersey,Books
+Male,Dos Palos,1,95333,ZD111437,2013-09-24 08:33:42,Diamonds,1439.0,Merced,06047,California,Jewelry
+Male,Dateland,1,85367,ZD111133,2013-09-24 08:33:43,Computers,9.0,Yuma,04027,Arizona,Books
+Male,Kingston,1,12428,ZD111519,2013-09-24 08:33:44,Womens Watch,2181.0,Ulster,36111,New York,Jewelry
+Male,Santa Fe,-1,77563,ZD111271,2013-09-24 08:33:45,Sports,12.0,Galveston,48167,Texas,Books
+Female,San Francisco,-1,94157,ZD111264,2013-09-24 08:33:46,Self-Help,5.0,San Francisco,06075,California,Books
+Male,Edmond,0,73083,ZD111557,2013-09-24 08:33:47,Shirts,57.0,Oklahoma,40109,Oklahoma,Men
+Female,Corona,1,91752,ZD111151,2013-09-24 08:33:48,Cooking,6.0,Riverside,06065,California,Books
+Male,Beverly,0,08010,ZD111179,2013-09-24 08:33:49,History,5.0,Burlington,34005,New Jersey,Books
+Female,Los Angeles,-1,91436,ZD111596,2013-09-24 08:33:50,Maternity,74.0,Los Angeles,06037,California,Women
+Male,Atlanta,0,31310,ZD111312,2013-09-24 08:33:51,Cameras,617.0,Liberty County,13179,Georgia,Electronics
+Female,Brooklyn,-1,11248,ZD111256,2013-09-24 08:33:52,Self-Help,20.0,Kings,36047,New York,Books
+Female,Crowley,-1,81033,ZD111191,2013-09-24 08:33:53,Home Repair,7.0,Crowley,08025,Colorado,Books
+Female,Algoma,-1,54217,ZD111409,2013-09-24 08:33:54,Wireless,539.0,Kewaunee,55061,Wisconsin,Electronics
+Male,Green Valley,0,61550,ZD111454,2013-09-24 08:33:55,Gold,1015.0,Tazewell,17179,Illinois,Jewelry
+Male,Dania,1,33072,ZD111586,2013-09-24 08:33:56,Fragrances,68.0,Broward,12011,Florida,Women
+Male,Los Angeles,1,91706,ZD111265,2013-09-24 08:33:57,Sports,17.0,Los Angeles,06037,California,Books
+Female,Belle Vernon,0,15466,ZD111396,2013-09-24 08:33:58,Stereo,184.0,Fayette,42051,Pennsylvania,Electronics
+Female,Los Angeles,0,91614,ZD111469,2013-09-24 08:33:59,Jewelry Boxes,96.0,Los Angeles,06037,California,Jewelry
+Male,Hammond,0,70401,ZD111311,2013-09-24 08:34:00,Cameras,672.0,Tangipahoa,22105,Louisiana,Electronics
+Female,Brooklyn,0,46157,ZD111289,2013-09-24 08:34:01,Audio,538.0,Morgan,18109,Indiana,Electronics
+Female,De Pere,0,54306,ZD111305,2013-09-24 08:34:02,Camcorders,992.0,Brown,55009,Wisconsin,Electronics
+Female,Austin,-1,42142,ZD111197,2013-09-24 08:34:03,Home Repair,5.0,Barren,21009,Kentucky,Books
+Male,Ballentine,-1,29290,ZD111235,2013-09-24 08:34:04,Romance,5.0,Richland,45079,South Carolina,Books
+Male,New Castle,-1,16120,ZD111304,2013-09-24 08:34:05,Camcorders,822.0,Lawrence,42073,Pennsylvania,Electronics
+Male,Brea,0,93714,ZD111326,2013-09-24 08:34:06,Disk Drives,104.0,Fresno County,06019,California,Electronics
+Male,Centreville,1,22036,ZD111312,2013-09-24 08:34:07,Cameras,617.0,Fairfax,51059,Virginia,Electronics
+Female,Agua Dulce,0,78475,ZD111177,2013-09-24 08:34:08,History,20.0,Nueces,48355,Texas,Books
+Male,Los Angeles,-1,91494,ZD111119,2013-09-24 08:34:09,Arts,16.0,Los Angeles,06037,California,Books
+Female,Los Angeles,-1,92121,ZD111157,2013-09-24 08:34:10,Entertainments,10.0,San Diego County,06073,California,Books
+Male,Ansonia,1,06524,ZD111311,2013-09-24 08:34:11,Cameras,672.0,New Haven,09009,Connecticut,Electronics
+Female,Fair Play,1,29658,ZD111175,2013-09-24 08:34:12,Fiction,19.0,Oconee,45073,South Carolina,Books
+Male,Alameda,0,94579,ZD111533,2013-09-24 08:34:13,Accessories,53.0,Alameda,06001,California,Men
+Female,Bud,0,24869,ZD111440,2013-09-24 08:34:14,Diamonds,1868.0,Wyoming,54109,West Virginia,Jewelry
+Female,Clearfield,-1,40319,ZD111260,2013-09-24 08:34:15,Self-Help,11.0,Rowan,21205,Kentucky,Books
+Male,Bullock,1,27564,ZD111166,2013-09-24 08:34:16,Fiction,15.0,Granville,37077,North Carolina,Books
+Male,Phoenix,1,85051,ZD111513,2013-09-24 08:34:17,Rings,743.0,Maricopa,04013,Arizona,Jewelry
+Female,Arlington,-1,76107,ZD111549,2013-09-24 08:34:18,Pants,87.0,Tarrant County,48439,Texas,Men
+Female,Norcross,-1,30019,ZD111587,2013-09-24 08:34:19,Fragrances,100.0,Gwinnett,13135,Georgia,Women
+Female,Avoca,0,72757,ZD111240,2013-09-24 08:34:20,Romance,19.0,Benton,05007,Arkansas,Books
+Male,Ingraham,0,62858,ZD111395,2013-09-24 08:34:21,Stereo,104.0,Clay,17025,Illinois,Electronics
+Female,Califon,0,08867,ZD111265,2013-09-24 08:34:22,Sports,17.0,Hunterdon,34019,New Jersey,Books
+Female,Ashaway,-1,02874,ZD111559,2013-09-24 08:34:23,Shirts,98.0,Washington,44009,Rhode Island,Men
+Male,Auburn,0,95736,ZD111542,2013-09-24 08:34:24,Pants,99.0,Placer,06061,California,Men
+Female,Wausau,-1,54427,ZD111578,2013-09-24 08:34:25,Dresses,73.0,Marathon,55073,Wisconsin,Women
+Female,Lakeland,1,33855,ZD111524,2013-09-24 08:34:26,Womens Watch,2818.0,Polk,12105,Florida,Jewelry
+Female,Addison,0,60540,ZD111248,2013-09-24 08:34:27,Science,20.0,DuPage,17043,Illinois,Books
+Male,Lamero,-1,40341,ZD111522,2013-09-24 08:34:28,Womens Watch,2167.0,Laurel County,21125,Kentucky,Jewelry
+Male,Anthony,1,88587,ZD111132,2013-09-24 08:34:29,Business,12.0,El Paso,48141,Texas,Books
+Female,Benton,-1,63758,ZD111206,2013-09-24 08:34:30,Mystery,16.0,Scott,29201,Missouri,Books
+Female,Arlington Heights,0,60008,ZD111305,2013-09-24 08:34:31,Camcorders,992.0,Cook,17031,Illinois,Electronics
+Female,Boonton,1,07870,ZD111465,2013-09-24 08:34:32,Jewelry Boxes,187.0,Morris,34027,New Jersey,Jewelry
+Male,Bradley,1,93923,ZD111407,2013-09-24 08:34:33,Televisions,592.0,Monterey,06053,California,Electronics
+Female,Bend,-1,97739,ZD111161,2013-09-24 08:34:34,Entertainments,11.0,Deschutes,41017,Oregon,Books
+Female,Maurepas,-1,70449,ZD111254,2013-09-24 08:34:35,Self-Help,7.0,Livingston,22063,Louisiana,Books
+Female,Atlas,1,48463,ZD111604,2013-09-24 08:34:36,Maternity,69.0,Genesee,26049,Michigan,Women
+Male,Houston,0,77259,ZD111206,2013-09-24 08:34:37,Mystery,16.0,Harris,48201,Texas,Books
+Male,Dillsburg,0,17363,ZD111365,2013-09-24 08:34:38,Portable,149.0,York,42133,Pennsylvania,Electronics
+Male,Ann Arbor,-1,48107,ZD111359,2013-09-24 08:34:39,Monitors,165.0,Washtenaw,26161,Michigan,Electronics
+Male,Alta Loma,1,92368,ZD111252,2013-09-24 08:34:40,Science,18.0,San Bernardino,06071,California,Books
+Female,Tyler,-1,75762,ZD111516,2013-09-24 08:34:41,Rings,2825.0,Smith,48423,Texas,Jewelry
+Male,Los Angeles,1,92149,ZD111586,2013-09-24 08:34:42,Fragrances,68.0,San Diego County,06073,California,Women
+Female,Cudahy,0,53210,ZD111341,2013-09-24 08:34:43,Dvd/Vcr Players,117.0,Milwaukee,55079,Wisconsin,Electronics
+Male,Alexandria,-1,43018,ZD111189,2013-09-24 08:34:44,Home Repair,19.0,Licking,39089,Ohio,Books
+Male,Becker,0,55319,ZD111180,2013-09-24 08:34:45,History,14.0,Sherburne,27141,Minnesota,Books
+Female,Phoenix,1,85065,ZD111294,2013-09-24 08:34:46,Audio,743.0,Maricopa,04013,Arizona,Electronics
+Female,Coventry,0,02893,ZD111319,2013-09-24 08:34:47,Cameras,685.0,Kent,44003,Rhode Island,Electronics
+Female,Cookson,-1,74427,ZD111232,2013-09-24 08:34:48,Romance,14.0,Cherokee,40021,Oklahoma,Books
+Female,Dania,0,33324,ZD111279,2013-09-24 08:34:49,Travel,14.0,Broward,12011,Florida,Books
+Female,Cranford,-1,07208,ZD111203,2013-09-24 08:34:50,Mystery,19.0,Union,34039,New Jersey,Books
+Male,Wichita Falls,1,76307,ZD111364,2013-09-24 08:34:51,Portable,196.0,Wichita,48485,Texas,Electronics
+Male,Aurora,1,80151,ZD111376,2013-09-24 08:34:52,Scanners,138.0,Arapahoe,08005,Colorado,Electronics
+Female,East Greenville,0,19001,ZD111286,2013-09-24 08:34:53,Travel,8.0,Montgomery,42091,Pennsylvania,Books
+Male,Alameda,0,94710,ZD111159,2013-09-24 08:34:54,Entertainments,18.0,Alameda,06001,California,Books
+Female,Addison,-1,75253,ZD111362,2013-09-24 08:34:55,Monitors,147.0,Dallas,48113,Texas,Electronics
+Female,Glen Oaks,-1,11691,ZD111147,2013-09-24 08:34:56,Cooking,15.0,Queens,36081,New York,Books
+Female,Beverly,0,08224,ZD111407,2013-09-24 08:34:57,Televisions,592.0,Burlington,34005,New Jersey,Electronics
+Male,Coloma,-1,96156,ZD111191,2013-09-24 08:34:58,Home Repair,7.0,El Dorado,06017,California,Books
+Female,Ada,0,49519,ZD111477,2013-09-24 08:34:59,Loose Stones,1373.0,Kent,26081,Michigan,Jewelry
+Female,Accokeek,0,20735,ZD111233,2013-09-24 08:35:00,Romance,11.0,Prince George's,24033,Maryland,Books
+Male,Aurora,0,80017,ZD111551,2013-09-24 08:35:01,Shirts,79.0,Arapahoe,08005,Colorado,Men
+Male,Amlin,1,43226,ZD111386,2013-09-24 08:35:02,Stereo,157.0,Franklin,39049,Ohio,Electronics
+Female,Berea,0,44135,ZD111145,2013-09-24 08:35:03,Cooking,5.0,Cuyahoga,39035,Ohio,Books
+Male,Rocky Mount,1,27868,ZD111297,2013-09-24 08:35:04,Audio,964.0,Nash,37127,North Carolina,Electronics
+Female,Bronson,0,49036,ZD111580,2013-09-24 08:35:05,Dresses,93.0,Branch,26023,Michigan,Women
+Male,Williamsport,0,17754,ZD111239,2013-09-24 08:35:06,Romance,14.0,Lycoming,42081,Pennsylvania,Books
+Male,Hialeah,0,33158,ZD111265,2013-09-24 08:35:07,Sports,17.0,Miami-Dade,12086,Florida,Books
+Male,Arlington,0,76012,ZD111265,2013-09-24 08:35:08,Sports,17.0,Tarrant County,48439,Texas,Books
+Male,Berea,-1,44118,ZD111551,2013-09-24 08:35:09,Shirts,79.0,Cuyahoga,39035,Ohio,Men

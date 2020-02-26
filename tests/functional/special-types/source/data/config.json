@@ -1,0 +1,16 @@
+{
+  "parameters": {
+    "db": {
+      "host": "hive-server",
+      "port": 10000,
+      "database": "default",
+      "user": "admin",
+      "#password": "p#a!s@sw:o&r%^d"
+    },
+    "table": {
+      "tableName": "special_types",
+      "schema": "default"
+    },
+    "outputTable": "in.c-main.special-types"
+  }
+}
