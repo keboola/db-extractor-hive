@@ -3,5 +3,6 @@ parameters:
     excludes_analyse:
         - src/run.php
     ignoreErrors:
-        - "#Offset '.*' does not exist on array\\|null\\.#"
-        - "#Cannot call method toArray\\(\\) on \\(array\\)\\|Dibi\\\\Row#"
+        - '#Offset .* does not exist on array\|null\.#'
+        - '#Cannot call method toArray\(\) on \(array\)\|Dibi\\Row#'
+        - '#expects array\|string, string\|false given.#'

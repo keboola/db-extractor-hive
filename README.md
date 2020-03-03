@@ -97,6 +97,8 @@ Clone this repository and init the workspace with following command:
 ```
 git clone https://github.com/keboola/db-extractor-hive
 cd db-extractor-hive
+export HIVE_VERSION=2.3.6
+source ./set_env_vars.sh
 docker-compose build
 docker-compose run --rm wait
 docker-compose run --rm dev composer install --no-scripts
