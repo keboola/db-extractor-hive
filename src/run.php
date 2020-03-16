@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Keboola\DbExtractor\Exception\UserException;
 use Keboola\DbExtractorLogger\Logger;
 use Keboola\DbExtractor\HiveApplication;
-use Monolog\Handler\NullHandler;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -42,7 +41,11 @@ try {
     $app = new HiveApplication($config, $logger, $inputState, $dataFolder);
 
     if ($app['action'] !== 'run') {
-        $app['logger']->setHandlers(array(new NullHandler(Logger::INFO)));
+        // On sync actions -> log only errors
+        $logger->setHandlers([
+            Logger::getDefaultCriticalHandler(),
+            Logger::getDefaultErrorHandler()->setLevel(Logger::ERROR),
+        ]);
         $runAction = false;
     }
 
