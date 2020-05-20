@@ -8,8 +8,6 @@ use Dibi;
 
 class HiveOdbcResult extends Dibi\Drivers\OdbcResult
 {
-    private const KEEP_TEXT_TYPES = [Dibi\Type::DATE, Dibi\Type::DATETIME, Dibi\Type::TIME, Dibi\Type::TIME_INTERVAL];
-
     /** @var resource */
     private $resultSet;
     /**
@@ -37,7 +35,7 @@ class HiveOdbcResult extends Dibi\Drivers\OdbcResult
             // Don't convert date types to object
             if ($nativeType === 'BINARY') {
                 $type = Dibi\Type::BINARY;
-            } elseif (in_array($nativeType, self::KEEP_TEXT_TYPES, true)) {
+            } else {
                 $type = Dibi\Type::TEXT;
             }
 
