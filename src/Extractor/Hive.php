@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Extractor;
 
+use Keboola\DbExtractor\TableResultFormat\Exception\ColumnNotFoundException;
+use Dibi\Connection;
 use Keboola\DbExtractor\Connection\HiveConnectionFactory;
 use Keboola\Datatype\Definition\GenericStorage;
 use Keboola\DbExtractor\Exception\UserException;
@@ -29,7 +31,7 @@ class Hive extends BaseExtractor
 
     public function getMetadataProvider(): MetadataProvider
     {
-        // TODO: Implement getMetadataProvider() method.
+        return new HiveMetadataProvider($this->db);
     }
 
     public function createConnection(array $params): Connection
@@ -40,50 +42,6 @@ class Hive extends BaseExtractor
     public function testConnection(): void
     {
         $this->executePreparedQuery(['SELECT 1'], 'Test connection error');
-    }
-
-    public function getTables(?array $tablesDef = null): array
-    {
-        // $tables is a array in format [['tableName' => ..., 'schema' => ...], ...]
-        // See parent class (package db-extractor-common)
-        $allowedNames = $tablesDef ? array_map(fn($def) => $def['tableName'], $tablesDef): null;
-
-        $databaseName = $this->db->getDatabaseInfo()->name;
-        $reflector = $this->db->getDriver()->getReflector();
-        $tables = $reflector->getTables();
-
-        /** @var Table[] $tableDefs */
-        $tableDefs = [];
-
-        foreach ($tables as $table) {
-            $tableName = $table['name'];
-            if ($allowedNames && !in_array($tableName, $allowedNames, true)) {
-                // skip if name is not in allowed names
-                continue;
-            }
-
-            $tableFormat = new Table();
-            $tableFormat
-                ->setName($tableName)
-                ->setSchema($databaseName);
-            $tableDefs[] = $tableFormat;
-
-            $columns = $reflector->getColumns($tableName);
-            foreach ($columns as $column) {
-                // Hive DB doesn't support PK, FK, NOT NULL,...
-                // See: https://issues.apache.org/jira/browse/HIVE-6905
-                $baseType = new GenericStorage($column['nativetype'], ['length' => $column['size']]);
-                $columnFormat = new TableColumn();
-                $columnFormat
-                    ->setName($column['name'])
-                    ->setType($baseType->getBasetype())
-                    ->setLength($baseType->getLength());
-
-                $tableFormat->addColumn($columnFormat);
-            }
-        }
-
-        return array_map(fn(Table $item) => $item->getOutput(), $tableDefs);
     }
 
     public function simpleQuery(ExportConfig $exportConfig): string
@@ -113,7 +71,14 @@ class Hive extends BaseExtractor
     public function validateIncrementalFetching(ExportConfig $exportConfig): void
     {
         $table = $this->getMetadataProvider()->getTable($exportConfig->getTable());
-        $column = $table->getColumns()->getByName($exportConfig->getIncrementalFetchingColumn());
+        try {
+            $column = $table->getColumns()->getByName($exportConfig->getIncrementalFetchingColumn());
+        } catch (ColumnNotFoundException $e) {
+            throw new UserException(sprintf(
+                'Incremental fetching column "%s" not found.',
+                $exportConfig->getIncrementalFetchingColumn()
+            ), 0, $e);
+        }
 
         $datatype = new GenericStorage($column->getType());
         if (!in_array($datatype->getBasetype(), self::INCREMENTAL_TYPES, true)) {
