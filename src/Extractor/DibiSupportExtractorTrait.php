@@ -10,7 +10,7 @@ use Keboola\Csv\CsvFile;
 use Keboola\Csv\Exception as CsvException;
 use Keboola\DbExtractor\Exception\ApplicationException;
 use Keboola\DbExtractor\Exception\DeadConnectionException;
-use Keboola\DbExtractorLogger\Logger;
+use Psr\Log\LoggerInterface;
 use Throwable;
 use Dibi\Result;
 use Keboola\DbExtractor\DbRetryProxy;
@@ -25,8 +25,7 @@ use Keboola\DbExtractor\Exception\UserException;
  */
 trait DibiSupportExtractorTrait
 {
-    /** @var Logger */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /** @var Connection */
     protected $db;

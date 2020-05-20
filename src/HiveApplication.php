@@ -8,11 +8,11 @@ use Keboola\DbExtractor\Configuration\HiveActionConfigRowDefinition;
 use Keboola\DbExtractor\Configuration\HiveConfigRowDefinition;
 use Keboola\DbExtractor\Exception\ApplicationException;
 use Keboola\DbExtractorConfig\Config;
-use Keboola\DbExtractorLogger\Logger;
+use Psr\Log\LoggerInterface;
 
 class HiveApplication extends Application
 {
-    public function __construct(array $config, Logger $logger, array $state = [], string $dataDir = '/data/')
+    public function __construct(array $config, LoggerInterface $logger, array $state = [], string $dataDir = '/data/')
     {
         $config['parameters']['data_dir'] = $dataDir;
         $config['parameters']['extractor_class'] = 'Hive';

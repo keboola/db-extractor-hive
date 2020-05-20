@@ -6,11 +6,11 @@ namespace Keboola\DbExtractor\Extractor;
 
 use Dibi\Connection;
 use Keboola\DbExtractor\Connection\HiveConnectionFactory;
-use Keboola\DbExtractorLogger\Logger;
 use Keboola\Datatype\Definition\GenericStorage;
 use Keboola\DbExtractor\Exception\UserException;
 use Keboola\DbExtractor\TableResultFormat\Table;
 use Keboola\DbExtractor\TableResultFormat\TableColumn;
+use Psr\Log\LoggerInterface;
 
 class Hive extends Extractor
 {
@@ -23,7 +23,7 @@ class Hive extends Extractor
 
     private HiveConnectionFactory $connectionFactory;
 
-    public function __construct(array $parameters, array $state = [], ?Logger $logger = null)
+    public function __construct(array $parameters, array $state, LoggerInterface $logger)
     {
         $this->connectionFactory = new HiveConnectionFactory();
         parent::__construct($parameters, $state, $logger);

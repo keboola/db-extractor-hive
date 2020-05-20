@@ -3,15 +3,15 @@
 declare(strict_types=1);
 
 use Keboola\DbExtractor\Exception\UserException;
-use Keboola\DbExtractorLogger\Logger;
 use Keboola\DbExtractor\HiveApplication;
+use Keboola\Component\Logger;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$logger = new Logger('ex-db-hive');
+$logger = new Logger();
 $jsonDecode = new JsonDecode([JsonDecode::ASSOCIATIVE => true]);
 $jsonEncode = new JsonEncode();
 $runAction = true;
@@ -39,16 +39,6 @@ try {
     }
 
     $app = new HiveApplication($config, $logger, $inputState, $dataFolder);
-
-    if ($app['action'] !== 'run') {
-        // On sync actions -> log only errors
-        $logger->setHandlers([
-            Logger::getDefaultCriticalHandler(),
-            Logger::getDefaultErrorHandler()->setLevel(Logger::ERROR),
-        ]);
-        $runAction = false;
-    }
-
     $result = $app->run();
 
     if (!$runAction) {
@@ -60,7 +50,7 @@ try {
             file_put_contents($outputStateFile, $jsonEncode->encode($result['state'], JsonEncoder::FORMAT));
         }
     }
-    $app['logger']->log('info', 'Extractor finished successfully.');
+    $logger->log('info', 'Extractor finished successfully.');
     exit(0);
 } catch (UserException $e) {
     $logger->error($e->getMessage());
