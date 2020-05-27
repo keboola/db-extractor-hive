@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Extractor;
 
+use ErrorException;
 use Dibi;
 use Dibi\Connection;
-use Keboola\Csv\CsvFile;
+use Keboola\Csv\CsvWriter;
 use Keboola\Csv\Exception as CsvException;
 use Keboola\DbExtractor\Exception\ApplicationException;
 use Keboola\DbExtractor\Exception\DeadConnectionException;
-use Keboola\DbExtractorLogger\Logger;
+use Keboola\DbExtractorConfig\Configuration\ValueObject\ExportConfig;
+use Psr\Log\LoggerInterface;
 use Throwable;
 use Dibi\Result;
 use Keboola\DbExtractor\DbRetryProxy;
@@ -25,68 +27,60 @@ use Keboola\DbExtractor\Exception\UserException;
  */
 trait DibiSupportExtractorTrait
 {
-    /** @var Logger */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /** @var Connection */
     protected $db;
 
-    public function export(array $table): array
+    public function export(ExportConfig $exportConfig): array
     {
-        $outputTable = $table['outputTable'];
-
-        $this->logger->info('Exporting to ' . $outputTable);
-
-        $isAdvancedQuery = true;
-        if (array_key_exists('table', $table) && !array_key_exists('query', $table)) {
-            $isAdvancedQuery = false;
-            $query = $this->simpleQuery($table['table'], $table['columns']);
+        if ($exportConfig->isIncrementalFetching()) {
+            $this->validateIncrementalFetching($exportConfig);
+            $maxValue = $this->canFetchMaxIncrementalValueSeparately($exportConfig) ?
+                $this->getMaxOfIncrementalFetchingColumn($exportConfig) : null;
         } else {
-            $query = $table['query'];
-        }
-        $maxValue = null;
-        if ($this->canFetchMaxIncrementalValueSeparately($isAdvancedQuery)) {
-            $maxValue = $this->getMaxOfIncrementalFetchingColumn($table['table']);
+            $maxValue = null;
         }
 
-        $maxTries = isset($table['retries']) ? (int) $table['retries'] : self::DEFAULT_MAX_TRIES;
-
-        $proxy = new DbRetryProxy($this->logger, $maxTries, [DeadConnectionException::class, \ErrorException::class]);
+        $this->logger->info('Exporting to ' . $exportConfig->getOutputTable());
+        $query = $exportConfig->hasQuery() ? $exportConfig->getQuery() : $this->simpleQuery($exportConfig);
+        $proxy = new DbRetryProxy(
+            $this->logger,
+            $exportConfig->getMaxRetries(),
+            [DeadConnectionException::class, ErrorException::class]
+        );
 
         try {
-            $result = $proxy->call(function () use ($query, $maxTries, $outputTable, $isAdvancedQuery) {
-                $stmt = $this->executeDibiQuery($query, $maxTries); // <<<<<<<<< MODIFIED
-                $csv = $this->createOutputCsv($outputTable);
-                $result = $this->writeToCsvFromDibi($stmt, $csv, $isAdvancedQuery);  // <<<<<<<<< MODIFIED
+            $result = $proxy->call(function () use ($query, $exportConfig) {
+                $stmt = $this->executeDibiQuery($query, $exportConfig->getMaxRetries()); // <<<<<<<<< MODIFIED
+                $csv = $this->createOutputCsv($exportConfig->getOutputTable());
+                $result = $this->writeToCsvFromDibi($stmt, $csv, $exportConfig);  // <<<<<<<<< MODIFIED
                 $this->isAlive();
                 return $result;
             });
         } catch (CsvException $e) {
             throw new ApplicationException('Failed writing CSV File: ' . $e->getMessage(), $e->getCode(), $e);
-        } catch (Dibi\Exception $e) {
-            throw $this->handleDbError($e, $table, $maxTries);
-        } catch (\ErrorException $e) {
-            throw $this->handleDbError($e, $table, $maxTries);
-        } catch (DeadConnectionException $e) {
-            throw $this->handleDbError($e, $table, $maxTries);
+        } catch (\PDOException | \ErrorException | DeadConnectionException | Dibi\Exception $e) {
+            throw $this->handleDbError($e, $exportConfig->getMaxRetries(), $exportConfig->getOutputTable());
         }
+
         if ($result['rows'] > 0) {
-            $this->createManifest($table);
+            $this->createManifest($exportConfig);
         } else {
-            $this->logger->warn(
-                sprintf(
-                    'Query returned empty result. Nothing was imported to [%s]',
-                    $table['outputTable']
-                )
-            );
+            @unlink($this->getOutputFilename($exportConfig->getOutputTable())); // no rows, no file
+            $this->logger->warning(sprintf(
+                'Query returned empty result. Nothing was imported to [%s]',
+                $exportConfig->getOutputTable()
+            ));
         }
 
         $output = [
-            'outputTable' => $outputTable,
+            'outputTable' => $exportConfig->getOutputTable(),
             'rows' => $result['rows'],
         ];
+
         // output state
-        if (isset($this->incrementalFetching['column'])) {
+        if ($exportConfig->isIncrementalFetching()) {
             if ($maxValue) {
                 $output['state']['lastFetchedRow'] = $maxValue;
             } elseif (!empty($result['lastFetchedRow'])) {
@@ -96,8 +90,10 @@ trait DibiSupportExtractorTrait
         return $output;
     }
 
-    protected function writeToCsvFromDibi(Result $result, CsvFile $csv, bool $includeHeader = true): array
+    protected function writeToCsvFromDibi(Result $result, CsvWriter $csv, ExportConfig $exportConfig): array
     {
+        // With custom query are no metadata in manifest, so header must be present
+        $includeHeader = $exportConfig->hasQuery();
         $output = [];
 
         $resultRow = $result->fetch(); // <<<<<<< MODIFIED
@@ -115,29 +111,30 @@ trait DibiSupportExtractorTrait
             $lastRow = $resultRowArray;
 
             while ($resultRow = $result->fetch()) { // <<<<<<< MODIFIED
-                $resultRowArray = $resultRow->toArray();
+                $resultRowArray = $resultRow->toArray(); // <<<<<<< MODIFIED
                 $csv->writeRow($resultRowArray);
                 $lastRow = $resultRowArray;
                 $numRows++;
             }
             $result->free(); // <<<<<<< MODIFIED
 
-            if (isset($this->incrementalFetching['column'])) {
-                if (!array_key_exists($this->incrementalFetching['column'], $lastRow)) {
+            if ($exportConfig->isIncrementalFetching()) {
+                $incrementalColumn = $exportConfig->getIncrementalFetchingConfig()->getColumn();
+                if (!array_key_exists($incrementalColumn, $lastRow)) {
                     throw new UserException(
                         sprintf(
                             'The specified incremental fetching column %s not found in the table',
-                            $this->incrementalFetching['column']
+                            $incrementalColumn
                         )
                     );
                 }
-                $output['lastFetchedRow'] = $lastRow[$this->incrementalFetching['column']];
+                $output['lastFetchedRow'] = $lastRow[$incrementalColumn];
             }
             $output['rows'] = $numRows;
             return $output;
         }
         // no rows found.  If incremental fetching is turned on, we need to preserve the last state
-        if (isset($this->incrementalFetching['column']) && isset($this->state['lastFetchedRow'])) {
+        if ($exportConfig->isIncrementalFetching() && isset($this->state['lastFetchedRow'])) {
             $output = $this->state;
         }
         $output['rows'] = 0;

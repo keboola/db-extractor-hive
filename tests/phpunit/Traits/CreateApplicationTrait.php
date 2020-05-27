@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Tests\Traits;
 
+use Keboola\Component\Logger;
 use Keboola\DbExtractor\HiveApplication;
-use Keboola\DbExtractorLogger\Logger;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\TestHandler;
 
@@ -21,7 +21,7 @@ trait CreateApplicationTrait
     ): HiveApplication {
         $dataFolder = $dataFolder ?? $this->dataDir ?? '/data';
         $handler = new TestHandler();
-        $logger = new Logger('ex-db-hive');
+        $logger = new Logger();
 
         if ($logHandler) {
             $logger->pushHandler($handler);

@@ -19,7 +19,7 @@ before_script:
   - export APP_IMAGE=keboola-component-db-extractor-hive
   - docker -v
   - docker-compose -v
-  - source ./set_env_vars.sh
+  - ./create_env.sh
   - docker build -t $APP_IMAGE .
 
 # Run tests

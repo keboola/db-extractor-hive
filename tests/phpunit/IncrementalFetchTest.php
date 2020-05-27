@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Tests;
 
-use Keboola\DbExtractor\Exception\UserException;
+use Keboola\CommonExceptions\UserExceptionInterface;
 use Keboola\DbExtractor\Tests\Traits\CreateApplicationTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +19,7 @@ class IncrementalFetchTest extends TestCase
     {
         $config = $this->getConfig();
         $config['parameters'] = $parameters + $config['parameters'];
-        $this->expectException(UserException::class);
+        $this->expectException(UserExceptionInterface::class);
         $this->expectExceptionMessage($expectedMsg);
         $this->createApplication($config)->run();
     }
@@ -41,7 +41,7 @@ class IncrementalFetchTest extends TestCase
                 ],
             ],
             'missing table' => [
-                'Table "bar" not found.',
+                'Table with name "bar" and schema "default" not found.',
                 [
                     'incrementalFetchingColumn' => 'double_col',
                     'table' => [
