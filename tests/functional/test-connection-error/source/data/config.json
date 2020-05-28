@@ -1,0 +1,12 @@
+{
+  "action": "testConnection",
+  "parameters": {
+    "db": {
+      "host": "invalid",
+      "port":  "${HIVE_DB_PORT}",
+      "database": "${HIVE_DB_DATABASE}",
+      "user": "${HIVE_DB_USER}",
+      "#password": "${HIVE_DB_PASSWORD}"
+    }
+  }
+}

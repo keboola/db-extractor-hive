@@ -2,27 +2,19 @@
 
 declare(strict_types=1);
 
+use Keboola\Component\JsonHelper;
 use Keboola\DbExtractor\Exception\UserException;
 use Keboola\DbExtractor\HiveApplication;
 use Keboola\Component\Logger;
-use Symfony\Component\Serializer\Encoder\JsonDecode;
-use Symfony\Component\Serializer\Encoder\JsonEncode;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 require __DIR__ . '/../vendor/autoload.php';
 
 $logger = new Logger();
-$jsonDecode = new JsonDecode([JsonDecode::ASSOCIATIVE => true]);
-$jsonEncode = new JsonEncode();
-$runAction = true;
 
 try {
     $dataFolder = getenv('KBC_DATADIR') === false ? '/data/' : (string) getenv('KBC_DATADIR');
     if (file_exists($dataFolder . '/config.json')) {
-        $config = $jsonDecode->decode(
-            (string) file_get_contents($dataFolder . '/config.json'),
-            JsonEncoder::FORMAT
-        );
+        $config = JsonHelper::readFile($dataFolder . '/config.json');
     } else {
         throw new UserException('Configuration file not found.');
     }
@@ -30,10 +22,7 @@ try {
     // get the state
     $inputStateFile = $dataFolder . '/in/state.json';
     if (file_exists($inputStateFile)) {
-        $inputState = $jsonDecode->decode(
-            (string) file_get_contents($inputStateFile),
-            JsonEncoder::FORMAT
-        );
+        $inputState = JsonHelper::readFile($inputStateFile);
     } else {
         $inputState = [];
     }
@@ -41,14 +30,13 @@ try {
     $app = new HiveApplication($config, $logger, $inputState, $dataFolder);
     $result = $app->run();
 
-    if (!$runAction) {
-        echo $jsonEncode->encode($result, JsonEncoder::FORMAT);
-    } else {
-        if (!empty($result['state'])) {
-            // write state
-            $outputStateFile = $dataFolder . '/out/state.json';
-            file_put_contents($outputStateFile, $jsonEncode->encode($result['state'], JsonEncoder::FORMAT));
-        }
+    if ($app['action'] !== 'run') {
+        // Print sync action result
+        echo JsonHelper::encode($result);
+    } else if (!empty($result['state'])) {
+        // Write state if present
+        $outputStateFile = $dataFolder . '/out/state.json';
+        JsonHelper::writeFile($outputStateFile, $result['state']);
     }
     $logger->log('info', 'Extractor finished successfully.');
     exit(0);
