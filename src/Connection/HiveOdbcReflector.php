@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Connection;
 
-use Dibi;
+use Dibi\Driver;
 use Dibi\Drivers\OdbcReflector;
 
 class HiveOdbcReflector extends OdbcReflector
 {
-    private Dibi\Driver $driver;
+    private Driver $driver;
 
-    public function __construct(Dibi\Driver $driver)
+    public function __construct(Driver $driver)
     {
         parent::__construct($driver);
         $this->driver = $driver;
