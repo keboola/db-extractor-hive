@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Connection;
 
-use Dibi;
+use Dibi\Drivers\OdbcResult;
+use Dibi\Type;
 
-class HiveOdbcResult extends Dibi\Drivers\OdbcResult
+class HiveOdbcResult extends OdbcResult
 {
     /** @var resource */
     private $resultSet;
@@ -34,9 +35,9 @@ class HiveOdbcResult extends Dibi\Drivers\OdbcResult
 
             // Don't convert date types to object
             if ($nativeType === 'BINARY') {
-                $type = Dibi\Type::BINARY;
+                $type = Type::BINARY;
             } else {
-                $type = Dibi\Type::TEXT;
+                $type = Type::TEXT;
             }
 
             $columns[] = [

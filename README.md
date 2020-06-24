@@ -36,7 +36,7 @@ The configuration `config.json` contains following properties in `parameters` ke
     - `schema` - string (required)
 - `columns` - array (optional): List of columns to export (default all columns)
 - `outputTable` - string (required): Name of the output table 
-- `incremental` - bool (optional):  Enables [Incremental Fetching](https://help.keboola.com/components/extractors/database/#incremental-fetching)
+- `incremental` - bool (optional):  Enables [Incremental Loading](https://help.keboola.com/storage/tables/#incremental-loading)
 - `incrementalFetchingColumn` - string (optional): Name of column for [Incremental Fetching](https://help.keboola.com/components/extractors/database/#incremental-fetching)
 - `incrementalFetchingLimit` - integer (optional): Max number of rows fetched per one run
 - `primaryKey` - string (optional): Sets primary key to specified column in output table

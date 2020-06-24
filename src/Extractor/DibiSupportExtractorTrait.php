@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Keboola\DbExtractor\Extractor;
 
 use ErrorException;
-use Dibi;
 use Dibi\Connection;
+use Dibi\Exception as DibiException;
 use Keboola\Csv\CsvWriter;
 use Keboola\Csv\Exception as CsvException;
 use Keboola\DbExtractor\Exception\ApplicationException;
@@ -60,7 +60,7 @@ trait DibiSupportExtractorTrait
             });
         } catch (CsvException $e) {
             throw new ApplicationException('Failed writing CSV File: ' . $e->getMessage(), $e->getCode(), $e);
-        } catch (\PDOException | \ErrorException | DeadConnectionException | Dibi\Exception $e) {
+        } catch (\PDOException | \ErrorException | DeadConnectionException | DibiException $e) {
             throw $this->handleDbError($e, $exportConfig->getMaxRetries(), $exportConfig->getOutputTable());
         }
 
