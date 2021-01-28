@@ -24,14 +24,6 @@ class DatadirTest extends DatadirTestCase
     public function assertDirectoryContentsSame(string $expected, string $actual): void
     {
         $this->prettifyAllManifests($actual);
-
-        $finder = new Finder();
-        foreach ($finder->files()->in($actual)->name(['~.*\.manifest~']) as $file) {
-            $relativePath = preg_replace('~/tmp/run-[^/]*/out/~', '', $file->getPathname());
-            $expectedFile = $expected . '/' . $relativePath;
-            copy($file->getPathname(), $expectedFile);
-        }
-
         parent::assertDirectoryContentsSame($expected, $actual);
     }
 
