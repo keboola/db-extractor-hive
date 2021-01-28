@@ -62,7 +62,7 @@ class Hive extends BaseExtractor
     protected function createExportAdapter(): ExportAdapter
     {
         $queryFactory = new DefaultQueryFactory($this->state);
-        $resultWriter = new DefaultResultWriter($this->state);
+        $resultWriter = new HiveResultWriter($this->state);
         return new OdbcExportAdapter(
             $this->logger,
             $this->connection,
