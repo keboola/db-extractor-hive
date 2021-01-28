@@ -1,1 +1,264 @@
-{"destination":"in.c-main.special-types","incremental":false,"metadata":[{"key":"KBC.name","value":"special_types"},{"key":"KBC.sanitizedName","value":"special_types"},{"key":"KBC.schema","value":"default"}],"column_metadata":{"id":[{"key":"KBC.datatype.type","value":"INTEGER"},{"key":"KBC.datatype.nullable","value":true},{"key":"KBC.datatype.basetype","value":"INTEGER"},{"key":"KBC.sourceName","value":"id"},{"key":"KBC.sanitizedName","value":"id"},{"key":"KBC.primaryKey","value":false},{"key":"KBC.uniqueKey","value":false}],"bin":[{"key":"KBC.datatype.type","value":"STRING"},{"key":"KBC.datatype.nullable","value":true},{"key":"KBC.datatype.basetype","value":"STRING"},{"key":"KBC.sourceName","value":"bin"},{"key":"KBC.sanitizedName","value":"bin"},{"key":"KBC.primaryKey","value":false},{"key":"KBC.uniqueKey","value":false}],"map":[{"key":"KBC.datatype.type","value":"STRING"},{"key":"KBC.datatype.nullable","value":true},{"key":"KBC.datatype.basetype","value":"STRING"},{"key":"KBC.sourceName","value":"map"},{"key":"KBC.sanitizedName","value":"map"},{"key":"KBC.primaryKey","value":false},{"key":"KBC.uniqueKey","value":false}],"array":[{"key":"KBC.datatype.type","value":"STRING"},{"key":"KBC.datatype.nullable","value":true},{"key":"KBC.datatype.basetype","value":"STRING"},{"key":"KBC.sourceName","value":"array"},{"key":"KBC.sanitizedName","value":"array"},{"key":"KBC.primaryKey","value":false},{"key":"KBC.uniqueKey","value":false}],"union":[{"key":"KBC.datatype.type","value":"STRING"},{"key":"KBC.datatype.nullable","value":true},{"key":"KBC.datatype.basetype","value":"STRING"},{"key":"KBC.sourceName","value":"union"},{"key":"KBC.sanitizedName","value":"union"},{"key":"KBC.primaryKey","value":false},{"key":"KBC.uniqueKey","value":false}],"struct":[{"key":"KBC.datatype.type","value":"STRING"},{"key":"KBC.datatype.nullable","value":true},{"key":"KBC.datatype.basetype","value":"STRING"},{"key":"KBC.sourceName","value":"struct"},{"key":"KBC.sanitizedName","value":"struct"},{"key":"KBC.primaryKey","value":false},{"key":"KBC.uniqueKey","value":false}]},"columns":["id","bin","map","array","union","struct"]}
+{
+    "destination": "in.c-main.special-types",
+    "incremental": false,
+    "metadata": [
+        {
+            "key": "KBC.name",
+            "value": "special_types"
+        },
+        {
+            "key": "KBC.sanitizedName",
+            "value": "special_types"
+        },
+        {
+            "key": "KBC.schema",
+            "value": "default"
+        },
+        {
+            "key": "KBC.catalog",
+            "value": "HIVE"
+        },
+        {
+            "key": "KBC.type",
+            "value": "table"
+        }
+    ],
+    "column_metadata": {
+        "id": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "INT"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "INTEGER"
+            },
+            {
+                "key": "KBC.datatype.default",
+                "value": ""
+            },
+            {
+                "key": "KBC.sourceName",
+                "value": "id"
+            },
+            {
+                "key": "KBC.sanitizedName",
+                "value": "id"
+            },
+            {
+                "key": "KBC.primaryKey",
+                "value": false
+            },
+            {
+                "key": "KBC.uniqueKey",
+                "value": false
+            },
+            {
+                "key": "KBC.ordinalPosition",
+                "value": 1
+            }
+        ],
+        "bin": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "BINARY"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.default",
+                "value": ""
+            },
+            {
+                "key": "KBC.sourceName",
+                "value": "bin"
+            },
+            {
+                "key": "KBC.sanitizedName",
+                "value": "bin"
+            },
+            {
+                "key": "KBC.primaryKey",
+                "value": false
+            },
+            {
+                "key": "KBC.uniqueKey",
+                "value": false
+            },
+            {
+                "key": "KBC.ordinalPosition",
+                "value": 2
+            }
+        ],
+        "map": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.default",
+                "value": ""
+            },
+            {
+                "key": "KBC.sourceName",
+                "value": "map"
+            },
+            {
+                "key": "KBC.sanitizedName",
+                "value": "map"
+            },
+            {
+                "key": "KBC.primaryKey",
+                "value": false
+            },
+            {
+                "key": "KBC.uniqueKey",
+                "value": false
+            },
+            {
+                "key": "KBC.ordinalPosition",
+                "value": 3
+            }
+        ],
+        "array": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.default",
+                "value": ""
+            },
+            {
+                "key": "KBC.sourceName",
+                "value": "array"
+            },
+            {
+                "key": "KBC.sanitizedName",
+                "value": "array"
+            },
+            {
+                "key": "KBC.primaryKey",
+                "value": false
+            },
+            {
+                "key": "KBC.uniqueKey",
+                "value": false
+            },
+            {
+                "key": "KBC.ordinalPosition",
+                "value": 4
+            }
+        ],
+        "union": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.default",
+                "value": ""
+            },
+            {
+                "key": "KBC.sourceName",
+                "value": "union"
+            },
+            {
+                "key": "KBC.sanitizedName",
+                "value": "union"
+            },
+            {
+                "key": "KBC.primaryKey",
+                "value": false
+            },
+            {
+                "key": "KBC.uniqueKey",
+                "value": false
+            },
+            {
+                "key": "KBC.ordinalPosition",
+                "value": 5
+            }
+        ],
+        "struct": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.default",
+                "value": ""
+            },
+            {
+                "key": "KBC.sourceName",
+                "value": "struct"
+            },
+            {
+                "key": "KBC.sanitizedName",
+                "value": "struct"
+            },
+            {
+                "key": "KBC.primaryKey",
+                "value": false
+            },
+            {
+                "key": "KBC.uniqueKey",
+                "value": false
+            },
+            {
+                "key": "KBC.ordinalPosition",
+                "value": 6
+            }
+        ]
+    },
+    "columns": [
+        "id",
+        "bin",
+        "map",
+        "array",
+        "union",
+        "struct"
+    ]
+}

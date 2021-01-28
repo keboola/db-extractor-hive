@@ -96,7 +96,7 @@ class Hive extends BaseExtractor
         }
 
         $datatype = new GenericStorage($column->getType());
-        if (!in_array($datatype->getBasetype(), self::INCREMENTAL_TYPES, true)) {
+        if (!in_array($datatype->getType(), self::INCREMENTAL_TYPES, true)) {
             throw new UserException(sprintf(
                 'Unexpected type "%s" of incremental fetching column "%s". Expected types: %s.',
                 $column->getType(),

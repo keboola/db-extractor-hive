@@ -3,10 +3,10 @@
   "parameters": {
     "db": {
       "host": "invalid",
-      "port":  "${HIVE_DB_PORT}",
-      "database": "${HIVE_DB_DATABASE}",
-      "user": "${HIVE_DB_USER}",
-      "#password": "${HIVE_DB_PASSWORD}"
+      "port":  "%env(int:HIVE_DB_PORT)%",
+      "database": "%env(string:HIVE_DB_DATABASE)%",
+      "user": "%env(string:HIVE_DB_USER)%",
+      "#password": "%env(string:HIVE_DB_PASSWORD)%"
     }
   }
 }
