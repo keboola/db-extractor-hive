@@ -1,7 +1,11 @@
 version: '3'
 services:
   tests: &tests
-    build: .
+    build:
+      context: .
+      args:
+        - AWS_SECRET_ACCESS_KEY
+        - AWS_ACCESS_KEY_ID
     image: keboola-component-db-extractor-hive
     command: composer ci
     environment:
@@ -17,7 +21,7 @@ services:
       SSH_HOST: ssh-tunnel
       SSH_PORT: 22
       SSH_USER: root
-    links:
+    depends_on:
       - hive-server
       - ssh-tunnel
     volumes:

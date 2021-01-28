@@ -90,7 +90,7 @@ class TestConnectionTest extends TestCase
     {
         return [
             'invalid-host' => [
-                'Error connecting to DB: [MapR][DriverSupport] (1110) ' .
+                'Error connecting to DB: [Cloudera][DriverSupport] (1110) ' .
                 'Unexpected response received from server. ' .
                 'Please ensure the server host and port specified for the connection are correct ' .
                 'and confirm if SSL should be enabled for the connection.',
@@ -107,7 +107,7 @@ class TestConnectionTest extends TestCase
                 ],
             ],
             'invalid-port' => [
-                'Error connecting to DB: [MapR][DriverSupport] (1110) ' .
+                'Error connecting to DB: [Cloudera][DriverSupport] (1110) ' .
                 'Unexpected response received from server. ' .
                 'Please ensure the server host and port specified for the connection are correct ' .
                 'and confirm if SSL should be enabled for the connection.',
@@ -124,7 +124,7 @@ class TestConnectionTest extends TestCase
                 ],
             ],
             'invalid-database' => [
-                'Error connecting to DB: [MapR][Hardy] (101) ' .
+                'Error connecting to DB: [Cloudera][Hardy] (101) ' .
                 'Incorrect database notfound specified. Please check your configuration.' ,
                 [
                     'parameters' => [
@@ -139,7 +139,7 @@ class TestConnectionTest extends TestCase
                 ],
             ],
             'invalid-user' => [
-                'Error connecting to DB: [MapR][ThriftExtension] (2) ' .
+                'Error connecting to DB: [Cloudera][ThriftExtension] (2) ' .
                 'Error occured during authentication.',
                 [
                     'parameters' => [
@@ -154,7 +154,7 @@ class TestConnectionTest extends TestCase
                 ],
             ],
             'invalid-password' => [
-                'Error connecting to DB: [MapR][ThriftExtension] (2) ' .
+                'Error connecting to DB: [Cloudera][ThriftExtension] (2) ' .
                 'Error occured during authentication.',
                 [
                     'parameters' => [

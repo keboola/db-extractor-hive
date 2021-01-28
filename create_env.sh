@@ -7,6 +7,13 @@ if [ -z "$HIVE_VERSION" ]; then
   exit 1
 fi
 
+# Check if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY is defined
+if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
+  echo "AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY env variable is not defined."
+  echo "Please specify these variables. You need them to download ODBC driver."
+  exit 1
+fi
+
 # Convert version separated by dots to integer to compare
 function version { echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; }
 
@@ -43,6 +50,9 @@ fi
 
 # Write ENV to file
 cat > .env << EndOfEnv
+AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+
 HIVE_VERSION=$HIVE_VERSION
 HIVE_DB_HOST=$HIVE_DB_HOST
 HIVE_DB_PORT=$HIVE_DB_PORT
