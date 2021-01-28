@@ -3,5 +3,4 @@ parameters:
     excludes_analyse:
         - src/run.php
     ignoreErrors:
-        - '#Cannot call method toArray\(\) on \(array\)\|Dibi\\Row#'
         - '#expects array\|string, string\|false given.#'

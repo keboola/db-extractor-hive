@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         unixodbc \
         unixodbc-dev \
+        libicu-dev \
         libsasl2-dev \
         libsasl2-2 \
         libsasl2-modules \
@@ -36,6 +37,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& locale-gen \
 	&& chmod +x /tmp/composer-install.sh \
 	&& /tmp/composer-install.sh
+
+# INTL
+RUN docker-php-ext-configure intl \
+    && docker-php-ext-install intl
 
 # PHP ODBC
 # https://github.com/docker-library/php/issues/103#issuecomment-353674490

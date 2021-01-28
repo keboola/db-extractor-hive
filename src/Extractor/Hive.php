@@ -4,68 +4,83 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Extractor;
 
+use Keboola\DbExtractor\Adapter\ExportAdapter;
+use Keboola\DbExtractor\Adapter\Metadata\MetadataProvider;
+use Keboola\DbExtractor\Adapter\ODBC\OdbcConnection;
+use Keboola\DbExtractor\Adapter\ODBC\OdbcExportAdapter;
+use Keboola\DbExtractor\Adapter\ODBC\OdbcNativeMetadataProvider;
+use Keboola\DbExtractor\Adapter\Query\DefaultQueryFactory;
+use Keboola\DbExtractor\Adapter\ResultWriter\DefaultResultWriter;
+use Keboola\DbExtractor\Connection\HiveDnsFactory;
+use Keboola\DbExtractor\Connection\HiveOdbcConnection;
 use Keboola\DbExtractor\TableResultFormat\Exception\ColumnNotFoundException;
-use Dibi\Connection;
-use Keboola\DbExtractor\Connection\HiveConnectionFactory;
 use Keboola\Datatype\Definition\GenericStorage;
 use Keboola\DbExtractor\Exception\UserException;
+use Keboola\DbExtractor\TableResultFormat\Metadata\Manifest\DefaultManifestSerializer;
+use Keboola\DbExtractor\TableResultFormat\Metadata\Manifest\ManifestSerializer;
+use Keboola\DbExtractorConfig\Configuration\ValueObject\DatabaseConfig;
 use Keboola\DbExtractorConfig\Configuration\ValueObject\ExportConfig;
-use Psr\Log\LoggerInterface;
 
 class Hive extends BaseExtractor
 {
-    use DibiSupportExtractorTrait;
+    public const INCREMENTAL_TYPES = [
+        'BIGINT',
+        'SMALLINT',
+        'TINYINT',
+        'INT',
+        'NUMERIC',
+        'DECIMAL',
+        'FLOAT',
+        'DOUBLE',
+        'TIMESTAMP',
+        'DATE',
+    ];
 
-    public const INCREMENTAL_TYPES = ['INTEGER', 'NUMERIC', 'FLOAT', 'TIMESTAMP', 'DATE'];
-
-    /** @var Connection */
-    protected $db;
-
-    private HiveConnectionFactory $connectionFactory;
-
-    public function __construct(array $parameters, array $state, LoggerInterface $logger)
-    {
-        $this->connectionFactory = new HiveConnectionFactory();
-        parent::__construct($parameters, $state, $logger);
-    }
-
-    public function getMetadataProvider(): MetadataProvider
-    {
-        return new HiveMetadataProvider($this->db);
-    }
-
-    public function createConnection(array $params): Connection
-    {
-        return $this->connectionFactory->createConnection($params);
-    }
+    protected OdbcConnection $connection;
 
     public function testConnection(): void
     {
-        $this->executePreparedQuery(['SELECT 1'], 'Test connection error');
+        $this->connection->testConnection();
     }
 
-    public function simpleQuery(ExportConfig $exportConfig): string
+    protected function createConnection(DatabaseConfig $dbConfig): void
     {
-        $query = [];
-        $query[] = $exportConfig->hasColumns() ? 'SELECT %n' : 'SELECT *';
-        $query[] = $exportConfig->hasColumns() ? $exportConfig->getColumns() : '';
-        $query[] = 'FROM %n.%n';
-        $query[] = $exportConfig->getTable()->getSchema();
-        $query[] = $exportConfig->getTable()->getName();
+        $dsnFactory = new HiveDnsFactory();
+        $dsn = $dsnFactory->create($dbConfig);
 
-        $query = array_merge($query, $this->getIncrementalQueryParts($exportConfig));
+        $connectRetries = $this->isSyncAction() ? 1 : OdbcConnection::CONNECT_DEFAULT_MAX_RETRIES;
+        $this->connection = new HiveOdbcConnection(
+            $this->logger,
+            $dsn,
+            $dbConfig->getUsername(),
+            $dbConfig->getPassword(),
+            null,
+            $connectRetries
+        );
+    }
 
-        if ($exportConfig->isIncrementalFetching()) {
-            $query[] = 'ORDER BY %n ASC';
-            $query[] = $exportConfig->getIncrementalFetchingColumn();
+    protected function createExportAdapter(): ExportAdapter
+    {
+        $queryFactory = new DefaultQueryFactory($this->state);
+        $resultWriter = new DefaultResultWriter($this->state);
+        return new OdbcExportAdapter(
+            $this->logger,
+            $this->connection,
+            $queryFactory,
+            $resultWriter,
+            $this->dataDir,
+            $this->state
+        );
+    }
 
-            if ($exportConfig->hasIncrementalFetchingLimit()) {
-                $query[] = 'LIMIT %i';
-                $query[] = $exportConfig->getIncrementalFetchingLimit();
-            }
-        }
+    protected function getMetadataProvider(): MetadataProvider
+    {
+        return new OdbcNativeMetadataProvider($this->connection);
+    }
 
-        return $this->db->translate($query);
+    protected function getManifestMetadataSerializer(): ManifestSerializer
+    {
+        return new DefaultManifestSerializer();
     }
 
     public function validateIncrementalFetching(ExportConfig $exportConfig): void
@@ -91,34 +106,16 @@ class Hive extends BaseExtractor
         }
     }
 
-    public function getMaxOfIncrementalFetchingColumn(ExportConfig $exportConfig): ?string
+    protected function getMaxOfIncrementalFetchingColumn(ExportConfig $exportConfig): ?string
     {
-        $query = [];
-        $query[] = 'SELECT MAX(%n) AS %n FROM %n.%n';
-        $query[] = $exportConfig->getIncrementalFetchingColumn();
-        $query[] = 'max_value';
-        $query[] = $exportConfig->getTable()->getSchema();
-        $query[] = $exportConfig->getTable()->getName();
-
-        $result = $this
-            ->executePreparedQuery($query, 'Fetching incremental max value error')
-            ->fetch();
-
-        return $result['max_value'] ?? null;
-    }
-
-    protected function getIncrementalQueryParts(ExportConfig $exportConfig): array
-    {
-        $query = [];
-
-        if ($exportConfig->isIncrementalFetching()) {
-            if (isset($this->state['lastFetchedRow'])) {
-                $query[] = 'WHERE %n >= %s';
-                $query[] = $exportConfig->getIncrementalFetchingColumn();
-                $query[] = $this->state['lastFetchedRow'];
-            }
-        }
-
-        return $query;
+        $sql = sprintf(
+            'SELECT MAX(%s) as %s FROM %s.%s',
+            $this->connection->quoteIdentifier($exportConfig->getIncrementalFetchingColumn()),
+            $this->connection->quoteIdentifier($exportConfig->getIncrementalFetchingColumn()),
+            $this->connection->quoteIdentifier($exportConfig->getTable()->getSchema()),
+            $this->connection->quoteIdentifier($exportConfig->getTable()->getName())
+        );
+        $result = $this->connection->query($sql, $exportConfig->getMaxRetries())->fetchAll();
+        return $result ? $result[0][$exportConfig->getIncrementalFetchingColumn()] : null;
     }
 }

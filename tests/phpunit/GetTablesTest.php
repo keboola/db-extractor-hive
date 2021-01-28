@@ -33,7 +33,7 @@ class GetTablesTest extends TestCase
                     'columns' => [
                         [
                             'name' => 'id',
-                            'type' => 'INTEGER',
+                            'type' => 'INT',
                             'primaryKey' => false,
                         ],
                         [
@@ -53,12 +53,12 @@ class GetTablesTest extends TestCase
                         ],
                         [
                             'name' => 'double_col',
-                            'type' => 'FLOAT',
+                            'type' => 'DOUBLE',
                             'primaryKey' => false,
                         ],
                         [
                             'name' => 'string_col',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                     ],
@@ -74,7 +74,7 @@ class GetTablesTest extends TestCase
                         ],
                         [
                             'name' => 'price',
-                            'type' => 'FLOAT',
+                            'type' => 'DOUBLE',
                             'primaryKey' => false,
                         ],
                         [
@@ -90,37 +90,37 @@ class GetTablesTest extends TestCase
                     'columns' => [
                         [
                             'name' => 'usergender',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                         [
                             'name' => 'usercity',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                         [
                             'name' => 'usersentiment',
-                            'type' => 'INTEGER',
+                            'type' => 'INT',
                             'primaryKey' => false,
                         ],
                         [
                             'name' => 'zipcode',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                         [
                             'name' => 'sku',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                         [
                             'name' => 'createdat',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                         [
                             'name' => 'category',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                         [
@@ -130,22 +130,22 @@ class GetTablesTest extends TestCase
                         ],
                         [
                             'name' => 'county',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                         [
                             'name' => 'countycode',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                         [
                             'name' => 'userstate',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                         [
                             'name' => 'categorygroup',
-                            'type' => 'STRING',
+                            'type' => 'VARCHAR',
                             'primaryKey' => false,
                         ],
                     ],
@@ -156,13 +156,13 @@ class GetTablesTest extends TestCase
                     'columns' => [
                         [
                             'name' => 'id',
-                            'type' => 'INTEGER',
+                            'type' => 'INT',
                             'primaryKey' => false,
 
                         ],
                         [
                             'name' => 'bin',
-                            'type' => 'STRING',
+                            'type' => 'BINARY',
                             'primaryKey' => false,
 
                         ],
