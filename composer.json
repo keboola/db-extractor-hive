@@ -7,12 +7,10 @@
         "php": "^7.4",
         "ext-json": "*",
         "ext-odbc": "*",
-        "ext-pdo": "*",
-        "dibi/dibi": "^4.1",
         "keboola/common-exceptions": "^1.0",
-        "keboola/db-extractor-common": "~13.2.4",
-        "keboola/db-extractor-config": "^1.4.5",
-        "keboola/db-extractor-table-format": "^3.1.1",
+        "keboola/db-extractor-common": "~14.1",
+        "keboola/db-extractor-config": "^1.4.7",
+        "keboola/db-extractor-table-format": "^3.1.6",
         "keboola/db-extractor-ssh-tunnel": "^1.1",
         "keboola/php-component": "^8.1"
     },
@@ -22,7 +20,7 @@
         "keboola/php-temp": "^2.0",
         "phpunit/phpunit": "^9.0",
         "symfony/process": "^5.0",
-        "keboola/datadir-tests": "^5.0",
+        "keboola/datadir-tests": "^5.2",
         "phpstan/phpstan": "^0.12.14"
     },
     "autoload": {

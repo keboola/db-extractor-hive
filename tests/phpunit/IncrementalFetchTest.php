@@ -34,8 +34,7 @@ class IncrementalFetchTest extends TestCase
                 ],
             ],
             'unexpected column type' => [
-                'Unexpected type "STRING" of incremental fetching column "string_col". ' .
-                'Expected types: INTEGER, NUMERIC, FLOAT, TIMESTAMP, DATE.',
+                'Unexpected type "VARCHAR" of incremental fetching column "string_col".',
                 [
                     'incrementalFetchingColumn' => 'string_col',
                 ],
