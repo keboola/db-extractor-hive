@@ -15,7 +15,7 @@ echo "Starting metastore initialization.";
 schematool -dbType mysql -initSchema -verbose
 echo "OK. Metastore initialized.";
 
-killall mysqld
+killall mysqld || true
 sleep 10s
 chown mysql:mysql /var/log/mysql/
 
