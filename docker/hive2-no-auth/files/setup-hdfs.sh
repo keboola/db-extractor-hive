@@ -28,7 +28,7 @@ su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -chmod 1777 /user/hive/warehouse'
 su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -chown hive /user/hive/warehouse'
 
 # 6 stop hdfs
-killall java
+killall java || true
 
 # 7 copy configuration
 cp /tmp/hadoop_conf/hive-site.xml /etc/hive/conf/
