@@ -101,8 +101,6 @@ git clone https://github.com/keboola/db-extractor-hive
 cd db-extractor-hive
 export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=
-export HIVE_VERSION=2.3.6
-./create_env.sh
 docker-compose build
 docker-compose run --rm wait
 docker-compose run --rm dev composer install --no-scripts

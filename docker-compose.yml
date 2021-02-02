@@ -9,38 +9,53 @@ services:
     image: keboola-component-db-extractor-hive
     command: composer ci
     environment:
-      # Db credentials
-      HIVE_DB_HOST: ${HIVE_DB_HOST}
-      HIVE_DB_PORT: ${HIVE_DB_PORT}
-      HIVE_DB_DATABASE: ${HIVE_DB_DATABASE}
-      HIVE_DB_USER: ${HIVE_DB_USER}
-      HIVE_DB_PASSWORD: ${HIVE_DB_PASSWORD} # defined in docker/ldap/init/01-hive-user.ldif
-      HIVE_VERSION: ${HIVE_VERSION}
+      # DB credentials
+      HIVE_DB_HOST: hive2-ldap
+      HIVE_DB_PORT: 10000
+      HIVE_DB_DATABASE: default
+      HIVE_DB_USER: hive
+      HIVE_DB_PASSWORD: "p#a!s@sw:o&r%^d" # defined in docker/ldap/init/01-hive-user.ldif
+      # Kerberos
+      HIVE_DB_KERBEROS_HOST: hive2-ldap
+      HIVE_DB_KERBEROS_PORT: 10000
+      HIVE_DB_KERBEROS_DATABASE: default
+      HIVE_DB_KRB5_CONF: "/etc/krb5-test.conf"
+      HIVE_DB_PRINCIPAL: "hive/localhost@KEBOOLA.COM"
+      HIVE_DB_KEYTAB_PATH: "/root/hive-conf/hive.keytab"
       # SSH container credentials
-      SSH_DB_HOST: hive-server-behind-ssh
+      SSH_DB_HOST: hive2-ldap-behind-ssh
       SSH_HOST: ssh-tunnel
       SSH_PORT: 22
       SSH_USER: root
     depends_on:
-      - hive-server
+      - hive2-ldap
+      - hive2-kerberos
       - ssh-tunnel
     volumes:
       - ssh-keys:/root/.ssh:ro
+      - hive2-kerberos-conf:/root/hive-conf:ro
 
+  # Test connection to kerberos:
+  # > docker-compose run dev bash
+  # >>> export KRB5_CONFIG="$HIVE_DB_KRB5_CONF"
+  # >>> kinit -kt /root/hive-conf/hive.keytab hive/localhost@KEBOOLA.COM
+  # >>> klist
   dev:
     <<: *tests
     command: bash
     volumes:
       - ./:/code
+      - ./docker/hive2-kerberos/files/kerberos/krb5.client.conf:/etc/krb5-test.conf
       - ssh-keys:/root/.ssh:ro
+      - hive2-kerberos-conf:/root/hive-conf:ro
 
   wait:
     image: waisbrot/wait
     depends_on:
-      - hive-server
+      - hive2-ldap
       - ssh-tunnel
     environment:
-      - TARGETS=hive-server:10000,ssh-tunnel:22
+      - TARGETS=hive2-ldap:10000,ssh-tunnel:22
       - TIMEOUT=200
 
   # SSH tunnel
@@ -49,7 +64,7 @@ services:
     volumes:
       - ssh-keys:/root/.ssh
     links:
-      - hive-server:hive-server-behind-ssh
+      - hive2-ldap:hive2-ldap-behind-ssh
 
   # LDAP authentication server for Hive (external auth must be provided)
   # Test cmd: docker-compose exec ldap ldapsearch -x -H ldap://localhost -b dc=keboola-test,dc=com -D "uid=admin,dc=keboola-test,dc=com" -w 'admin'
@@ -66,88 +81,47 @@ services:
       # LDAP initialization files
       - ./docker/ldap/init:/container/service/slapd/assets/config/bootstrap/ldif/custom:ro
 
-  # Hive infrastructure
-  # From: https://github.com/big-data-europe/docker-hive/blob/master/docker-compose.yml
-  # Test cmd: docker-compose exec hive-server beeline -u jdbc:hive2://localhost:10000 -n hive -p 'p#a!s@sw:o&r%^d' -e "SHOW TABLES;"
-  hive-server:
-    image: hive-server
-    build:
-      context: ${HIVE_SERVER_IMAGE_DIR}
-      args:
-        HIVE_VERSION: ${HIVE_VERSION}
-    env_file:
-      - ${HIVE_SERVER_IMAGE_DIR}/hadoop-hive.env
-    environment:
-      SERVICE_PRECONDITION: "hive-metastore:9083"
-      HIVE_DB_PORT: ${HIVE_DB_PORT}
-      HIVE_DB_DATABASE: ${HIVE_DB_DATABASE}
-      HIVE_DB_USER: ${HIVE_DB_USER}
-      HIVE_DB_PASSWORD: ${HIVE_DB_PASSWORD} # defined in docker/ldap/init/01-hive-user.ldif
-    links:
-      - ldap
-      - hive-metastore
-      - hive-metastore-postgresql
-      - namenode
-      - datanode
-      - resourcemanager
-      - nodemanager
-      - historyserver
-  hive-metastore:
-    image: hive-server
-    build:
-      context: ${HIVE_SERVER_IMAGE_DIR}
-      args:
-        HIVE_VERSION: ${HIVE_VERSION}
-    env_file:
-      - ${HIVE_SERVER_IMAGE_DIR}/hadoop-hive.env
-    command: /opt/hive/bin/hive --service metastore
-    environment:
-      SERVICE_PRECONDITION: "hive-metastore-postgresql:5432 namenode:${HADOOP_NAMENODE_WAIT_PORT} datanode:${HADOOP_DATANODE_WAIT_PORT}"
-  hive-metastore-postgresql:
-    image: postgres:9.5.3
-    environment:
-      POSTGRES_DB: metastore
-      POSTGRES_USER: hive
-      POSTGRES_PASSWORD: hive
+  # HIVE - no auth, base image
+  # Test cmd:
+  # > docker-compose run hive2-no-auth bash
+  # >>> /root/startup.sh &
+  # >>> (wait for all services, "INFO exited: bootstrap (exit status 0; expected)")
+  # >>> beeline -u jdbc:hive2://localhost:10000 -e "SHOW TABLES;"
+  hive2-no-auth:
+    image: keboola-hive2-no-auth
+    build: ./docker/hive2-no-auth
+    command: sleep 1000000
 
-  # Hadoop infrastructure
-  # https://github.com/big-data-europe/docker-hadoop
-  namenode:
-    image: bde2020/hadoop-${HADOOP_NAMENODE_TAG}
-    env_file:
-      - ${HIVE_SERVER_IMAGE_DIR}/hadoop-hive.env
-    ports:
-      - "9999:9999" # Web UI for debugging
-  datanode:
-    image: bde2020/hadoop-${HADOOP_DATANODE_TAG}
-    environment:
-      SERVICE_PRECONDITION: "namenode:${HADOOP_NAMENODE_WAIT_PORT}"
-    env_file:
-      - ${HIVE_SERVER_IMAGE_DIR}/hadoop-hive.env
-  resourcemanager:
-    image: bde2020/hadoop-${HADOOP_RESOURCEMANAGER_TAG}
-    environment:
-      SERVICE_PRECONDITION: "namenode:${HADOOP_NAMENODE_WAIT_PORT} datanode:${HADOOP_DATANODE_WAIT_PORT}"
-    env_file:
-      - ${HIVE_SERVER_IMAGE_DIR}/hadoop-hive.env
-    ports:
-      - "8088:8088" # Web UI for debugging
-  nodemanager:
-    image: bde2020/hadoop-${HADOOP_NODEMANAGER_TAG}
-    environment:
-      SERVICE_PRECONDITION: "namenode:${HADOOP_NAMENODE_WAIT_PORT} datanode:${HADOOP_DATANODE_WAIT_PORT} resourcemanager:${HADOOP_RESOURCEMANAGER_WAIT_PORT}"
-    env_file:
-      - ${HIVE_SERVER_IMAGE_DIR}/hadoop-hive.env
-    ports:
-      - "8042:8042" # Web UI for debugging
-  historyserver:
-    image: bde2020/hadoop-${HADOOP_HISTORYSERVER_TAG}
-    environment:
-      SERVICE_PRECONDITION: "namenode:${HADOOP_NAMENODE_WAIT_PORT} datanode:${HADOOP_DATANODE_WAIT_PORT} resourcemanager:${HADOOP_RESOURCEMANAGER_WAIT_PORT}"
-    env_file:
-      - ${HIVE_SERVER_IMAGE_DIR}/hadoop-hive.env
-    ports:
-      - "8188:8188" # Web UI for debugging
+  # HIVE - LDAP image
+  # Test cmd:
+  # > docker-compose run hive2-ldap bash
+  # >>> /root/startup.sh &
+  # >>> (wait for all services, "INFO exited: bootstrap (exit status 0; expected)")
+  # >>> beeline -u jdbc:hive2://localhost:10000 -n hive -p 'p#a!s@sw:o&r%^d' -e "SHOW TABLES;"
+  hive2-ldap:
+    image: keboola-hive2-ldap
+    build: ./docker/hive2-ldap
+    depends_on:
+      - hive2-no-auth
+      - ldap
+
+  # HIVE - KERBEROS image
+  # Test cmd:
+  # > docker-compose run hive2-kerberos bash
+  # >>> /root/startup.sh &
+  # >>> (wait for all services, "INFO exited: bootstrap (exit status 0; expected)")
+  # >>> export KRB5_CONFIG=/etc/krb5.conf
+  # >>> kinit -kt /etc/hive/conf/hive.keytab hive/localhost@KEBOOLA.COM
+  # >>> klist
+  # >>> beeline -u "jdbc:hive2://localhost:10000/default;auth=kerberos;principal=hive/localhost@KEBOOLA.COM" -e "SHOW TABLES;"
+  hive2-kerberos:
+    image: keboola-hive2-kerberos
+    build: ./docker/hive2-kerberos
+    depends_on:
+      - hive2-no-auth
+    volumes:
+      - hive2-kerberos-conf:/etc/hive/conf:rw
 
 volumes:
   ssh-keys:
+  hive2-kerberos-conf:

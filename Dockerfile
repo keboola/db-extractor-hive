@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libsasl2-modules-sql \
         libsasl2-modules-gssapi-mit \
         libsasl2-modules-ldap \
+        krb5-user \
 	&& rm -r /var/lib/apt/lists/* \
 	&& sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
 	&& locale-gen \
