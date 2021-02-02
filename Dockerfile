@@ -33,6 +33,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libsasl2-modules-gssapi-mit \
         libsasl2-modules-ldap \
         krb5-user \
+        libzip-dev \
 	&& rm -r /var/lib/apt/lists/* \
 	&& sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
 	&& locale-gen \
@@ -42,6 +43,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # INTL
 RUN docker-php-ext-configure intl \
     && docker-php-ext-install intl
+
+# ZLIB
+RUN docker-php-ext-install zip
 
 # PHP ODBC
 # https://github.com/docker-library/php/issues/103#issuecomment-353674490
@@ -74,6 +78,7 @@ RUN alien -i /tmp/hive-odbc.rpm \
 ENV LANGUAGE=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
+ENV KRB5_CONFIG='/root/php-krb5.conf'
 
 ## Composer - deps always cached unless changed
 # First copy only composer files

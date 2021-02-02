@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\FunctionalTests;
 
+use Keboola\DatadirTests\EnvVarProcessor;
+use Keboola\DbExtractor\Tests\Traits\CleanupKerberosTrait;
 use Throwable;
 use Symfony\Component\Finder\Finder;
 use Keboola\DatadirTests\DatadirTestCase;
@@ -11,6 +13,40 @@ use Keboola\DatadirTests\DatadirTestsProviderInterface;
 
 class DatadirTest extends DatadirTestCase
 {
+    use CleanupKerberosTrait;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->cleanupKerberos();
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        $this->cleanupKerberos();
+    }
+
+    protected function createEnvVarProcessor(): EnvVarProcessor
+    {
+        return new class extends EnvVarProcessor {
+            public function getEnv(string $var): string
+            {
+                switch ($var) {
+                    case 'HIVE_DB_KERBEROS_KEYTAB_ENCODED':
+                        $keytabContent = (string) file_get_contents((string) getenv('HIVE_DB_KERBEROS_KEYTAB_PATH'));
+                        return  (string) base64_encode((string) gzcompress($keytabContent));
+
+                    case 'HIVE_DB_KERBEROS_KRB5_CONF':
+                        return (string) file_get_contents((string) getenv('HIVE_DB_KERBEROS_KRB5_CONF_PATH'));
+                }
+
+                return parent::getEnv($var);
+            }
+        };
+    }
+
+
     /**
      * @return DatadirTestsProviderInterface[]
      */

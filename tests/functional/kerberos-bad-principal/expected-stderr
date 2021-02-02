@@ -1,0 +1,1 @@
+Connection failed: 'Kerberos authentication failed. Command "kinit" was not successful: ; kinit: Keytab contains no suitable keys for bad/principal@KEBOOLA.COM while getting initial credentials '

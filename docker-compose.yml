@@ -10,18 +10,18 @@ services:
     command: composer ci
     environment:
       # DB credentials
-      HIVE_DB_HOST: hive2-ldap
-      HIVE_DB_PORT: 10000
-      HIVE_DB_DATABASE: default
-      HIVE_DB_USER: hive
-      HIVE_DB_PASSWORD: "p#a!s@sw:o&r%^d" # defined in docker/ldap/init/01-hive-user.ldif
+      HIVE_DB_LDAP_HOST: hive2-ldap
+      HIVE_DB_LDAP_PORT: 10000
+      HIVE_DB_LDAP_DATABASE: default
+      HIVE_DB_LDAP_USER: hive
+      HIVE_DB_LDAP_PASSWORD: "p#a!s@sw:o&r%^d" # defined in docker/ldap/init/01-hive-user.ldif
       # Kerberos
-      HIVE_DB_KERBEROS_HOST: hive2-ldap
+      HIVE_DB_KERBEROS_HOST: hive2-kerberos
       HIVE_DB_KERBEROS_PORT: 10000
       HIVE_DB_KERBEROS_DATABASE: default
-      HIVE_DB_KRB5_CONF: "/etc/krb5-test.conf"
-      HIVE_DB_PRINCIPAL: "hive/localhost@KEBOOLA.COM"
-      HIVE_DB_KEYTAB_PATH: "/root/hive-conf/hive.keytab"
+      HIVE_DB_KERBEROS_KRB5_CONF_PATH: "/etc/krb5-test.conf"
+      HIVE_DB_KERBEROS_PRINCIPAL: "hive/localhost@KEBOOLA.COM"
+      HIVE_DB_KERBEROS_KEYTAB_PATH: "/root/hive-conf/hive.keytab"
       # SSH container credentials
       SSH_DB_HOST: hive2-ldap-behind-ssh
       SSH_HOST: ssh-tunnel
@@ -37,7 +37,7 @@ services:
 
   # Test connection to kerberos:
   # > docker-compose run dev bash
-  # >>> export KRB5_CONFIG="$HIVE_DB_KRB5_CONF"
+  # >>> export KRB5_CONFIG="$HIVE_DB_KERBEROS_KRB5_CONF_PATH"
   # >>> kinit -kt /root/hive-conf/hive.keytab hive/localhost@KEBOOLA.COM
   # >>> klist
   dev:
@@ -120,8 +120,10 @@ services:
     depends_on:
       - hive2-no-auth
     volumes:
-      - hive2-kerberos-conf:/etc/hive/conf:rw
+      - hive2-kerberos-conf:/etc/hive/conf
+      - hive2-kerberos-data:/var/kerberos
 
 volumes:
   ssh-keys:
   hive2-kerberos-conf:
+  hive2-kerberos-data:

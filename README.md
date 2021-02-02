@@ -17,9 +17,19 @@ The configuration `config.json` contains following properties in `parameters` ke
 - `db` - object (required): Connection settings
     - `host` - string (required): IP address or hostname of Apache Hive DB server
     - `port` - integer (required): Server port (default port is `10000`)
-    - `user` - string (required): User with correct access rights
-    - `#password` - string (required): Password for given `user`
-    - `database` - string (required): Database to connect to
+    - `database` - string (required): Database to connect to.
+    - `authType` - enum (optional): Type of the authentication.
+        - `password` (default) - user/password LDAP authentication.
+        - `kerberos` - Kerberos authentication.
+    - `user` - string (required if `authType = password`): User with correct access rights
+    - `#password` - string (required if `authType = password`): Password for given `user`
+    - `kerberos` - object (required if `authType = kerberos`)
+        - `principal` - string (required): Name of the Kerberos principal - used for the `kinit`.
+        - `config` - string (required): Content of the `krb5.conf` file.
+        - `#keytab` - string (required): `gzip` + `base64` encoded content of the `*.keytab` file.
+    - `ssl` - object (optional):
+        - `enabled` bool (optional): Default `false`.
+        - `verifyServerCert` bool (optional): Default `true`.
     - `ssh` - object (optional): Settings for SSH tunnel
         - `enabled` - bool (required):  Enables SSH tunnel
         - `sshHost` - string (required): IP address or hostname of SSH server
@@ -41,6 +51,25 @@ The configuration `config.json` contains following properties in `parameters` ke
 - `incrementalFetchingLimit` - integer (optional): Max number of rows fetched per one run
 - `primaryKey` - string (optional): Sets primary key to specified column in output table
 - `retries` - integer (optional): Number of retries if an error occurred
+
+## Stack parameters
+
+```json
+{
+  "globalParameters": {
+    "db": {
+      "authType": "kerberos",
+      "kerberos": {
+        "#keytab": ""
+      },
+      "#trustStoreJks": "..." 
+    }
+  },
+  "defaultParameters": {
+    
+  }
+}
+```
 
 ## Examples
 

@@ -7,6 +7,7 @@
         "php": "^7.4",
         "ext-json": "*",
         "ext-odbc": "*",
+        "ext-zlib": "*",
         "keboola/common-exceptions": "^1.0",
         "keboola/db-extractor-common": "~14.1",
         "keboola/db-extractor-config": "^1.4.7",

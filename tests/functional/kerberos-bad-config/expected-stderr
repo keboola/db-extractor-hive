@@ -1,0 +1,1 @@
+Connection failed: 'Kerberos authentication failed. Command "kinit" was not successful: ; kinit: Cannot find KDC for realm "KEBOOLA.COM" while getting initial credentials '

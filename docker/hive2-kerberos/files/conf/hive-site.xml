@@ -19,7 +19,7 @@
 
     <property>
         <name>javax.jdo.option.ConnectionURL</name>
-        <value>jdbc:mysql://localhost/metastore</value>
+        <value>jdbc:mysql://localhost/metastore?autoReconnect=true&amp;useSSL=false</value>
         <description>the URL of the MySQL database</description>
     </property>
 
@@ -40,7 +40,7 @@
 
     <property>
         <name>datanucleus.autoCreateSchema</name>
-        <value>false</value>
+        <value>true</value>
     </property>
 
     <property>
@@ -56,11 +56,6 @@
     <property>
         <name>hive.server2.authentication</name>
         <value>KERBEROS</value>
-    </property>
-
-    <property>
-        <name>hive.server2.enable.impersonation</name>
-        <value>true</value>
     </property>
 
     <property>
@@ -97,16 +92,6 @@
     <property>
         <name>hive.users.in.admin.role</name>
         <value>hdfs,hive</value>
-    </property>
-
-    <property>
-        <name>hive.security.authorization.manager</name>
-        <value>org.apache.hadoop.hive.ql.security.authorization.plugin.sqlstd.SQLStdConfOnlyAuthorizerFactory</value>
-    </property>
-
-    <property>
-        <name>hive.security.authorization.task.factory</name>
-        <value>org.apache.hadoop.hive.ql.parse.authorization.HiveAuthorizationTaskFactoryImpl</value>
     </property>
 
 </configuration>

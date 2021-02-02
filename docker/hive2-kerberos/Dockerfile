@@ -81,9 +81,9 @@ RUN keytool -genkeypair \
     -dname "CN=presto-master, OU=, O=, L=, S=, C="
 RUN chmod 644 /etc/presto/conf/keystore.jks
 
-# CREATE DB USER ACCOUNT
-RUN /usr/sbin/kadmin.local -q "addprinc -randkey db-user/localhost@KEBOOLA.COM" && \
-    /usr/sbin/kadmin.local -q "xst -norandkey -k /root/kerberos-keytabs/db-user.keytab db-user/localhost"
+# IMPORT TEST DATA
+RUN BEELINE_ARGS="-u 'jdbc:hive2://localhost:10000/default;auth=kerberos;principal=hive/localhost@KEBOOLA.COM'" /tmp/data/data-init.sh
+RUN rm -rf /tmp/data
 
 # EXPOSE KERBEROS PORTS
 EXPOSE	88

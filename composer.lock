@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14371a273f4bf175688f8176c52c4722",
+    "content-hash": "7d0662babb09879e85e2ef0c67cff2dd",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -225,16 +225,16 @@
         },
         {
             "name": "keboola/db-extractor-common",
-            "version": "14.1.0",
+            "version": "14.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/db-extractor-common.git",
-                "reference": "3385d064d284a5f9a0fbd998ea83a04592ebac43"
+                "reference": "3fea792ec47a8c4cc83776c26b060eab4136ecb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/db-extractor-common/zipball/3385d064d284a5f9a0fbd998ea83a04592ebac43",
-                "reference": "3385d064d284a5f9a0fbd998ea83a04592ebac43",
+                "url": "https://api.github.com/repos/keboola/db-extractor-common/zipball/3fea792ec47a8c4cc83776c26b060eab4136ecb3",
+                "reference": "3fea792ec47a8c4cc83776c26b060eab4136ecb3",
                 "shasum": ""
             },
             "require": {
@@ -284,9 +284,9 @@
             "description": "Common library from Keboola Database Extractors",
             "support": {
                 "issues": "https://github.com/keboola/db-extractor-common/issues",
-                "source": "https://github.com/keboola/db-extractor-common/tree/14.1.0"
+                "source": "https://github.com/keboola/db-extractor-common/tree/14.2.0"
             },
-            "time": "2021-01-28T10:29:38+00:00"
+            "time": "2021-02-02T12:11:26+00:00"
         },
         {
             "name": "keboola/db-extractor-config",
@@ -423,16 +423,16 @@
         },
         {
             "name": "keboola/php-component",
-            "version": "8.1.2",
+            "version": "8.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/php-component.git",
-                "reference": "49af27d934f09be2e11ea1becb2c98e75032b36b"
+                "reference": "efee48865567d2c7b59d130f0f3f7c0624769a0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/php-component/zipball/49af27d934f09be2e11ea1becb2c98e75032b36b",
-                "reference": "49af27d934f09be2e11ea1becb2c98e75032b36b",
+                "url": "https://api.github.com/repos/keboola/php-component/zipball/efee48865567d2c7b59d130f0f3f7c0624769a0e",
+                "reference": "efee48865567d2c7b59d130f0f3f7c0624769a0e",
                 "shasum": ""
             },
             "require": {
@@ -477,9 +477,9 @@
             ],
             "support": {
                 "issues": "https://github.com/keboola/php-component/issues",
-                "source": "https://github.com/keboola/php-component/tree/8.1.2"
+                "source": "https://github.com/keboola/php-component/tree/8.2.0"
             },
-            "time": "2020-04-30T11:08:47+00:00"
+            "time": "2021-02-02T12:40:10+00:00"
         },
         {
             "name": "keboola/php-datatypes",
@@ -1695,16 +1695,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.1",
+            "version": "9.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "e7bdf4085de85a825f4424eae52c99a1cec2f360"
+                "reference": "f661659747f2f87f9e72095bb207bceb0f151cb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e7bdf4085de85a825f4424eae52c99a1cec2f360",
-                "reference": "e7bdf4085de85a825f4424eae52c99a1cec2f360",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f661659747f2f87f9e72095bb207bceb0f151cb4",
+                "reference": "f661659747f2f87f9e72095bb207bceb0f151cb4",
                 "shasum": ""
             },
             "require": {
@@ -1782,7 +1782,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.1"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.2"
             },
             "funding": [
                 {
@@ -1794,7 +1794,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-01-17T07:42:25+00:00"
+            "time": "2021-02-02T14:45:58+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -3864,16 +3864,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.70",
+            "version": "0.12.71",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "07f0ef37f5f876e8cee44cc8ea0ec3fe80d499ee"
+                "reference": "d508fa3b0ecc5fc91ac70c6c7ac2862f968ba2b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/07f0ef37f5f876e8cee44cc8ea0ec3fe80d499ee",
-                "reference": "07f0ef37f5f876e8cee44cc8ea0ec3fe80d499ee",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d508fa3b0ecc5fc91ac70c6c7ac2862f968ba2b5",
+                "reference": "d508fa3b0ecc5fc91ac70c6c7ac2862f968ba2b5",
                 "shasum": ""
             },
             "require": {
@@ -3904,7 +3904,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.70"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.71"
             },
             "funding": [
                 {
@@ -3920,7 +3920,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T17:06:47+00:00"
+            "time": "2021-02-01T18:24:00+00:00"
         },
         {
             "name": "slevomat/coding-standard",
@@ -4030,7 +4030,8 @@
     "platform": {
         "php": "^7.4",
         "ext-json": "*",
-        "ext-odbc": "*"
+        "ext-odbc": "*",
+        "ext-zlib": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
