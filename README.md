@@ -27,6 +27,13 @@ The configuration `config.json` contains following properties in `parameters` ke
         - `principal` - string (required): Name of the Kerberos principal - used for the `kinit`.
         - `config` - string (required): Content of the `krb5.conf` file.
         - `#keytab` - string (required): `base64` encoded content of the `*.keytab` file.
+    - `connectThrough` - bool (optional, default `false`) 
+        - If enabled:
+            - Value from the `KBC_REALUSER` environment variable is used as the `DelegationUID` in the connection string.
+            - if `KBC_REALUSER` is not set, a UserException is thrown.
+        - To use this feature:
+          - The SAML login to the Keboola Connection must be used.
+          - SAML token must contain the required data and the stack must be set correctly.
     - `ssl` - object (optional):
         - `enabled` bool (optional): Default `false`.
         - `ca` or `#ca` string (optional): bundle of the trusted certificates in PEM/JKS format, see `caFileType`.

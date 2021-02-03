@@ -50,6 +50,19 @@ class HiveDsnFactory
         // SSL
         $parameters = array_merge($parameters, $certManager->getDsnParameters());
 
+        // Connect through
+        if ($dbConfig->isConnectThroughEnabled()) {
+            $realUser = (string) getenv('KBC_REALUSER');
+            if ($realUser) {
+                $logger->info(sprintf('Connect through is enabled, DelegationUID = "%s".', $realUser));
+                $parameters['DelegationUID'] = $realUser;
+            } else {
+                throw new UserException(
+                    'Connect through is enabled, but "KBC_REALUSER" environment variable is not set.'
+                );
+            }
+        }
+
         // Generate DNS
         $dsn = '';
         foreach ($parameters as $key => $value) {

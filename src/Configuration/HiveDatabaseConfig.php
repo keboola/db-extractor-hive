@@ -17,6 +17,8 @@ class HiveDatabaseConfig extends DatabaseConfig
 
     private ?string $krb5Keytab;
 
+    private bool $connectThrough;
+
     public static function fromArray(array $data): self
     {
         $sslEnabled = !empty($data['ssl']) && !empty($data['ssl']['enabled']);
@@ -33,6 +35,7 @@ class HiveDatabaseConfig extends DatabaseConfig
             $data['kerberos']['principal'] ?? null,
             $data['kerberos']['config'] ?? null,
             $data['kerberos']['#keytab'] ?? null,
+            $data['connectThrough'] ?? false,
         );
     }
 
@@ -47,13 +50,15 @@ class HiveDatabaseConfig extends DatabaseConfig
         string $authType,
         ?string $krb5Principal,
         ?string $krb5Config,
-        ?string $krb5Keytab
+        ?string $krb5Keytab,
+        bool $connectThrough
     ) {
         parent::__construct($host, $port, $username, $password, $database, $schema, $sslConnectionConfig);
         $this->authType = $authType;
         $this->krb5Principal = $krb5Principal;
         $this->krb5Config = $krb5Config;
         $this->krb5Keytab = $krb5Keytab;
+        $this->connectThrough = $connectThrough;
     }
 
     public function getSslConnectionConfig(): HiveSslConnectionConfig
@@ -127,5 +132,10 @@ class HiveDatabaseConfig extends DatabaseConfig
         }
 
         return $this->krb5Keytab;
+    }
+
+    public function isConnectThroughEnabled(): bool
+    {
+        return $this->connectThrough;
     }
 }
