@@ -6,21 +6,20 @@ namespace Keboola\DbExtractor\Connection;
 
 use Keboola\DbExtractor\Exception\UserException;
 use LogicException;
-use InvalidArgumentException;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
-use Keboola\DbExtractorConfig\Configuration\ValueObject\DatabaseConfig;
 use Psr\Log\LoggerInterface;
 
 class HiveDsnFactory
 {
     public const ODBC_DRIVER_NAME = 'Cloudera ODBC Driver for Apache Hive 64-bit';
 
-    public function create(LoggerInterface $logger, DatabaseConfig $dbConfig): string
-    {
-        if (!$dbConfig instanceof HiveDatabaseConfig) {
-            throw new InvalidArgumentException('Expected HiveDatabaseConfig.');
-        }
+
+    public function create(
+        LoggerInterface $logger,
+        HiveDatabaseConfig $dbConfig,
+        HiveCertManager $certManager
+    ): string {
 
         $parameters = [];
         $parameters['Driver'] = self::ODBC_DRIVER_NAME;
@@ -49,12 +48,7 @@ class HiveDsnFactory
         }
 
         // SSL
-        if ($dbConfig->hasSSLConnection()) {
-            $verifyServerCert = $dbConfig->getSslConnectionConfig()->isVerifyServerCert();
-            $parameters['SSL'] = 1;
-            $parameters['AllowSelfSignedServerCert'] = $verifyServerCert ? 0 : 1;
-            $parameters['CAIssuedCertNamesMismatch'] = $verifyServerCert ? 0 : 1;
-        }
+        $parameters = array_merge($parameters, $certManager->getDsnParameters());
 
         // Generate DNS
         $dsn = '';

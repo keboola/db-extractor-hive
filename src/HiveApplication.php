@@ -25,11 +25,10 @@ class HiveApplication extends Application
     protected function buildConfig(array $config): void
     {
         $dbNode = new HiveDbNode();
-        $sslNode = new HiveSslNode();
         if ($this->isRowConfiguration($config)) {
             $this->config = $this['action'] === 'run' ?
-                new Config($config, new ConfigRowDefinition($dbNode, null, $sslNode)) :
-                new Config($config, new ActionConfigRowDefinition($dbNode, null, $sslNode));
+                new Config($config, new ConfigRowDefinition($dbNode)) :
+                new Config($config, new ActionConfigRowDefinition($dbNode));
         } else {
             throw new ApplicationException('Old config format is not supported. Please, use row configuration.');
         }

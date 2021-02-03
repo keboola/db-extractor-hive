@@ -16,7 +16,9 @@ WORKDIR /code/
 COPY docker/php/php-prod.ini /usr/local/etc/php/php.ini
 COPY docker/php/composer-install.sh /tmp/composer-install.sh
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# https://github.com/debuerreotype/docker-debian-artifacts/issues/24
+RUN mkdir -p /usr/share/man/man1 && \
+    apt-get update && apt-get install -y --no-install-recommends \
         alien \
         ssh \
         git \
@@ -34,6 +36,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libsasl2-modules-ldap \
         krb5-user \
         libzip-dev \
+        # keytool is in JRE
+        default-jre \
 	&& rm -r /var/lib/apt/lists/* \
 	&& sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
 	&& locale-gen \
@@ -79,6 +83,7 @@ ENV LANGUAGE=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 ENV KRB5_CONFIG='/root/php-krb5.conf'
+ENV KRB5_KEYTAB='/root/krb5.keytab'
 
 ## Composer - deps always cached unless changed
 # First copy only composer files

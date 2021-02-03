@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Configuration;
 
-use Keboola\DbExtractor\Exception\UserException;
 use Keboola\DbExtractorConfig\Configuration\NodeDefinition\DbNode;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
@@ -13,6 +12,11 @@ class HiveDbNode extends DbNode
 {
     public const AUTH_TYPE_PASSWORD = 'password';
     public const AUTH_TYPE_KERBEROS = 'kerberos';
+
+    public function __construct()
+    {
+        parent::__construct(null, new HiveSslNode(), null);
+    }
 
     protected function init(NodeBuilder $builder): void
     {
@@ -60,9 +64,9 @@ class HiveDbNode extends DbNode
                 }
             }
 
-            // Decode params
+            // Base64 decode params
             if (isset($v['kerberos']['#keytab'])) {
-                $v['kerberos']['#keytab'] = self::base64DecodeAndUnzip(
+                $v['kerberos']['#keytab'] = ConfigUtils::base64Decode(
                     $v['kerberos']['#keytab'],
                     'db.kerberos.#keytab'
                 );
@@ -116,22 +120,5 @@ class HiveDbNode extends DbNode
                 ->scalarNode('principal')->isRequired()->end()
                 ->scalarNode('config')->isRequired()->end()
                 ->scalarNode('#keytab')->isRequired()->end();
-    }
-
-    public static function base64DecodeAndUnzip(string $content, string $parameterName): string
-    {
-        // Base64 decode
-        $content = @base64_decode($content);
-        if (!$content) {
-            throw new UserException(sprintf('Cannot base64 decode "%s" parameter.', $parameterName));
-        }
-
-        // Unzip
-        $content = @gzuncompress($content);
-        if (!$content) {
-            throw new UserException(sprintf('Cannot un-gzip "%s" parameter.', $parameterName));
-        }
-
-        return $content;
     }
 }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Keboola\DbExtractor\Configuration;
 
 use Keboola\DbExtractorConfig\Configuration\ValueObject\DatabaseConfig;
-use Keboola\DbExtractorConfig\Configuration\ValueObject\SSLConnectionConfig;
 use Keboola\DbExtractorConfig\Exception\PropertyNotSetException;
 
 class HiveDatabaseConfig extends DatabaseConfig
@@ -18,8 +17,6 @@ class HiveDatabaseConfig extends DatabaseConfig
 
     private ?string $krb5Keytab;
 
-    private ?string $krb5KeytabPath = null;
-
     public static function fromArray(array $data): self
     {
         $sslEnabled = !empty($data['ssl']) && !empty($data['ssl']['enabled']);
@@ -31,7 +28,7 @@ class HiveDatabaseConfig extends DatabaseConfig
             $data['#password'] ?? '',
             $data['database'] ?? null,
             null,
-            $sslEnabled ? SSLConnectionConfig::fromArray($data['ssl']) : null,
+            $sslEnabled ? HiveSslConnectionConfig::fromArray($data['ssl']) : null,
             $data['authType'],
             $data['kerberos']['principal'] ?? null,
             $data['kerberos']['config'] ?? null,
@@ -46,7 +43,7 @@ class HiveDatabaseConfig extends DatabaseConfig
         string $password,
         ?string $database,
         ?string $schema,
-        ?SSLConnectionConfig $sslConnectionConfig,
+        ?HiveSslConnectionConfig $sslConnectionConfig,
         string $authType,
         ?string $krb5Principal,
         ?string $krb5Config,
@@ -59,12 +56,11 @@ class HiveDatabaseConfig extends DatabaseConfig
         $this->krb5Keytab = $krb5Keytab;
     }
 
-    public function __destruct()
+    public function getSslConnectionConfig(): HiveSslConnectionConfig
     {
-        // Cleanup
-        if ($this->krb5KeytabPath) {
-            unlink($this->krb5KeytabPath);
-        }
+        /** @var HiveSslConnectionConfig $sslConfig */
+        $sslConfig = parent::getSslConnectionConfig();
+        return $sslConfig;
     }
 
     public function getAuthType(): string
@@ -124,17 +120,12 @@ class HiveDatabaseConfig extends DatabaseConfig
         return $this->krb5Keytab !== null;
     }
 
-    public function getKrb5KeytabPath(): string
+    public function getKrb5Keytab(): string
     {
         if (!$this->krb5Keytab) {
             throw new PropertyNotSetException('Property "krb5Keytab" is not set.');
         }
 
-        if (!$this->krb5KeytabPath) {
-            $this->krb5KeytabPath = (string) tempnam('/tmp', 'keytab');
-            file_put_contents($this->krb5KeytabPath, (string) $this->krb5Keytab);
-        }
-
-        return $this->krb5KeytabPath;
+        return $this->krb5Keytab;
     }
 }

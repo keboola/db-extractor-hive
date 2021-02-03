@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Keboola\DbExtractor\Tests;
 
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
+use Keboola\DbExtractor\Connection\HiveCertManager;
 use Keboola\DbExtractor\Connection\HiveDsnFactory;
 use Keboola\DbExtractor\Exception\UserException;
 use PHPUnit\Framework\Assert;
@@ -53,11 +54,12 @@ class HiveDsnFactoryTest extends TestCase
     /**
      * @dataProvider getValidConfigs
      */
-    public function testValid(array $dbConfig, string $expected): void
+    public function testValid(array $dbConfigArray, string $expected): void
     {
         $logger = new TestLogger();
         $dsnFactory = new HiveDsnFactory();
-        $actual = $dsnFactory->create($logger, HiveDatabaseConfig::fromArray($dbConfig));
+        $dbConfig = HiveDatabaseConfig::fromArray($dbConfigArray);
+        $actual = $dsnFactory->create($logger, $dbConfig, new HiveCertManager($dbConfig));
         Assert::assertSame($expected, $actual);
     }
 
@@ -73,7 +75,7 @@ class HiveDsnFactoryTest extends TestCase
                 '#password' => '123',
             ],
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;'.
-            'Host=test-host.com;Port=123;Schema=my-db;UseNativeQuery=1;AuthMech=3;'
+            'Host=test-host.com;Port=123;Schema=my-db;UseNativeQuery=1;AuthMech=3;',
         ];
 
         yield 'kerberos-auth' => [
@@ -86,10 +88,11 @@ class HiveDsnFactoryTest extends TestCase
                     'principal' => 'test/service@EXAMPLE.COM',
                     'config' => '...',
                     '#keytab' => '...',
-                ]
-            ],
-            'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;'.
-            'Host=test-host.com;Port=123;Schema=my-db;UseNativeQuery=1;AuthMech=1;KrbHostFQDN=service;KrbServiceName=test;'
+                ],
+                ],
+                'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;'.
+                'Host=test-host.com;Port=123;Schema=my-db;'.
+                'UseNativeQuery=1;AuthMech=1;KrbHostFQDN=service;KrbServiceName=test;',
         ];
     }
 
@@ -98,13 +101,13 @@ class HiveDsnFactoryTest extends TestCase
         yield [
             'service/host@EXAMPLE.COM',
             'service',
-            'host'
+            'host',
         ];
 
         yield [
             'host@EXAMPLE.COM',
             'service',
-            'host'
+            'host',
         ];
     }
 }

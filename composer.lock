@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d0662babb09879e85e2ef0c67cff2dd",
+    "content-hash": "dd091f237a71dcc7d711d95023c3b535",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -527,6 +527,58 @@
                 "source": "https://github.com/keboola/php-datatypes/tree/4.9.0"
             },
             "time": "2020-11-11T10:55:41+00:00"
+        },
+        {
+            "name": "keboola/php-temp",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/keboola/php-temp.git",
+                "reference": "cbdb4dd0dfe548d7bffd74a0e66294981aea49ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/keboola/php-temp/zipball/cbdb4dd0dfe548d7bffd74a0e66294981aea49ce",
+                "reference": "cbdb4dd0dfe548d7bffd74a0e66294981aea49ce",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "symfony/filesystem": ">2.8"
+            },
+            "require-dev": {
+                "infection/infection": "^0.12",
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "keboola/coding-standard": "^8.0",
+                "phpstan/phpstan-shim": "^0.11",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Keboola\\Temp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Keboola",
+                    "email": "devel@keboola.com"
+                }
+            ],
+            "description": "Temp library handles application temporary files",
+            "keywords": [
+                "filesystem",
+                "temp"
+            ],
+            "support": {
+                "issues": "https://github.com/keboola/php-temp/issues",
+                "source": "https://github.com/keboola/php-temp/tree/2.0.1"
+            },
+            "time": "2019-04-26T07:18:24+00:00"
         },
         {
             "name": "keboola/php-utils",
@@ -2981,7 +3033,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -3039,7 +3091,7 @@
             "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/config/tree/v5.2.2"
+                "source": "https://github.com/symfony/config/tree/v5.2.3"
             },
             "funding": [
                 {
@@ -3126,7 +3178,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -3168,7 +3220,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v5.2.2"
+                "source": "https://github.com/symfony/filesystem/tree/v5.2.3"
             },
             "funding": [
                 {
@@ -3188,16 +3240,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "196f45723b5e618bf0e23b97e96d11652696ea9e"
+                "reference": "4adc8d172d602008c204c2e16956f99257248e03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/196f45723b5e618bf0e23b97e96d11652696ea9e",
-                "reference": "196f45723b5e618bf0e23b97e96d11652696ea9e",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/4adc8d172d602008c204c2e16956f99257248e03",
+                "reference": "4adc8d172d602008c204c2e16956f99257248e03",
                 "shasum": ""
             },
             "require": {
@@ -3229,7 +3281,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v5.2.2"
+                "source": "https://github.com/symfony/finder/tree/v5.2.3"
             },
             "funding": [
                 {
@@ -3245,7 +3297,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T10:01:46+00:00"
+            "time": "2021-01-28T22:06:19+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -3411,7 +3463,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -3453,7 +3505,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v5.2.2"
+                "source": "https://github.com/symfony/process/tree/v5.2.3"
             },
             "funding": [
                 {
@@ -3473,16 +3525,16 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v5.2.2",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "4218dd0902543dc454b2eac0db37044f187283d7"
+                "reference": "70c5aa59ab0642033391a5591c9771ee417e7cef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/4218dd0902543dc454b2eac0db37044f187283d7",
-                "reference": "4218dd0902543dc454b2eac0db37044f187283d7",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/70c5aa59ab0642033391a5591c9771ee417e7cef",
+                "reference": "70c5aa59ab0642033391a5591c9771ee417e7cef",
                 "shasum": ""
             },
             "require": {
@@ -3555,7 +3607,7 @@
             "description": "Handles serializing and deserializing data structures, including object graphs, into array structures or other formats like XML and JSON.",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/serializer/tree/v5.2.2"
+                "source": "https://github.com/symfony/serializer/tree/v5.2.3"
             },
             "funding": [
                 {
@@ -3571,7 +3623,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T11:32:03+00:00"
+            "time": "2021-02-03T04:42:09+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -3752,58 +3804,6 @@
                 "source": "https://github.com/keboola/datadir-tests/tree/5.2.1"
             },
             "time": "2020-11-30T19:23:38+00:00"
-        },
-        {
-            "name": "keboola/php-temp",
-            "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/keboola/php-temp.git",
-                "reference": "cbdb4dd0dfe548d7bffd74a0e66294981aea49ce"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/keboola/php-temp/zipball/cbdb4dd0dfe548d7bffd74a0e66294981aea49ce",
-                "reference": "cbdb4dd0dfe548d7bffd74a0e66294981aea49ce",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1",
-                "symfony/filesystem": ">2.8"
-            },
-            "require-dev": {
-                "infection/infection": "^0.12",
-                "jakub-onderka/php-parallel-lint": "^1.0",
-                "keboola/coding-standard": "^8.0",
-                "phpstan/phpstan-shim": "^0.11",
-                "phpunit/phpunit": "^7.0|^8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Keboola\\Temp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Keboola",
-                    "email": "devel@keboola.com"
-                }
-            ],
-            "description": "Temp library handles application temporary files",
-            "keywords": [
-                "filesystem",
-                "temp"
-            ],
-            "support": {
-                "issues": "https://github.com/keboola/php-temp/issues",
-                "source": "https://github.com/keboola/php-temp/tree/2.0.1"
-            },
-            "time": "2019-04-26T07:18:24+00:00"
         },
         {
             "name": "php-parallel-lint/php-parallel-lint",

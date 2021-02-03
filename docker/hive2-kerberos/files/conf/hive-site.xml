@@ -94,4 +94,19 @@
         <value>hdfs,hive</value>
     </property>
 
+    <property>
+        <name>hive.server2.use.SSL</name>
+        <value>true</value>
+    </property>
+
+    <property>
+        <name>hive.server2.keystore.path</name>
+        <value>/etc/hive/conf/hive.jks</value>
+    </property>
+
+    <property>
+        <name>hive.server2.keystore.password</name>
+        <value>PASS12345</value>
+    </property>
+
 </configuration>

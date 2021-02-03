@@ -55,7 +55,7 @@ class KerberosHelper
         $process = $this->runProcess([
             'kinit',
             '-kt',
-            $this->dbConfig->getKrb5KeytabPath(),
+            $this->writeKeytabFile(),
             $this->dbConfig->getKrb5Principal(),
         ]);
 
@@ -72,6 +72,16 @@ class KerberosHelper
     {
         $process = $this->runProcess(['klist']);
         return $process->getExitCode() === 0;
+    }
+
+    private function writeKeytabFile(): string
+    {
+        $krb5KeytabPath = (string) getenv('KRB5_KEYTAB');
+        if (!$krb5KeytabPath) {
+            throw new RuntimeException('KRB5_KEYTAB env variable must be set.');
+        }
+        file_put_contents($krb5KeytabPath, $this->dbConfig->getKrb5Keytab());
+        return $krb5KeytabPath;
     }
 
     private function runProcess(array $command): Process

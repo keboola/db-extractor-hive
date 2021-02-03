@@ -5,9 +5,36 @@ declare(strict_types=1);
 namespace Keboola\DbExtractor\Connection;
 
 use Keboola\DbExtractor\Adapter\ODBC\OdbcConnection;
+use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
+use Keboola\DbExtractor\Configuration\HiveDbNode;
+use Psr\Log\LoggerInterface;
 
 class HiveOdbcConnection extends OdbcConnection
 {
+    private HiveCertManager $certManager;
+
+    public function __construct(
+        LoggerInterface $logger,
+        HiveDatabaseConfig $dbConfig,
+        HiveCertManager $certManager,
+        int $connectMaxRetries
+    ) {
+        // We will save the reference to the certification manager.
+        // Method HiveCertManager::__destruct deletes temp certificates from disk.
+        $this->certManager = $certManager;
+        $dsnFactory = new HiveDsnFactory();
+        $dsn = $dsnFactory->create($logger, $dbConfig, $certManager);
+
+        $username = '';
+        $password = '';
+        if ($dbConfig->getAuthType() === HiveDbNode::AUTH_TYPE_PASSWORD) {
+            $username = $dbConfig->getUsername();
+            $password = $dbConfig->getPassword();
+        }
+
+        parent::__construct($logger, $dsn, $username, $password, null, $connectMaxRetries);
+    }
+
     protected function connect(): void
     {
         parent::connect();

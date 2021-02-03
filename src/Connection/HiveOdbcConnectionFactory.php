@@ -6,7 +6,6 @@ namespace Keboola\DbExtractor\Connection;
 
 use Keboola\DbExtractor\Adapter\ODBC\OdbcConnection;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
-use Keboola\DbExtractor\Configuration\HiveDbNode;
 use Psr\Log\LoggerInterface;
 
 class HiveOdbcConnectionFactory
@@ -16,23 +15,12 @@ class HiveOdbcConnectionFactory
         HiveDatabaseConfig $dbConfig,
         bool $isSyncAction = false
     ): HiveOdbcConnection {
-        $dsnFactory = new HiveDsnFactory();
-        $dsn = $dsnFactory->create($logger, $dbConfig);
-
-        $username = '';
-        $password = '';
-        if ($dbConfig->getAuthType() === HiveDbNode::AUTH_TYPE_PASSWORD) {
-            $username = $dbConfig->getUsername();
-            $password = $dbConfig->getPassword();
-        }
-
+        $certManager = new HiveCertManager($dbConfig);
         $connectRetries = $isSyncAction ? 1 : OdbcConnection::CONNECT_DEFAULT_MAX_RETRIES;
         return new HiveOdbcConnection(
             $logger,
-            $dsn,
-            $username,
-            $password,
-            null,
+            $dbConfig,
+            $certManager,
             $connectRetries
         );
     }

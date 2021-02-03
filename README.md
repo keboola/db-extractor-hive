@@ -26,10 +26,15 @@ The configuration `config.json` contains following properties in `parameters` ke
     - `kerberos` - object (required if `authType = kerberos`)
         - `principal` - string (required): Name of the Kerberos principal - used for the `kinit`.
         - `config` - string (required): Content of the `krb5.conf` file.
-        - `#keytab` - string (required): `gzip` + `base64` encoded content of the `*.keytab` file.
+        - `#keytab` - string (required): `base64` encoded content of the `*.keytab` file.
     - `ssl` - object (optional):
         - `enabled` bool (optional): Default `false`.
+        - `ca` or `#ca` string (optional): bundle of the trusted certificates in PEM/JKS format, see `caFileType`.
+        - `caFileType` enum (optional, default `pem`):
+          - `pem` - `ca` value is in [CRT/PEM format](https://serverfault.com/questions/9708/what-is-a-pem-file-and-how-does-it-differ-from-other-openssl-generated-key-file). 
+          - `jks` - `ca` value is in base64 encoded [JKS format](https://en.wikipedia.org/wiki/Java_KeyStore).
         - `verifyServerCert` bool (optional): Default `true`.
+        - `ignoreCertificateCn` bool (optional): Default `false`.
     - `ssh` - object (optional): Settings for SSH tunnel
         - `enabled` - bool (required):  Enables SSH tunnel
         - `sshHost` - string (required): IP address or hostname of SSH server
@@ -51,25 +56,6 @@ The configuration `config.json` contains following properties in `parameters` ke
 - `incrementalFetchingLimit` - integer (optional): Max number of rows fetched per one run
 - `primaryKey` - string (optional): Sets primary key to specified column in output table
 - `retries` - integer (optional): Number of retries if an error occurred
-
-## Stack parameters
-
-```json
-{
-  "globalParameters": {
-    "db": {
-      "authType": "kerberos",
-      "kerberos": {
-        "#keytab": ""
-      },
-      "#trustStoreJks": "..." 
-    }
-  },
-  "defaultParameters": {
-    
-  }
-}
-```
 
 ## Examples
 

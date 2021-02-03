@@ -12,6 +12,7 @@ use Keboola\DbExtractor\Adapter\ODBC\OdbcExportAdapter;
 use Keboola\DbExtractor\Adapter\ODBC\OdbcNativeMetadataProvider;
 use Keboola\DbExtractor\Adapter\Query\DefaultQueryFactory;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
+use Keboola\DbExtractor\Connection\HiveCertManager;
 use Keboola\DbExtractor\Connection\HiveOdbcConnectionFactory;
 use Keboola\DbExtractor\TableResultFormat\Exception\ColumnNotFoundException;
 use Keboola\Datatype\Definition\GenericStorage;

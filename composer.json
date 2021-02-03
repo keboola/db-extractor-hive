@@ -13,12 +13,12 @@
         "keboola/db-extractor-config": "^1.4.7",
         "keboola/db-extractor-table-format": "^3.1.6",
         "keboola/db-extractor-ssh-tunnel": "^1.1",
-        "keboola/php-component": "^8.1"
+        "keboola/php-component": "^8.1",
+        "keboola/php-temp": "^2.0"
     },
     "require-dev": {
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "keboola/coding-standard": ">=9.0.0",
-        "keboola/php-temp": "^2.0",
         "phpunit/phpunit": "^9.0",
         "symfony/process": "^5.0",
         "keboola/datadir-tests": "^5.2",

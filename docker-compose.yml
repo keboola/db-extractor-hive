@@ -22,6 +22,8 @@ services:
       HIVE_DB_KERBEROS_KRB5_CONF_PATH: "/etc/krb5-test.conf"
       HIVE_DB_KERBEROS_PRINCIPAL: "hive/localhost@KEBOOLA.COM"
       HIVE_DB_KERBEROS_KEYTAB_PATH: "/root/hive-conf/hive.keytab"
+      HIVE_DB_KERBEROS_SSL_CERT_JKS_PATH: "/root/hive-conf/hive.jks"
+      HIVE_DB_KERBEROS_SSL_CERT_PEM_PATH: "/root/hive-conf/hive.pem"
       # SSH container credentials
       SSH_DB_HOST: hive2-ldap-behind-ssh
       SSH_HOST: ssh-tunnel
@@ -33,7 +35,7 @@ services:
       - ssh-tunnel
     volumes:
       - ssh-keys:/root/.ssh:ro
-      - hive2-kerberos-conf:/root/hive-conf:ro
+      - hive2-kerberos-conf:/root/hive-conf:z
 
   # Test connection to kerberos:
   # > docker-compose run dev bash
@@ -46,8 +48,8 @@ services:
     volumes:
       - ./:/code
       - ./docker/hive2-kerberos/files/kerberos/krb5.client.conf:/etc/krb5-test.conf
-      - ssh-keys:/root/.ssh:ro
-      - hive2-kerberos-conf:/root/hive-conf:ro
+      - ssh-keys:/root/.ssh:z
+      - hive2-kerberos-conf:/root/hive-conf:z
 
   wait:
     image: waisbrot/wait
@@ -62,7 +64,7 @@ services:
   ssh-tunnel:
     image: keboola/db-component-ssh-proxy:latest
     volumes:
-      - ssh-keys:/root/.ssh
+      - ssh-keys:/root/.ssh:z
     links:
       - hive2-ldap:hive2-ldap-behind-ssh
 
@@ -120,8 +122,8 @@ services:
     depends_on:
       - hive2-no-auth
     volumes:
-      - hive2-kerberos-conf:/etc/hive/conf
-      - hive2-kerberos-data:/var/kerberos
+      - hive2-kerberos-conf:/etc/hive/conf:z
+      - hive2-kerberos-data:/var/kerberos:z
 
 volumes:
   ssh-keys:

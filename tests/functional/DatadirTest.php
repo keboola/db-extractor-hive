@@ -35,10 +35,17 @@ class DatadirTest extends DatadirTestCase
                 switch ($var) {
                     case 'HIVE_DB_KERBEROS_KEYTAB_ENCODED':
                         $keytabContent = (string) file_get_contents((string) getenv('HIVE_DB_KERBEROS_KEYTAB_PATH'));
-                        return  (string) base64_encode((string) gzcompress($keytabContent));
+                        return  (string) base64_encode($keytabContent);
 
                     case 'HIVE_DB_KERBEROS_KRB5_CONF':
                         return (string) file_get_contents((string) getenv('HIVE_DB_KERBEROS_KRB5_CONF_PATH'));
+
+                    case 'HIVE_DB_KERBEROS_SSL_CERT_JKS':
+                        $jksContent = (string) file_get_contents((string) getenv('HIVE_DB_KERBEROS_SSL_CERT_JKS_PATH'));
+                        return  (string) base64_encode($jksContent);
+
+                    case 'HIVE_DB_KERBEROS_SSL_CERT_PEM':
+                        return  (string) file_get_contents((string) getenv('HIVE_DB_KERBEROS_SSL_CERT_PEM_PATH'));
                 }
 
                 return parent::getEnv($var);

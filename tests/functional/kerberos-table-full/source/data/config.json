@@ -9,6 +9,11 @@
         "principal": "%env(string:HIVE_DB_KERBEROS_PRINCIPAL)%",
         "config": "%env(string:HIVE_DB_KERBEROS_KRB5_CONF)%",
         "#keytab": "%env(string:HIVE_DB_KERBEROS_KEYTAB_ENCODED)%"
+      },
+      "ssl": {
+        "enabled": true,
+        "ca": "%env(string:HIVE_DB_KERBEROS_SSL_CERT_JKS)%",
+        "caFileType": "jks"
       }
     },
     "table": {
