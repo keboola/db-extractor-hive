@@ -81,9 +81,22 @@ RUN keytool -genkeypair \
     -dname "CN=presto-master, OU=, O=, L=, S=, C="
 RUN chmod 644 /etc/presto/conf/keystore.jks
 
-# CREATE DB USER ACCOUNT
-RUN /usr/sbin/kadmin.local -q "addprinc -randkey db-user/localhost@KEBOOLA.COM" && \
-    /usr/sbin/kadmin.local -q "xst -norandkey -k /root/kerberos-keytabs/db-user.keytab db-user/localhost"
+# CREATE SSL FOR HIVE
+RUN keytool -genkey \
+    -alias hbase \
+    -keyalg RSA \
+    -keysize 1024 \
+    -storepass PASS12345 \
+    -validity 10000 \
+    -keystore /etc/hive/conf/hive.jks \
+    -dname "CN=hive2-kerberos, OU=, O=, L=, S=, C="
+
+# CONVERT SSL KEYSTORE TO PEM FORMATS -> FOR TESTS
+RUN echo "" | keytool -list -keystore /etc/hive/conf/hive.jks -rfc | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/hive/conf/hive.pem
+
+# IMPORT TEST DATA
+RUN BEELINE_ARGS="-u 'jdbc:hive2://localhost:10000/default;auth=kerberos;ssl=true;sslTrustStore=/etc/hive/conf/hive.jks;principal=hive/localhost@KEBOOLA.COM;'" /tmp/data/data-init.sh
+RUN rm -rf /tmp/data
 
 # EXPOSE KERBEROS PORTS
 EXPOSE	88

@@ -2,4 +2,5 @@ parameters:
     checkMissingIterableValueType: false
     excludes_analyse:
         - src/run.php
-    ignoreErrors: []
+    ignoreErrors:
+        - '#Cannot call method .* on Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface\|null.#'

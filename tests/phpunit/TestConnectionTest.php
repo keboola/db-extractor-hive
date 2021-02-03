@@ -51,11 +51,11 @@ class TestConnectionTest extends TestCase
                 [
                     'parameters' => [
                         'db' => [
-                            'host' => getenv('HIVE_DB_HOST'),
-                            'port' => (int) getenv('HIVE_DB_PORT'),
-                            'database' => getenv('HIVE_DB_DATABASE'),
-                            'user' => getenv('HIVE_DB_USER'),
-                            '#password' => getenv('HIVE_DB_PASSWORD'),
+                            'host' => getenv('HIVE_DB_LDAP_HOST'),
+                            'port' => (int) getenv('HIVE_DB_LDAP_PORT'),
+                            'database' => getenv('HIVE_DB_LDAP_DATABASE'),
+                            'user' => getenv('HIVE_DB_LDAP_USER'),
+                            '#password' => getenv('HIVE_DB_LDAP_PASSWORD'),
                         ],
                     ],
                 ],
@@ -65,10 +65,10 @@ class TestConnectionTest extends TestCase
                     'parameters' => [
                         'db' => [
                             'host' => getenv('SSH_DB_HOST'),
-                            'port' => (int) getenv('HIVE_DB_PORT'),
-                            'database' => getenv('HIVE_DB_DATABASE'),
-                            'user' => getenv('HIVE_DB_USER'),
-                            '#password' => getenv('HIVE_DB_PASSWORD'),
+                            'port' => (int) getenv('HIVE_DB_LDAP_PORT'),
+                            'database' => getenv('HIVE_DB_LDAP_DATABASE'),
+                            'user' => getenv('HIVE_DB_LDAP_USER'),
+                            '#password' => getenv('HIVE_DB_LDAP_PASSWORD'),
                             'ssh' => [
                                 'enabled' => true,
                                 'sshHost' => getenv('SSH_HOST'),
@@ -98,10 +98,10 @@ class TestConnectionTest extends TestCase
                     'parameters' => [
                         'db' => [
                             'host' => 'invalid-host.local',
-                            'port' => (int) getenv('HIVE_DB_PORT'),
-                            'database' => getenv('HIVE_DB_DATABASE'),
-                            'user' => getenv('HIVE_DB_USER'),
-                            '#password' => getenv('HIVE_DB_PASSWORD'),
+                            'port' => (int) getenv('HIVE_DB_LDAP_PORT'),
+                            'database' => getenv('HIVE_DB_LDAP_DATABASE'),
+                            'user' => getenv('HIVE_DB_LDAP_USER'),
+                            '#password' => getenv('HIVE_DB_LDAP_PASSWORD'),
                         ],
                     ],
                 ],
@@ -114,11 +114,11 @@ class TestConnectionTest extends TestCase
                 [
                     'parameters' => [
                         'db' => [
-                            'host' => getenv('HIVE_DB_HOST'),
+                            'host' => getenv('HIVE_DB_LDAP_HOST'),
                             'port' => 12345,
-                            'database' => getenv('HIVE_DB_DATABASE'),
-                            'user' => getenv('HIVE_DB_USER'),
-                            '#password' => getenv('HIVE_DB_PASSWORD'),
+                            'database' => getenv('HIVE_DB_LDAP_DATABASE'),
+                            'user' => getenv('HIVE_DB_LDAP_USER'),
+                            '#password' => getenv('HIVE_DB_LDAP_PASSWORD'),
                         ],
                     ],
                 ],
@@ -129,11 +129,11 @@ class TestConnectionTest extends TestCase
                 [
                     'parameters' => [
                         'db' => [
-                            'host' => getenv('HIVE_DB_HOST'),
-                            'port' => (int) getenv('HIVE_DB_PORT'),
+                            'host' => getenv('HIVE_DB_LDAP_HOST'),
+                            'port' => (int) getenv('HIVE_DB_LDAP_PORT'),
                             'database' => 'notFound',
-                            'user' => getenv('HIVE_DB_USER'),
-                            '#password' => getenv('HIVE_DB_PASSWORD'),
+                            'user' => getenv('HIVE_DB_LDAP_USER'),
+                            '#password' => getenv('HIVE_DB_LDAP_PASSWORD'),
                         ],
                     ],
                 ],
@@ -144,11 +144,11 @@ class TestConnectionTest extends TestCase
                 [
                     'parameters' => [
                         'db' => [
-                            'host' => getenv('HIVE_DB_HOST'),
-                            'port' => (int) getenv('HIVE_DB_PORT'),
-                            'database' => getenv('HIVE_DB_DATABASE'),
+                            'host' => getenv('HIVE_DB_LDAP_HOST'),
+                            'port' => (int) getenv('HIVE_DB_LDAP_PORT'),
+                            'database' => getenv('HIVE_DB_LDAP_DATABASE'),
                             'user' => 'invalidUser',
-                            '#password' => getenv('HIVE_DB_PASSWORD'),
+                            '#password' => getenv('HIVE_DB_LDAP_PASSWORD'),
                         ],
                     ],
                 ],
@@ -159,10 +159,10 @@ class TestConnectionTest extends TestCase
                 [
                     'parameters' => [
                         'db' => [
-                            'host' => getenv('HIVE_DB_HOST'),
-                            'port' => (int) getenv('HIVE_DB_PORT'),
-                            'database' => getenv('HIVE_DB_DATABASE'),
-                            'user' => getenv('HIVE_DB_USER'),
+                            'host' => getenv('HIVE_DB_LDAP_HOST'),
+                            'port' => (int) getenv('HIVE_DB_LDAP_PORT'),
+                            'database' => getenv('HIVE_DB_LDAP_DATABASE'),
+                            'user' => getenv('HIVE_DB_LDAP_USER'),
                             '#password' => 'invalidPassword',
                         ],
                     ],

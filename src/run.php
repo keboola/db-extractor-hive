@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Keboola\Component\JsonHelper;
-use Keboola\DbExtractor\Exception\UserException;
+use Keboola\CommonExceptions\UserExceptionInterface;
 use Keboola\DbExtractor\HiveApplication;
 use Keboola\Component\Logger;
 
@@ -40,7 +40,7 @@ try {
     }
     $logger->log('info', 'Extractor finished successfully.');
     exit(0);
-} catch (UserException $e) {
+} catch (UserExceptionInterface $e) {
     $logger->error($e->getMessage());
     exit(1);
 } catch (\Throwable $e) {

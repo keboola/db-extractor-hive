@@ -7,11 +7,19 @@ export CLASSPATH="/usr/lib/hive/lib"
 /root/startup.sh &
 bg_pid=$!
 
+# Kerberos auth if present
+if command -v kinit &> /dev/null
+then
+    sleep 2
+    export KRB5_CONFIG=/etc/krb5.conf
+    kinit -kt /etc/hive/conf/hive.keytab hive/localhost@KEBOOLA.COM
+fi
+
 # Wait for server ready
 echo "data-init.sh: Waiting for server ...";
 until
-  beeline -u "jdbc:hive2://localhost:10000" -e 'SHOW TABLES;' >/dev/null 2>&1
-do sleep 1; done
+  eval "beeline $BEELINE_ARGS -e 'SHOW TABLES'"
+do echo "(waiting for connection)"; sleep 1; done
 echo "data-init.sh: OK. Server ready";
 
 # Define import SQL
@@ -20,7 +28,7 @@ sql="
   TRUNCATE TABLE internal;
   INSERT INTO internal VALUES ('car1', 12.34, null), ('car2', 56.78, 'comment');
 
-  CREATE TABLE IF NOT EXISTS special_types (id int, bin binary, \`map\` Map<int, string>, \`array\` Array<string>, \`union\` Uniontype<int, string>, \`struct\` Struct<age: int, name: string>);
+  CREATE TABLE IF NOT EXISTS special_types (id int, bin binary, \\\`map\\\` Map<int, string>, \\\`array\\\` Array<string>, \\\`union\\\` Uniontype<int, string>, \\\`struct\\\` Struct<age: int, name: string>);
   TRUNCATE TABLE special_types;
   INSERT INTO special_types SELECT 1, unhex('12ABC'), map(1,'item1',2,'item2',3,'item3'), array('str1', 'str2'), create_union(0, 123, 'abc'), named_struct('age', 20, 'name', 'Name1') FROM (select 'dummy') dummy;
   INSERT INTO special_types SELECT 2, unhex('34DEF'), map(4,'item4',5,'item5',6,'item6'), array('str3', 'str4'), create_union(1, 789, '456'), named_struct('age', 30, 'name', 'Name2') FROM (select 'dummy') dummy;
@@ -39,7 +47,7 @@ echo "data-init.sh: Importing testing data ...";
 IFS=$';'
 for line in $sql; do
   if [ -n "$line" ]; then
-    beeline -u "jdbc:hive2://localhost:10000" -e "$line" ||
+    eval "beeline $BEELINE_ARGS -e \"$line\"" ||
     (echo "data-init.sh: Error when importing: $line" && exit 1)
   fi
 done

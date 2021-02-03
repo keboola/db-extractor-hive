@@ -3,10 +3,10 @@
   "parameters": {
     "db": {
       "host": "invalid",
-      "port":  "%env(int:HIVE_DB_PORT)%",
-      "database": "%env(string:HIVE_DB_DATABASE)%",
-      "user": "%env(string:HIVE_DB_USER)%",
-      "#password": "%env(string:HIVE_DB_PASSWORD)%"
+      "port":  "%env(int:HIVE_DB_LDAP_PORT)%",
+      "database": "%env(string:HIVE_DB_LDAP_DATABASE)%",
+      "user": "%env(string:HIVE_DB_LDAP_USER)%",
+      "#password": "%env(string:HIVE_DB_LDAP_PASSWORD)%"
     }
   }
 }

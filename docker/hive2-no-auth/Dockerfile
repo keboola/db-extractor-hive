@@ -119,13 +119,11 @@ COPY files/setup-metastore.sh /root/
 RUN /root/setup-metastore.sh
 RUN rm -rf /tmp/* /var/tmp/*
 
-# IMPORT TEST DATA
+# PREPARE TEST DATA
 COPY files/data/ /tmp/data
 RUN tail -n +2 /tmp/data/sales.csv        > /tmp/data/sales_without_header.csv && \
     tail -n +2 /tmp/data/incremental.csv  > /tmp/data/incremental_without_header.csv
 RUN chown -R hive:hdfs /tmp/data
-RUN /tmp/data/data-init.sh
-RUN rm -rf /tmp/data
 
 # HDFS PORTS
 EXPOSE 1004 1006 8020 50010 50020 50070 50075 50470

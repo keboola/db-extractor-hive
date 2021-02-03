@@ -201,11 +201,11 @@ class GetTablesTest extends TestCase
         return [
             'parameters' => [
                 'db' => [
-                    'host' => getenv('HIVE_DB_HOST'),
-                    'port' => (int) getenv('HIVE_DB_PORT'),
-                    'database' => getenv('HIVE_DB_DATABASE'),
-                    'user' => getenv('HIVE_DB_USER'),
-                    '#password' => getenv('HIVE_DB_PASSWORD'),
+                    'host' => getenv('HIVE_DB_LDAP_HOST'),
+                    'port' => (int) getenv('HIVE_DB_LDAP_PORT'),
+                    'database' => getenv('HIVE_DB_LDAP_DATABASE'),
+                    'user' => getenv('HIVE_DB_LDAP_USER'),
+                    '#password' => getenv('HIVE_DB_LDAP_PASSWORD'),
                 ],
             ],
         ];

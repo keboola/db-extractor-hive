@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Extractor;
 
+use InvalidArgumentException;
 use Keboola\DbExtractor\Adapter\ExportAdapter;
 use Keboola\DbExtractor\Adapter\Metadata\MetadataProvider;
 use Keboola\DbExtractor\Adapter\ODBC\OdbcConnection;
 use Keboola\DbExtractor\Adapter\ODBC\OdbcExportAdapter;
 use Keboola\DbExtractor\Adapter\ODBC\OdbcNativeMetadataProvider;
 use Keboola\DbExtractor\Adapter\Query\DefaultQueryFactory;
-use Keboola\DbExtractor\Adapter\ResultWriter\DefaultResultWriter;
-use Keboola\DbExtractor\Connection\HiveDnsFactory;
-use Keboola\DbExtractor\Connection\HiveOdbcConnection;
+use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
+use Keboola\DbExtractor\Connection\HiveCertManager;
+use Keboola\DbExtractor\Connection\HiveOdbcConnectionFactory;
 use Keboola\DbExtractor\TableResultFormat\Exception\ColumnNotFoundException;
 use Keboola\Datatype\Definition\GenericStorage;
 use Keboola\DbExtractor\Exception\UserException;
@@ -45,18 +46,12 @@ class Hive extends BaseExtractor
 
     protected function createConnection(DatabaseConfig $dbConfig): void
     {
-        $dsnFactory = new HiveDnsFactory();
-        $dsn = $dsnFactory->create($dbConfig);
+        if (!$dbConfig instanceof HiveDatabaseConfig) {
+            throw new InvalidArgumentException('Expected HiveDatabaseConfig.');
+        }
 
-        $connectRetries = $this->isSyncAction() ? 1 : OdbcConnection::CONNECT_DEFAULT_MAX_RETRIES;
-        $this->connection = new HiveOdbcConnection(
-            $this->logger,
-            $dsn,
-            $dbConfig->getUsername(),
-            $dbConfig->getPassword(),
-            null,
-            $connectRetries
-        );
+        $factory = new HiveOdbcConnectionFactory();
+        $this->connection = $factory->create($this->logger, $dbConfig, $this->isSyncAction());
     }
 
     protected function createExportAdapter(): ExportAdapter
@@ -117,5 +112,10 @@ class Hive extends BaseExtractor
         );
         $result = $this->connection->query($sql, $exportConfig->getMaxRetries())->fetchAll();
         return $result ? $result[0][$exportConfig->getIncrementalFetchingColumn()] : null;
+    }
+
+    protected function createDatabaseConfig(array $data): DatabaseConfig
+    {
+        return HiveDatabaseConfig::fromArray($data);
     }
 }

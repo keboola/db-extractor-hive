@@ -17,9 +17,24 @@ The configuration `config.json` contains following properties in `parameters` ke
 - `db` - object (required): Connection settings
     - `host` - string (required): IP address or hostname of Apache Hive DB server
     - `port` - integer (required): Server port (default port is `10000`)
-    - `user` - string (required): User with correct access rights
-    - `#password` - string (required): Password for given `user`
-    - `database` - string (required): Database to connect to
+    - `database` - string (required): Database to connect to.
+    - `authType` - enum (optional): Type of the authentication.
+        - `password` (default) - user/password LDAP authentication.
+        - `kerberos` - Kerberos authentication.
+    - `user` - string (required if `authType = password`): User with correct access rights
+    - `#password` - string (required if `authType = password`): Password for given `user`
+    - `kerberos` - object (required if `authType = kerberos`)
+        - `principal` - string (required): Name of the Kerberos principal - used for the `kinit`.
+        - `config` - string (required): Content of the `krb5.conf` file.
+        - `#keytab` - string (required): `base64` encoded content of the `*.keytab` file.
+    - `ssl` - object (optional):
+        - `enabled` bool (optional): Default `false`.
+        - `ca` or `#ca` string (optional): bundle of the trusted certificates in PEM/JKS format, see `caFileType`.
+        - `caFileType` enum (optional, default `pem`):
+          - `pem` - `ca` value is in [CRT/PEM format](https://serverfault.com/questions/9708/what-is-a-pem-file-and-how-does-it-differ-from-other-openssl-generated-key-file). 
+          - `jks` - `ca` value is in base64 encoded [JKS format](https://en.wikipedia.org/wiki/Java_KeyStore).
+        - `verifyServerCert` bool (optional): Default `true`.
+        - `ignoreCertificateCn` bool (optional): Default `false`.
     - `ssh` - object (optional): Settings for SSH tunnel
         - `enabled` - bool (required):  Enables SSH tunnel
         - `sshHost` - string (required): IP address or hostname of SSH server
