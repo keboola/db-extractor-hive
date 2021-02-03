@@ -64,6 +64,47 @@ The configuration `config.json` contains following properties in `parameters` ke
 - `primaryKey` - string (optional): Sets primary key to specified column in output table
 - `retries` - integer (optional): Number of retries if an error occurred
 
+## Global config
+
+[Image or Stack Parameters](https://developers.keboola.com/extend/common-interface/config-file/#image-parameters) 
+can be used to set global configuration for the extractor. This can be used if e.g. all configurations on the stack use the same Kerberos authentication.
+
+The global configuration is stored under key `image_parameters.global_config` and has higher priority than the values in the `parameters`.
+
+Example of the configuration that the extractor gets:
+```
+{
+  "action": "testConnection",
+  "image_parameters": {
+    "global_config": {
+      "db": {
+        "authType": "kerberos",
+        "kerberos": {
+          "principal": "...",
+          "config": "...",
+          "#keytab": "..."
+        },
+        "ssl": {
+          "enabled": true,
+          "ca": "...",
+          "caFileType": "jks"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "db": {
+      "host": "...",
+      "port":  "...",
+      "database": "...",
+      "authType": "IS OVERWRITTEN BY GLOBAL CONFIG",
+      "kerberos": "IS OVERWRITTEN BY GLOBAL CONFIG"
+    }
+  }
+}
+
+```
+
 ## Examples
 
 Simple query:

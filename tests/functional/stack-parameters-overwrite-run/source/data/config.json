@@ -1,0 +1,33 @@
+{
+  "image_parameters": {
+    "global_config": {
+      "db": {
+        "authType": "kerberos",
+        "kerberos": {
+          "principal": "%env(string:HIVE_DB_KERBEROS_PRINCIPAL)%",
+          "config": "%env(string:HIVE_DB_KERBEROS_KRB5_CONF)%",
+          "#keytab": "%env(string:HIVE_DB_KERBEROS_KEYTAB_ENCODED)%"
+        },
+        "ssl": {
+          "enabled": true,
+          "ca": "%env(string:HIVE_DB_KERBEROS_SSL_CERT_JKS)%",
+          "caFileType": "jks"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "db": {
+      "host": "%env(string:HIVE_DB_KERBEROS_HOST)%",
+      "port":  "%env(int:HIVE_DB_KERBEROS_PORT)%",
+      "database": "%env(string:HIVE_DB_KERBEROS_DATABASE)%",
+      "authType": "BAD",
+      "kerberos": "BAD"
+    },
+    "table": {
+      "tableName": "internal",
+      "schema": "default"
+    },
+    "outputTable": "in.c-main.internal"
+  }
+}
