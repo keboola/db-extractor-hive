@@ -29,6 +29,8 @@ class HiveDbNode extends DbNode
         $this->addKerberosNode($builder);
         $this->addSshNode($builder);
         $this->addSslNode($builder);
+        $this->addConnectThrough($builder);
+
         $this->validate()->always(function (array $v): array {
             // User and password keys are required for the authType = password
             if ($v['authType'] === self::AUTH_TYPE_PASSWORD) {
@@ -64,7 +66,7 @@ class HiveDbNode extends DbNode
                 }
             }
 
-            // Base64 decode params
+            // Base64 decode keytab
             if (isset($v['kerberos']['#keytab'])) {
                 $v['kerberos']['#keytab'] = ConfigUtils::base64Decode(
                     $v['kerberos']['#keytab'],
@@ -120,5 +122,10 @@ class HiveDbNode extends DbNode
                 ->scalarNode('principal')->isRequired()->end()
                 ->scalarNode('config')->isRequired()->end()
                 ->scalarNode('#keytab')->isRequired()->end();
+    }
+
+    protected function addConnectThrough(NodeBuilder $builder): void
+    {
+        $builder->booleanNode('connectThrough')->defaultFalse();
     }
 }

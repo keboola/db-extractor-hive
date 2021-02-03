@@ -35,12 +35,13 @@ class HiveDsnFactory
                 break;
 
             case HiveDbNode::AUTH_TYPE_KERBEROS:
-                [$serviceName, $host] = self::parsePrincipal($dbConfig->getKrb5Principal());
+                [$serviceName, $host, $realm] = self::parsePrincipal($dbConfig->getKrb5Principal());
                 $helper = new KerberosHelper($logger, $dbConfig);
                 $helper->initKerberos();
                 $parameters['AuthMech'] = 1;
                 $parameters['KrbHostFQDN'] = $host;
                 $parameters['KrbServiceName'] = $serviceName;
+                $parameters['KrbRealm'] = $realm;
                 break;
 
             default:
@@ -49,6 +50,19 @@ class HiveDsnFactory
 
         // SSL
         $parameters = array_merge($parameters, $certManager->getDsnParameters());
+
+        // Connect through
+        if ($dbConfig->isConnectThroughEnabled()) {
+            $realUser = (string) getenv('KBC_REALUSER');
+            if ($realUser) {
+                $logger->info(sprintf('Connect through is enabled, DelegationUID = "%s".', $realUser));
+                $parameters['DelegationUID'] = $realUser;
+            } else {
+                throw new UserException(
+                    'Connect through is enabled, but "KBC_REALUSER" environment variable is not set.'
+                );
+            }
+        }
 
         // Generate DNS
         $dsn = '';
@@ -70,6 +84,7 @@ class HiveDsnFactory
 
         $serviceName = $m[1];
         $host = $m[2];
-        return [$serviceName, $host];
+        $realm = $m[3];
+        return [$serviceName, $host, $realm];
     }
 }

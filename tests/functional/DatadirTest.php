@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\FunctionalTests;
 
+use Keboola\DatadirTests\Exception\DatadirTestsException;
+use RuntimeException;
 use Keboola\DatadirTests\EnvVarProcessor;
 use Keboola\DbExtractor\Tests\Traits\CleanupKerberosTrait;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Process\Process;
 use Throwable;
 use Symfony\Component\Finder\Finder;
 use Keboola\DatadirTests\DatadirTestCase;
@@ -15,16 +19,69 @@ class DatadirTest extends DatadirTestCase
 {
     use CleanupKerberosTrait;
 
+    private ?string $kbcRealuser = null;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->cleanupKerberos();
+
+        // Clear KBC_REALUSER env
+        $this->kbcRealuser = null;
+
+        // Test dir, eg. "/code/tests/functional/full-load-ok"
+        $testProjectDir = $this->getTestFileDir() . '/' . $this->dataName();
+
+        // Load setUp.php file - used to init database state
+        $setUpPhpFile = $testProjectDir . '/setUp.php';
+        if (file_exists($setUpPhpFile)) {
+            // Get callback from file and check it
+            $initCallback = require $setUpPhpFile;
+            if (!is_callable($initCallback)) {
+                throw new RuntimeException(sprintf('File "%s" must return callback!', $setUpPhpFile));
+            }
+
+            // Invoke callback
+            $initCallback($this);
+        }
+    }
+
+    public function setKbcRealUser(?string $realUser): void
+    {
+        $this->kbcRealuser = $realUser;
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
         $this->cleanupKerberos();
+    }
+
+
+    protected function runScript(string $datadirPath): Process
+    {
+        $fs = new Filesystem();
+
+        $script = $this->getScript();
+        if (!$fs->exists($script)) {
+            throw new DatadirTestsException(sprintf(
+                'Cannot open script file "%s"',
+                $script
+            ));
+        }
+
+        $runCommand = [
+            'php',
+            $script,
+        ];
+        $runProcess = new Process($runCommand);
+        $runProcess->setEnv([
+            'KBC_DATADIR' => $datadirPath,
+            'KBC_REALUSER' => $this->kbcRealuser,
+        ]);
+        $runProcess->setTimeout(0.0);
+        $runProcess->run();
+        return $runProcess;
     }
 
     protected function createEnvVarProcessor(): EnvVarProcessor

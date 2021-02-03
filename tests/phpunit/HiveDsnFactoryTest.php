@@ -16,9 +16,10 @@ class HiveDsnFactoryTest extends TestCase
 {
     public function testParsePrincipalValid(): void
     {
-        [$actualServiceName, $actualHost] = HiveDsnFactory::parsePrincipal('service/host@EXAMPLE.COM');
+        [$actualServiceName, $actualHost, $realm] = HiveDsnFactory::parsePrincipal('service/host@EXAMPLE.COM');
         Assert::assertSame('service', $actualServiceName);
         Assert::assertSame('host', $actualHost);
+        Assert::assertSame('EXAMPLE.COM', $realm);
     }
 
     public function testParsePrincipalInvalid1(): void
@@ -92,7 +93,7 @@ class HiveDsnFactoryTest extends TestCase
                 ],
                 'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;'.
                 'Host=test-host.com;Port=123;Schema=my-db;'.
-                'UseNativeQuery=1;AuthMech=1;KrbHostFQDN=service;KrbServiceName=test;',
+                'UseNativeQuery=1;AuthMech=1;KrbHostFQDN=service;KrbServiceName=test;KrbRealm=EXAMPLE.COM;',
         ];
     }
 
