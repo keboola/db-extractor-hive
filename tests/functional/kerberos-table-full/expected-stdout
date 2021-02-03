@@ -1,4 +1,4 @@
 Kerberos authentication successful.
-Creating ODBC connection to "Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=hive2-kerberos;Port=10000;Schema=default;UseNativeQuery=1;AuthMech=1;KrbHostFQDN=localhost;KrbServiceName=hive;SSL=1;AllowSelfSignedServerCert=0;CAIssuedCertNamesMismatch=0;TrustedCerts=/tmp/%A/ca-bundle.pem;".
+Creating ODBC connection to "Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=hive2-kerberos;Port=10000;Schema=default;UseNativeQuery=1;AuthMech=1;KrbHostFQDN=localhost;KrbServiceName=hive;KrbRealm=KEBOOLA.COM;SSL=1;AllowSelfSignedServerCert=0;CAIssuedCertNamesMismatch=0;TrustedCerts=/tmp/%A/ca-bundle.pem;".
 Exporting to "in.c-main.internal".
 Extractor finished successfully.
