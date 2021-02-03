@@ -36,6 +36,7 @@ services:
     volumes:
       - ssh-keys:/root/.ssh:ro
       - hive2-kerberos-conf:/root/hive-conf:z
+      - ./docker/hive2-kerberos/files/kerberos/krb5.client.conf:/etc/krb5-test.conf
 
   # Test connection to kerberos:
   # > docker-compose run dev bash
@@ -46,10 +47,10 @@ services:
     <<: *tests
     command: bash
     volumes:
-      - ./:/code
-      - ./docker/hive2-kerberos/files/kerberos/krb5.client.conf:/etc/krb5-test.conf
       - ssh-keys:/root/.ssh:z
       - hive2-kerberos-conf:/root/hive-conf:z
+      - ./:/code
+      - ./docker/hive2-kerberos/files/kerberos/krb5.client.conf:/etc/krb5-test.conf
 
   wait:
     image: waisbrot/wait
