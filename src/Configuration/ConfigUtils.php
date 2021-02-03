@@ -25,7 +25,7 @@ class ConfigUtils
         $stackConfig = $root['image_parameters']['global_config'] ?? [];
 
         $root['parameters'] = array_replace_recursive($parameters, $stackConfig);
-        unset($root['image_parameters']['stack_config']);
+        unset($root['image_parameters']['global_config']);
 
         return $root;
     }
