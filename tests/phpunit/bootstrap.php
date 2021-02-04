@@ -63,7 +63,8 @@ waitForHive([
     'port' =>(int) getenv('HIVE_DB_KERBEROS_PORT'),
     'database' => (string) getenv('HIVE_DB_KERBEROS_DATABASE'),
     'kerberos' => [
-        'principal' => (string) getenv('HIVE_DB_KERBEROS_PRINCIPAL'),
+        'kinitPrincipal' => (string) getenv('HIVE_DB_KERBEROS_KINIT_PRINCIPAL'),
+        'servicePrincipal' => (string) getenv('HIVE_DB_KERBEROS_SERVICE_PRINCIPAL'),
         'config' => (string) file_get_contents((string) getenv('HIVE_DB_KERBEROS_KRB5_CONF_PATH')),
         '#keytab' => (string) file_get_contents((string) getenv('HIVE_DB_KERBEROS_KEYTAB_PATH')),
     ],

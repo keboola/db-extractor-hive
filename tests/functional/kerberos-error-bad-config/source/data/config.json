@@ -7,7 +7,8 @@
       "database": "%env(string:HIVE_DB_KERBEROS_DATABASE)%",
       "authType": "kerberos",
       "kerberos": {
-        "principal": "%env(string:HIVE_DB_KERBEROS_PRINCIPAL)%",
+        "kinitPrincipal": "init/localhost",
+        "servicePrincipal": "%env(string:HIVE_DB_KERBEROS_SERVICE_PRINCIPAL)%",
         "config": "abc",
         "#keytab": "%env(string:HIVE_DB_KERBEROS_KEYTAB_ENCODED)%"
       },

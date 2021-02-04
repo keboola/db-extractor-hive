@@ -86,14 +86,15 @@ class HiveDsnFactoryTest extends TestCase
                 'database' => 'my-db',
                 'authType' => 'kerberos',
                 'kerberos' => [
-                    'principal' => 'test/service@EXAMPLE.COM',
+                    'kinitPrincipal' => 'init/localhost',
+                    'servicePrincipal' => 'service/localhost@EXAMPLE.COM',
                     'config' => '...',
                     '#keytab' => '...',
                 ],
                 ],
                 'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;'.
                 'Host=test-host.com;Port=123;Schema=my-db;'.
-                'UseNativeQuery=1;AuthMech=1;KrbHostFQDN=service;KrbServiceName=test;KrbRealm=EXAMPLE.COM;',
+                'UseNativeQuery=1;AuthMech=1;KrbHostFQDN=localhost;KrbServiceName=service;KrbRealm=EXAMPLE.COM;',
         ];
     }
 

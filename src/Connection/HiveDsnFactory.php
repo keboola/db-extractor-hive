@@ -35,7 +35,7 @@ class HiveDsnFactory
                 break;
 
             case HiveDbNode::AUTH_TYPE_KERBEROS:
-                [$serviceName, $host, $realm] = self::parsePrincipal($dbConfig->getKrb5Principal());
+                [$serviceName, $host, $realm] = self::parsePrincipal($dbConfig->getKrb5ServicePrincipal());
                 $helper = new KerberosHelper($logger, $dbConfig);
                 $helper->initKerberos();
                 $parameters['AuthMech'] = 1;

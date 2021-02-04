@@ -119,7 +119,8 @@ class HiveDbNode extends DbNode
         $builder
             ->arrayNode('kerberos')
             ->children()
-                ->scalarNode('principal')->isRequired()->end()
+                ->scalarNode('kinitPrincipal')->isRequired()->end()
+                ->scalarNode('servicePrincipal')->isRequired()->end()
                 ->scalarNode('config')->isRequired()->end()
                 ->scalarNode('#keytab')->isRequired()->end();
     }

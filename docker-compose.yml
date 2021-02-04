@@ -20,7 +20,8 @@ services:
       HIVE_DB_KERBEROS_PORT: 10000
       HIVE_DB_KERBEROS_DATABASE: default
       HIVE_DB_KERBEROS_KRB5_CONF_PATH: "/etc/krb5-test.conf"
-      HIVE_DB_KERBEROS_PRINCIPAL: "hive/localhost@KEBOOLA.COM"
+      HIVE_DB_KERBEROS_KINIT_PRINCIPAL: "hive/localhost"
+      HIVE_DB_KERBEROS_SERVICE_PRINCIPAL: "hive/localhost@KEBOOLA.COM"
       HIVE_DB_KERBEROS_KEYTAB_PATH: "/root/hive-conf/hive.keytab"
       HIVE_DB_KERBEROS_SSL_CERT_JKS_PATH: "/root/hive-conf/hive.jks"
       HIVE_DB_KERBEROS_SSL_CERT_PEM_PATH: "/root/hive-conf/hive.pem"
