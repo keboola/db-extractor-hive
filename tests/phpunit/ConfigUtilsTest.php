@@ -94,20 +94,20 @@ class ConfigUtilsTest extends TestCase
             [
                 'image_parameters' => [
                     'global_config' => [
-                        'a' => 'A2',
+                        'a' => 'a1',
+                        'b' => 'b1',
                         'c' => [
-                            'd' => 'D2',
-                            'x' => 'X2',
-                            'e' => ['X', 'Y', 'Z'],
+                            'd' => 'd1',
+                            'e' => ['f', 'g'],
                         ],
                     ],
                 ],
                 'parameters' => [
-                    'a' => 'a1',
-                    'b' => 'b1',
+                    'a' => 'A2',
                     'c' => [
-                        'd' => 'd1',
-                        'e' => ['f', 'g'],
+                        'd' => 'D2',
+                        'x' => 'X2',
+                        'e' => ['X', 'Y', 'Z'],
                     ],
                 ],
             ],

@@ -22,9 +22,9 @@ class ConfigUtils
     public static function mergeParameters(array $root): array
     {
         $parameters = $root['parameters'] ?? [];
-        $stackConfig = $root['image_parameters']['global_config'] ?? [];
+        $globalConfig = $root['image_parameters']['global_config'] ?? [];
 
-        $root['parameters'] = array_replace_recursive($parameters, $stackConfig);
+        $root['parameters'] = array_replace_recursive($globalConfig, $parameters);
         unset($root['image_parameters']['global_config']);
 
         return $root;

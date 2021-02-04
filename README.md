@@ -69,7 +69,7 @@ The configuration `config.json` contains following properties in `parameters` ke
 [Image or Stack Parameters](https://developers.keboola.com/extend/common-interface/config-file/#image-parameters) 
 can be used to set global configuration for the extractor. This can be used if e.g. all configurations on the stack use the same Kerberos authentication.
 
-The global configuration is stored under key `image_parameters.global_config` and has higher priority than the values in the `parameters`.
+The global configuration is stored under key `image_parameters.global_config` and has LOWER priority than the values in the `parameters`.
 
 Example of the configuration that the extractor gets:
 ```
@@ -78,12 +78,8 @@ Example of the configuration that the extractor gets:
   "image_parameters": {
     "global_config": {
       "db": {
-        "authType": "kerberos",
-        "kerberos": {
-          "principal": "...",
-          "config": "...",
-          "#keytab": "..."
-        },
+        "authType": "IS OVERWRITTEN BY USER CONFIG",
+        "kerberos": "IS OVERWRITTEN BY USER CONFIG"
         "ssl": {
           "enabled": true,
           "ca": "...",
@@ -97,8 +93,12 @@ Example of the configuration that the extractor gets:
       "host": "...",
       "port":  "...",
       "database": "...",
-      "authType": "IS OVERWRITTEN BY GLOBAL CONFIG",
-      "kerberos": "IS OVERWRITTEN BY GLOBAL CONFIG"
+      "authType": "kerberos",
+      "kerberos": {
+        "principal": "...",
+        "config": "...",
+        "#keytab": "..."
+      },
     }
   }
 }
