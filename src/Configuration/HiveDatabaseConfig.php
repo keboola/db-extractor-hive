@@ -11,7 +11,9 @@ class HiveDatabaseConfig extends DatabaseConfig
 {
     private string $authType;
 
-    private ?string $krb5Principal;
+    private ?string $krb5KinitPrincipal;
+
+    private ?string $krb5ServicePrincipal;
 
     private ?string $krb5Config;
 
@@ -32,7 +34,8 @@ class HiveDatabaseConfig extends DatabaseConfig
             null,
             $sslEnabled ? HiveSslConnectionConfig::fromArray($data['ssl']) : null,
             $data['authType'],
-            $data['kerberos']['principal'] ?? null,
+            $data['kerberos']['kinitPrincipal'] ?? null,
+            $data['kerberos']['servicePrincipal'] ?? null,
             $data['kerberos']['config'] ?? null,
             $data['kerberos']['#keytab'] ?? null,
             $data['connectThrough'] ?? false,
@@ -48,14 +51,16 @@ class HiveDatabaseConfig extends DatabaseConfig
         ?string $schema,
         ?HiveSslConnectionConfig $sslConnectionConfig,
         string $authType,
-        ?string $krb5Principal,
+        ?string $krb5KInitPrincipal,
+        ?string $krb5ServicePrincipal,
         ?string $krb5Config,
         ?string $krb5Keytab,
         bool $connectThrough
     ) {
         parent::__construct($host, $port, $username, $password, $database, $schema, $sslConnectionConfig);
         $this->authType = $authType;
-        $this->krb5Principal = $krb5Principal;
+        $this->krb5KinitPrincipal = $krb5KInitPrincipal;
+        $this->krb5ServicePrincipal = $krb5ServicePrincipal;
         $this->krb5Config = $krb5Config;
         $this->krb5Keytab = $krb5Keytab;
         $this->connectThrough = $connectThrough;
@@ -93,17 +98,30 @@ class HiveDatabaseConfig extends DatabaseConfig
         return $password;
     }
 
-    public function hasKrb5Principal(): bool
+    public function hasKrb5KinitPrincipal(): bool
     {
-        return $this->krb5Principal !== null;
+        return $this->krb5KinitPrincipal !== null;
     }
 
-    public function getKrb5Principal(): string
+    public function getKrb5KinitPrincipal(): string
     {
-        if (!$this->krb5Principal) {
-            throw new PropertyNotSetException('Property "krb5Principal" is not set.');
+        if (!$this->krb5KinitPrincipal) {
+            throw new PropertyNotSetException('Property "krb5KinitPrincipal" is not set.');
         }
-        return $this->krb5Principal;
+        return $this->krb5KinitPrincipal;
+    }
+
+    public function hasKrb5ServicePrincipal(): bool
+    {
+        return $this->krb5ServicePrincipal !== null;
+    }
+
+    public function getKrb5ServicePrincipal(): string
+    {
+        if (!$this->krb5ServicePrincipal) {
+            throw new PropertyNotSetException('Property "krb5ServicePrincipal" is not set.');
+        }
+        return $this->krb5ServicePrincipal;
     }
 
     public function hasKrb5Conf(): bool

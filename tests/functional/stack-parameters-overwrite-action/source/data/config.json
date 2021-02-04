@@ -20,7 +20,8 @@
       "database": "%env(string:HIVE_DB_KERBEROS_DATABASE)%",
       "authType": "kerberos",
       "kerberos": {
-        "principal": "%env(string:HIVE_DB_KERBEROS_PRINCIPAL)%",
+        "kinitPrincipal": "%env(string:HIVE_DB_KERBEROS_KINIT_PRINCIPAL)%",
+        "servicePrincipal": "%env(string:HIVE_DB_KERBEROS_SERVICE_PRINCIPAL)%",
         "config": "%env(string:HIVE_DB_KERBEROS_KRB5_CONF)%",
         "#keytab": "%env(string:HIVE_DB_KERBEROS_KEYTAB_ENCODED)%"
       }

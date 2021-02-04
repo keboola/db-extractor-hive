@@ -82,8 +82,8 @@ RUN alien -i /tmp/hive-odbc.rpm \
 ENV LANGUAGE=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
-ENV KRB5_CONFIG='/root/php-krb5.conf'
-ENV KRB5_KEYTAB='/root/krb5.keytab'
+ENV KRB5_CONFIG='/tmp/php-krb5.conf'
+ENV KRB5_KEYTAB='/tmp/php-krb5.keytab'
 
 ## Composer - deps always cached unless changed
 # First copy only composer files

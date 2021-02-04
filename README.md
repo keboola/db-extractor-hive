@@ -24,7 +24,12 @@ The configuration `config.json` contains following properties in `parameters` ke
     - `user` - string (required if `authType = password`): User with correct access rights
     - `#password` - string (required if `authType = password`): Password for given `user`
     - `kerberos` - object (required if `authType = kerberos`)
-        - `principal` - string (required): Name of the Kerberos principal - used for the `kinit`.
+        - `kinitPrincipal` - string (required): 
+          - Name of the principal for the `kinit`, eg. `init/localhost@KEBOOLA.COM`.
+          - It may be shortened if it is supported by your `krb5.conf`, eg. `init/localhost`.
+        - `servicePrincipal` - string (required): 
+          - Name of the principal for the ODBC connection, eg. `hive/localhost@KEBOOLA.COM`.
+          - A fully qualified name must be used: `[service]/[host]@[realm]`
         - `config` - string (required): Content of the `krb5.conf` file.
         - `#keytab` - string (required): `base64` encoded content of the `*.keytab` file.
     - `connectThrough` - bool (optional, default `false`) 

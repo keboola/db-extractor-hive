@@ -52,11 +52,16 @@ class KerberosHelper
 
     private function doInit(): void
     {
+        $this->logger->info(sprintf(
+            'Starting Kerberos "kinit" authentication as "%s".',
+            $this->dbConfig->getKrb5KinitPrincipal()
+        ));
+
         $process = $this->runProcess([
             'kinit',
             '-kt',
             $this->writeKeytabFile(),
-            $this->dbConfig->getKrb5Principal(),
+            $this->dbConfig->getKrb5KinitPrincipal(),
         ]);
 
         if ($process->getExitCode() !== 0) {
