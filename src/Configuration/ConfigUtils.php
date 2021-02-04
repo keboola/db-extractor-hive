@@ -18,4 +18,15 @@ class ConfigUtils
 
         return $content;
     }
+
+    public static function mergeParameters(array $root): array
+    {
+        $parameters = $root['parameters'] ?? [];
+        $globalConfig = $root['image_parameters']['global_config'] ?? [];
+
+        $root['parameters'] = array_replace_recursive($globalConfig, $parameters);
+        unset($root['image_parameters']['global_config']);
+
+        return $root;
+    }
 }

@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor;
 
+use Keboola\DbExtractor\Configuration\HiveActionConfigRowDefinition;
+use Keboola\DbExtractor\Configuration\HiveConfigRowDefinition;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
-use Keboola\DbExtractor\Configuration\HiveSslNode;
 use Keboola\DbExtractor\Exception\ApplicationException;
 use Keboola\DbExtractorConfig\Config;
-use Keboola\DbExtractorConfig\Configuration\ActionConfigRowDefinition;
-use Keboola\DbExtractorConfig\Configuration\ConfigRowDefinition;
 use Psr\Log\LoggerInterface;
 
 class HiveApplication extends Application
@@ -27,8 +26,8 @@ class HiveApplication extends Application
         $dbNode = new HiveDbNode();
         if ($this->isRowConfiguration($config)) {
             $this->config = $this['action'] === 'run' ?
-                new Config($config, new ConfigRowDefinition($dbNode)) :
-                new Config($config, new ActionConfigRowDefinition($dbNode));
+                new Config($config, new HiveConfigRowDefinition($dbNode)) :
+                new Config($config, new HiveActionConfigRowDefinition($dbNode));
         } else {
             throw new ApplicationException('Old config format is not supported. Please, use row configuration.');
         }
