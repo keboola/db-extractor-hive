@@ -1,0 +1,22 @@
+{
+  "action": "testConnection",
+  "parameters": {
+    "db": {
+      "host": "%env(string:HIVE_DB_KERBEROS_HOST)%",
+      "port":  "%env(int:HIVE_DB_KERBEROS_PORT)%",
+      "database": "%env(string:HIVE_DB_KERBEROS_DATABASE)%",
+      "authType": "kerberos",
+      "kerberos": {
+        "kinitPrincipal": "%env(string:HIVE_DB_KERBEROS_KINIT_PRINCIPAL)%",
+        "servicePrincipal": "%env(string:HIVE_DB_KERBEROS_SERVICE_PRINCIPAL)%",
+        "config": "%env(string:HIVE_DB_KERBEROS_KRB5_CONF)%",
+        "#keytab": "%env(string:HIVE_DB_KERBEROS_KEYTAB_ENCODED)%"
+      },
+      "ssl": {
+        "enabled": true,
+        "ca": "internal:missing.jks",
+        "caFileType": "jks"
+      }
+    }
+  }
+}
