@@ -6,6 +6,7 @@ namespace Keboola\DbExtractor\Configuration;
 
 use Keboola\DbExtractorConfig\Configuration\NodeDefinition\SslNode;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 class HiveSslNode extends SslNode
 {
@@ -29,10 +30,35 @@ class HiveSslNode extends SslNode
             return $v;
         });
         $this->validate()->always(function (array $v): array {
-
-            // Base64 decode
             $caFileType = $v['caFileType'] ?? self::CA_FILE_TYPE_PEM;
-            if ($caFileType === HiveSslNode::CA_FILE_TYPE_JKS && isset($v['ca'])) {
+            $ca = $v['ca'] ?? $v['#ca'] ?? null;
+
+            // Load internal certificate, value starts with "internal:"
+            if ($ca && strpos($ca, 'internal:') === 0) {
+                // Parse and check filename
+                $dir = (string) getenv('BUNDLED_FILES_PATH');
+                $certFileName = preg_replace('~^internal:~', '', $ca);
+                if (!preg_match('~^[a-zA-Z0-9.\-_+]+$~', $certFileName)) {
+                    throw new InvalidConfigurationException(sprintf(
+                        'The "ca" parameter is invalid. The filename "%s" contains illegal characters.',
+                        $certFileName
+                    ));
+                }
+
+                // Load file content
+                $certFilePath = $dir . '/' . $certFileName;
+                $certFileContent = @file_get_contents($certFilePath);
+                if (!$certFileContent) {
+                    throw new InvalidConfigurationException(sprintf(
+                        'Certificate "%s" not found.',
+                        $certFilePath
+                    ));
+                }
+
+                $v['ca'] = $certFileContent;
+                unset($v['#ca']);
+            } elseif ($caFileType === HiveSslNode::CA_FILE_TYPE_JKS && isset($v['ca'])) {
+                // Base64 decode (JKS is binary file)
                 $v['ca'] = ConfigUtils::base64Decode(
                     $v['ca'],
                     'db.ssl.ca'

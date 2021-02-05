@@ -41,7 +41,12 @@ The configuration `config.json` contains following properties in `parameters` ke
           - SAML token must contain the required data and the stack must be set correctly.
     - `ssl` - object (optional):
         - `enabled` bool (optional): Default `false`.
-        - `ca` or `#ca` string (optional): bundle of the trusted certificates in PEM/JKS format, see `caFileType`.
+        - `ca` or `#ca` string (optional): 
+          - Bundle of the trusted certificates in PEM/JKS format, see `caFileType`.
+          - A special format `internal:my-certs.jks` may be used. 
+            - Then the certificate is read from the component, from the `/var/bundled-files/my-certs.jks`.
+            - Currently, the `/var/bundled-files/` directory is empty.
+            - The component can be forked and bundled with a larger client certificate.
         - `caFileType` enum (optional, default `pem`):
           - `pem` - `ca` value is in [CRT/PEM format](https://serverfault.com/questions/9708/what-is-a-pem-file-and-how-does-it-differ-from-other-openssl-generated-key-file). 
           - `jks` - `ca` value is in base64 encoded [JKS format](https://en.wikipedia.org/wiki/Java_KeyStore).
@@ -51,7 +56,7 @@ The configuration `config.json` contains following properties in `parameters` ke
         - `enabled` - bool (required):  Enables SSH tunnel
         - `sshHost` - string (required): IP address or hostname of SSH server
         - `sshPort` - integer (optional): SSH server port (default port is `22`)
-        - `localPort` - integer (required): SSH tunnel local port in Docker container (default `33006`)
+        - `localPort` - integer (optional): SSH tunnel local port in Docker container (default `33006`)
         - `user` - string (optional): SSH user (default same as `db.user`)
         - `compression`  - bool (optional): Enables SSH tunnel compression (default `false`)
         - `keys` - object (optional): SSH keys

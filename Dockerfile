@@ -84,6 +84,11 @@ ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 ENV KRB5_CONFIG='/tmp/php-krb5.conf'
 ENV KRB5_KEYTAB='/tmp/php-krb5.keytab'
+ENV BUNDLED_FILES_PATH='/var/bundled-files'
+
+# Some large certificates cannot be in stack parameters and must be packed in the component.
+RUN mkdir "$BUNDLED_FILES_PATH" && \
+    chown www-data:www-data "$BUNDLED_FILES_PATH"
 
 ## Composer - deps always cached unless changed
 # First copy only composer files
