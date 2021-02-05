@@ -1,6 +1,6 @@
+Connect through is enabled, DelegationUID = "my-realuser".
 Starting Kerberos "kinit" authentication as "hive/localhost".
 Kerberos authentication successful.
-Connect through is enabled, DelegationUID = "my-realuser".
-Creating ODBC connection to "Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=hive2-kerberos;Port=10000;Schema=default;UseNativeQuery=1;AuthMech=1;KrbHostFQDN=localhost;KrbServiceName=hive;KrbRealm=KEBOOLA.COM;SSL=1;AllowSelfSignedServerCert=1;CAIssuedCertNamesMismatch=0;DelegationUID=my-realuser;".
+Creating ODBC connection to "Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=hive2-kerberos;Port=10000;Schema=default;UseNativeQuery=1;DelegationUID=my-realuser;AuthMech=1;KrbHostFQDN=localhost;KrbServiceName=hive;KrbRealm=KEBOOLA.COM;SSL=1;AllowSelfSignedServerCert=1;CAIssuedCertNamesMismatch=0;".
 Exporting to "in.c-main.internal".
 Extractor finished successfully.

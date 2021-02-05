@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Keboola\Component\JsonHelper;
 use Keboola\CommonExceptions\UserExceptionInterface;
 use Keboola\DbExtractor\HiveApplication;
+use Keboola\DbExtractor\Exception\UserException;
 use Keboola\Component\Logger;
 
 require __DIR__ . '/../vendor/autoload.php';
