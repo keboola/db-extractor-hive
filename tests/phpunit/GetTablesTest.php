@@ -16,11 +16,40 @@ class GetTablesTest extends TestCase
         $config = $this->getConfig();
         $config['action'] = 'getTables';
         $result = $this->createApplication($config)->run();
-        $expected = $this->getExpectedMetadata();
+        $expected = $this->getExpectedMetadataFull();
         $this->assertEquals($expected, $result);
     }
 
-    private function getExpectedMetadata(): array
+    public function testGetTablesActionOnlyTables(): void
+    {
+        $config = $this->getConfig();
+        $config['action'] = 'getTables';
+        $config['parameters']['tableListFilter'] = [];
+        $config['parameters']['tableListFilter']['listColumns'] = false;
+        $result = $this->createApplication($config)->run();
+        $expected = $this->getExpectedMetadataOnlyTables();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetTablesActionColumnsForOneTable(): void
+    {
+        $config = $this->getConfig();
+        $config['action'] = 'getTables';
+        $config['parameters']['tableListFilter'] = [];
+        $config['parameters']['tableListFilter']['listColumns'] = true;
+        $config['parameters']['tableListFilter']['tablesToList'] = [
+            [
+                'tableName' => 'internal',
+                'schema' => 'default',
+            ],
+        ];
+        $result = $this->createApplication($config)->run();
+        $expected = $this->getExpectedMetadataOneTable();
+        $this->assertEquals($expected, $result);
+    }
+
+
+    private function getExpectedMetadataFull(): array
     {
         // Hive DB doesn't support PK, FK, NOT NULL,...
         // See: https://issues.apache.org/jira/browse/HIVE-6905
@@ -189,6 +218,61 @@ class GetTablesTest extends TestCase
                             'type' => 'STRING',
                             'primaryKey' => false,
 
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    private function getExpectedMetadataOnlyTables(): array
+    {
+        return [
+            'status' => 'success',
+            'tables' => [
+                [
+                    'name' => 'incremental',
+                    'schema' => 'default',
+                ],
+                [
+                    'name' => 'internal',
+                    'schema' => 'default',
+                ],
+                [
+                    'name' => 'sales',
+                    'schema' => 'default',
+                ],
+                [
+                    'name' => 'special_types',
+                    'schema' => 'default',
+                ],
+            ],
+        ];
+    }
+
+    private function getExpectedMetadataOneTable(): array
+    {
+        return [
+            'status' => 'success',
+            'tables' => [
+                [
+                    'name' => 'internal',
+                    'schema' => 'default',
+                    'columns' => [
+                        [
+                            'name' => 'product_name',
+                            'type' => 'STRING',
+                            'primaryKey' => false,
+                        ],
+                        [
+                            'name' => 'price',
+                            'type' => 'DOUBLE',
+                            'primaryKey' => false,
+                        ],
+                        [
+                            'name' => 'comment',
+                            'type' => 'STRING',
+                            'primaryKey' => false,
                         ],
                     ],
                 ],
