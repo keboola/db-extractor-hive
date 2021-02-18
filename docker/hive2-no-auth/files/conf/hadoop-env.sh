@@ -1,23 +1,28 @@
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+export JAVA_HOME=/usr/lib/jvm/jre-openjdk
 
-# Set Hadoop-specific environment variables here.
-# Forcing YARN-based mapreduce implementaion.
-# Make sure to comment out if you want to go back to the default or
-# if you want this to be tweakable on a per-user basis
-# export HADOOP_MAPRED_HOME=/usr/lib/hadoop-mapreduce
+export HADOOP_HOME=/usr/lib/hadoop
+export HADOOP_LIBEXEC_DIR=$HADOOP_HOME/libexec
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_INSTALL=$HADOOP_HOME
+export HADOOP_PREFIX=$HADOOP_HOME
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+export HIVE_HOME=/usr/lib/hive
+export CLASSPATH=$CLASSPATH:/usr/lib/hadoop/*:/usr/lib/hadoop/lib/*:.
+export CLASSPATH=$CLASSPATH:/usr/lib/hive/*:/usr/lib/hive/lib/*:.
+
+export TEZ_HOME=/usr/lib/tez
+export TEZ_CONF_DIR=/etc/tez/conf
+export TEZ_JARS=$TEZ_HOME
+
+# For enabling hive to use the Tez engine
+if [ -z "$HIVE_AUX_JARS_PATH" ]; then
+  export HIVE_AUX_JARS_PATH="$TEZ_JARS"
+else
+  export HIVE_AUX_JARS_PATH="$HIVE_AUX_JARS_PATH:$TEZ_JARS"
+fi
+
+export HADOOP_CLASSPATH=${CLASSPATH}:${TEZ_CONF_DIR}:${TEZ_JARS}/*:${TEZ_JARS}/lib/*
 
 # The maximum amount of heap to use, in MB. Default is 1000.
 export HADOOP_HEAPSIZE=256

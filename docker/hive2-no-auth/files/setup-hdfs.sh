@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-# 1 format namenode
+# format namenode
 chown hdfs:hdfs /var/lib/hadoop-hdfs/cache/
 
 # workaround for 'could not open session' bug as suggested here:
@@ -8,33 +8,25 @@ chown hdfs:hdfs /var/lib/hadoop-hdfs/cache/
 rm -f /etc/security/limits.d/hdfs.conf
 su -c "echo 'N' | hdfs namenode -format" hdfs
 
-# 2 start hdfs
+# start hdfs
 su -c "hdfs datanode  2>&1 > /var/log/hadoop/hdfs/hadoop-hdfs-datanode.log" hdfs&
 su -c "hdfs namenode  2>&1 > /var/log/hadoop/hdfs/hadoop-hdfs-namenode.log" hdfs&
 
-# 3 wait for process starting
+# wait for process starting
 sleep 10
 
-# remove a broken symlink created by cdh installer so that init-hdfs.sh does no blow up on it
-# (hbase-annotations.jar seems not needed in our case)
-rm /usr/lib/hive/lib/hbase-annotations.jar
-
-# 4 exec cloudera hdfs init script
+# exec cloudera hdfs init script
 /usr/lib/hadoop/libexec/init-hdfs.sh
 
-# 5 init hive directories
+# init hive directories
 su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -mkdir /user/hive/warehouse'
-su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -chmod 1777 /user/hive/warehouse'
+su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -chmod -R 1777 /user/hive/warehouse'
 su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -chown hive /user/hive/warehouse'
+su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -chmod g+w /tmp'
+su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -mkdir /tmp/hadoop-yarn/staging'
+su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -chmod -R 1777 /tmp/hadoop-yarn'
+su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -chmod -R 1777 /tmp/hadoop-yarn/staging'
+su -s /bin/bash hdfs -c '/usr/bin/hadoop fs -chmod -R 1777 /tmp'
 
-# 6 stop hdfs
+# stop hdfs
 killall java || true
-
-# 7 copy configuration
-cp /tmp/hadoop_conf/hive-site.xml /etc/hive/conf/
-cp /tmp/hadoop_conf/core-site.xml /etc/hadoop/conf
-cp /tmp/hadoop_conf/mapred-site.xml /etc/hadoop/conf
-cp /tmp/hadoop_conf/yarn-site.xml /etc/hadoop/conf
-cp /tmp/hadoop_conf/hadoop-env.sh /etc/hadoop/conf
-cp /tmp/hadoop_conf/hive-env.sh /etc/hive/conf
-rm -r /tmp/hadoop_conf

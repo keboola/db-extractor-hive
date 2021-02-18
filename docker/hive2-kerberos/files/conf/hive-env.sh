@@ -1,5 +1,7 @@
 export JAVA_HOME=/usr/lib/jvm/jre-openjdk
 
+export HADOOP_USER_NAME=hdfs
+
 export HADOOP_HOME=/usr/lib/hadoop
 export HADOOP_LIBEXEC_DIR=$HADOOP_HOME/libexec
 export HADOOP_COMMON_HOME=$HADOOP_HOME

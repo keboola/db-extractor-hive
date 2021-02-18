@@ -34,6 +34,7 @@ RUN chmod 644 /etc/hadoop/conf/*.keytab
 # ENABLE HADOOP SECURITY
 ADD files/conf/core-site.xml /etc/hadoop/conf/core-site.xml
 ADD files/conf/hdfs-site.xml /etc/hadoop/conf/hdfs-site.xml
+ADD files/conf/hive-env.sh   c
 
 # ENABLE MAPRED SECURITY
 ADD files/conf/mapred-site.xml /etc/hadoop/conf/mapred-site.xml
@@ -85,14 +86,18 @@ RUN chmod 644 /etc/presto/conf/keystore.jks
 RUN keytool -genkey \
     -alias hbase \
     -keyalg RSA \
-    -keysize 1024 \
+    -keysize 2048 \
     -storepass PASS12345 \
     -validity 10000 \
     -keystore /etc/hive/conf/hive.jks \
+    -ext SAN=dns:localhost \
     -dname "CN=hive2-kerberos, OU=, O=, L=, S=, C="
 
 # CONVERT SSL KEYSTORE TO PEM FORMATS -> FOR TESTS
 RUN echo "" | keytool -list -keystore /etc/hive/conf/hive.jks -rfc | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/hive/conf/hive.pem
+
+# Fix permissions
+RUN chmod -R 1755 /run/hadoop-hdfs
 
 # IMPORT TEST DATA
 RUN BEELINE_ARGS="-u 'jdbc:hive2://localhost:10000/default;auth=kerberos;ssl=true;sslTrustStore=/etc/hive/conf/hive.jks;principal=hive/localhost@KEBOOLA.COM;'" /tmp/data/data-init.sh

@@ -18,7 +18,7 @@ fi
 # Wait for server ready
 echo "data-init.sh: Waiting for server ...";
 until
-  eval "beeline $BEELINE_ARGS -e 'SHOW TABLES'"
+  eval "beeline $BEELINE_ARGS -e 'SHOW TABLES;'"
 do echo "(waiting for connection)"; sleep 1; done
 echo "data-init.sh: OK. Server ready";
 
@@ -47,7 +47,7 @@ echo "data-init.sh: Importing testing data ...";
 IFS=$';'
 for line in $sql; do
   if [ -n "$line" ]; then
-    eval "beeline $BEELINE_ARGS -e \"$line\"" ||
+    eval "beeline $BEELINE_ARGS -e \"$line;\"" ||
     (echo "data-init.sh: Error when importing: $line" && exit 1)
   fi
 done
