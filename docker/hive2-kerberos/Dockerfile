@@ -34,7 +34,6 @@ RUN chmod 644 /etc/hadoop/conf/*.keytab
 # ENABLE HADOOP SECURITY
 ADD files/conf/core-site.xml /etc/hadoop/conf/core-site.xml
 ADD files/conf/hdfs-site.xml /etc/hadoop/conf/hdfs-site.xml
-ADD files/conf/hive-env.sh   /etc/hive/conf/hive-env.sh
 
 # ENABLE MAPRED SECURITY
 ADD files/conf/mapred-site.xml /etc/hadoop/conf/mapred-site.xml
