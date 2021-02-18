@@ -1,22 +1,5 @@
 <?xml version="1.0"?>
-<!--
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
 <configuration>
-
     <property>
         <name>javax.jdo.option.ConnectionURL</name>
         <value>jdbc:mysql://localhost/metastore?autoReconnect=true&amp;useSSL=false</value>
@@ -39,8 +22,13 @@
     </property>
 
     <property>
+        <name>hive.execution.engine</name>
+        <value>mr</value>
+    </property>
+
+    <property>
         <name>datanucleus.autoCreateSchema</name>
-        <value>true</value>
+        <value>false</value>
     </property>
 
     <property>
@@ -51,6 +39,26 @@
     <property>
         <name>datanucleus.autoStartMechanism</name>
         <value>SchemaTable</value>
+    </property>
+
+    <property>
+        <name>hive.security.authorization.createtable.owner.grants</name>
+        <value>ALL</value>
+        <description>The set of privileges automatically granted to the owner whenever a table gets created.</description>
+    </property>
+
+    <property>
+        <name>hive.metastore.event.db.notification.api.auth</name>
+        <value>false</value>
+        <description>
+            Should metastore do authorization against database notification related APIs such as get_next_notification.
+            If set to true, then only the superusers in proxy settings have the permission
+        </description>
+    </property>
+
+    <property>
+        <name>hive.users.in.admin.role</name>
+        <value>hdfs,hive</value>
     </property>
 
     <property>
@@ -84,17 +92,6 @@
     </property>
 
     <property>
-        <name>hive.security.authorization.createtable.owner.grants</name>
-        <value>ALL</value>
-        <description>The set of privileges automatically granted to the owner whenever a table gets created.</description>
-    </property>
-
-    <property>
-        <name>hive.users.in.admin.role</name>
-        <value>hdfs,hive</value>
-    </property>
-
-    <property>
         <name>hive.server2.use.SSL</name>
         <value>true</value>
     </property>
@@ -108,5 +105,4 @@
         <name>hive.server2.keystore.password</name>
         <value>PASS12345</value>
     </property>
-
 </configuration>

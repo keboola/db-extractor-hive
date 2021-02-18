@@ -12,7 +12,7 @@ echo "CREATE DATABASE metastore" | mysql
 /usr/bin/mysqladmin -u root password 'root'
 
 echo "Starting metastore initialization.";
-schematool -dbType mysql -initSchema -verbose
+/usr/lib/hive/bin/schematool -dbType mysql -initSchema -verbose
 echo "OK. Metastore initialized.";
 
 killall mysqld || true
