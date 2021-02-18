@@ -30,10 +30,10 @@ services:
       SSH_HOST: ssh-tunnel
       SSH_PORT: 22
       SSH_USER: root
-#    depends_on:
-#      - hive2-ldap
-#      - hive2-kerberos
-#      - ssh-tunnel
+    depends_on:
+      - hive2-ldap
+      - hive2-kerberos
+      - ssh-tunnel
     volumes:
       - ssh-keys:/root/.ssh:ro
       - hive2-kerberos-conf:/root/hive-conf:z

@@ -15,7 +15,7 @@ before_script:
 
 # Run tests
 script:
-  #- docker-compose run --rm wait
+  - docker-compose run --rm wait
   - docker-compose run --rm tests composer ci
 
 # Push test image to ECR
