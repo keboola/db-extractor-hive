@@ -1,0 +1,13 @@
+{
+  "parameters": {
+    "db": {
+      "host": "%env(string:HIVE_DB_LDAP_HOST)%",
+      "port":  "%env(int:HIVE_DB_LDAP_PORT)%",
+      "database": "%env(string:HIVE_DB_LDAP_DATABASE)%",
+      "user": "%env(string:HIVE_DB_LDAP_USER)%",
+      "#password": "%env(string:HIVE_DB_LDAP_PASSWORD)%"
+    },
+    "query": "select * from bad",
+    "outputTable": "in.c-main.internal"
+  }
+}

@@ -167,16 +167,16 @@
         },
         {
             "name": "keboola/db-extractor-adapter",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/db-extractor-adapter.git",
-                "reference": "8c198201d2194b8f76078acdd4d445e4a882b3fd"
+                "reference": "e98787071d5f577cd827c5c5d2d26a406f0dd9d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/db-extractor-adapter/zipball/8c198201d2194b8f76078acdd4d445e4a882b3fd",
-                "reference": "8c198201d2194b8f76078acdd4d445e4a882b3fd",
+                "url": "https://api.github.com/repos/keboola/db-extractor-adapter/zipball/e98787071d5f577cd827c5c5d2d26a406f0dd9d4",
+                "reference": "e98787071d5f577cd827c5c5d2d26a406f0dd9d4",
                 "shasum": ""
             },
             "require": {
@@ -219,9 +219,9 @@
             ],
             "description": "Set of connection adapters for DB extractors.",
             "support": {
-                "source": "https://github.com/keboola/db-extractor-adapter/tree/1.3.1"
+                "source": "https://github.com/keboola/db-extractor-adapter/tree/1.3.2"
             },
-            "time": "2021-01-28T13:54:26+00:00"
+            "time": "2021-02-19T12:46:43+00:00"
         },
         {
             "name": "keboola/db-extractor-common",
