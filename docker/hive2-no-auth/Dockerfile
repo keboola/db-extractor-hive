@@ -82,7 +82,8 @@ RUN /root/setup-metastore.sh
 ## Copy test data
 COPY files/data/ /tmp/data
 RUN tail -n +2 /tmp/data/sales.csv        > /tmp/data/sales_without_header.csv && \
-    tail -n +2 /tmp/data/incremental.csv  > /tmp/data/incremental_without_header.csv
+    tail -n +2 /tmp/data/incremental.csv  > /tmp/data/incremental_without_header.csv && \
+    tail -n +2 /tmp/data/chars.csv        > /tmp/data/chars_without_header.csv
 RUN chown -R hive:hdfs /tmp/data
 
 # HDFS ports

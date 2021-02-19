@@ -1,0 +1,108 @@
+{
+    "destination": "in.c-main.chars",
+    "incremental": false,
+    "metadata": [
+        {
+            "key": "KBC.name",
+            "value": "chars"
+        },
+        {
+            "key": "KBC.sanitizedName",
+            "value": "chars"
+        },
+        {
+            "key": "KBC.schema",
+            "value": "default"
+        },
+        {
+            "key": "KBC.catalog",
+            "value": "HIVE"
+        },
+        {
+            "key": "KBC.type",
+            "value": "table"
+        }
+    ],
+    "column_metadata": {
+        "text1": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "VARCHAR"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.default",
+                "value": ""
+            },
+            {
+                "key": "KBC.sourceName",
+                "value": "text1"
+            },
+            {
+                "key": "KBC.sanitizedName",
+                "value": "text1"
+            },
+            {
+                "key": "KBC.primaryKey",
+                "value": false
+            },
+            {
+                "key": "KBC.uniqueKey",
+                "value": false
+            },
+            {
+                "key": "KBC.ordinalPosition",
+                "value": 1
+            }
+        ],
+        "text2": [
+            {
+                "key": "KBC.datatype.type",
+                "value": "VARCHAR"
+            },
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.datatype.basetype",
+                "value": "STRING"
+            },
+            {
+                "key": "KBC.datatype.default",
+                "value": ""
+            },
+            {
+                "key": "KBC.sourceName",
+                "value": "text2"
+            },
+            {
+                "key": "KBC.sanitizedName",
+                "value": "text2"
+            },
+            {
+                "key": "KBC.primaryKey",
+                "value": false
+            },
+            {
+                "key": "KBC.uniqueKey",
+                "value": false
+            },
+            {
+                "key": "KBC.ordinalPosition",
+                "value": 2
+            }
+        ]
+    },
+    "columns": [
+        "text1",
+        "text2"
+    ]
+}

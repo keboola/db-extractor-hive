@@ -27,6 +27,9 @@ class HiveDsnFactory
         $parameters['Port'] = $dbConfig->getPort();
         $parameters['Schema'] = $dbConfig->getDatabase();
         $parameters['UseNativeQuery'] = '1';
+        $parameters['DefaultStringColumnLength'] = '65536';
+        $parameters['BinaryColumnLength'] = '65536';
+        $parameters['UseUnicodeSqlCharacterTypes'] = '1';
 
         // Connect through
         if ($dbConfig->isConnectThroughEnabled()) {
