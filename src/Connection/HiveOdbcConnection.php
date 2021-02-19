@@ -8,6 +8,9 @@ use Keboola\DbExtractor\Adapter\ODBC\OdbcConnection;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
 use Psr\Log\LoggerInterface;
+use Retry\BackOff\ExponentialBackOffPolicy;
+use Retry\Policy\SimpleRetryPolicy;
+use Retry\RetryProxy;
 
 class HiveOdbcConnection extends OdbcConnection
 {
@@ -41,5 +44,12 @@ class HiveOdbcConnection extends OdbcConnection
 
         // Don't prefix columns in result with table name, ... eg. 'price', NOT 'product.price'
         $this->query('set hive.resultset.use.unique.column.names=false');
+    }
+
+    protected function createRetryProxy(int $maxRetries): RetryProxy
+    {
+        $retryPolicy = new HiveRetryPolicy($maxRetries, $this->getExpectedExceptionClasses());
+        $backoffPolicy = new ExponentialBackOffPolicy(1000);
+        return new RetryProxy($retryPolicy, $backoffPolicy, $this->logger);
     }
 }
