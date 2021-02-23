@@ -40,6 +40,10 @@ sql="
   CREATE EXTERNAL TABLE IF NOT EXISTS sales (usergender varchar(255), usercity varchar(255), usersentiment int, zipcode varchar(255), sku varchar(255), createdat varchar(255), category varchar(255), price float, county varchar(255), countycode varchar(255), userstate varchar(255), categorygroup varchar(255))
   ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
   LOAD DATA LOCAL INPATH '/tmp/data/sales_without_header.csv' OVERWRITE INTO TABLE sales;
+
+  CREATE EXTERNAL TABLE IF NOT EXISTS chars (text1 varchar(255), text2 varchar(255))
+  ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+  LOAD DATA LOCAL INPATH '/tmp/data/chars_without_header.csv' OVERWRITE INTO TABLE chars;
 "
 
 # Import data - in older Hive DB versions is required to specify only one statement per run

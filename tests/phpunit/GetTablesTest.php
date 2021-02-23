@@ -57,6 +57,22 @@ class GetTablesTest extends TestCase
             'status' => 'success',
             'tables' => [
                 [
+                    'name' => 'chars',
+                    'schema' => 'default',
+                    'columns' => [
+                        [
+                            'name' => 'text1',
+                            'type' => 'VARCHAR',
+                            'primaryKey' => false,
+                        ],
+                        [
+                            'name' => 'text2',
+                            'type' => 'VARCHAR',
+                            'primaryKey' => false,
+                        ],
+                    ],
+                ],
+                [
                     'name' => 'incremental',
                     'schema' => 'default',
                     'columns' => [
@@ -217,7 +233,6 @@ class GetTablesTest extends TestCase
                             'name' => 'struct',
                             'type' => 'STRING',
                             'primaryKey' => false,
-
                         ],
                     ],
                 ],
@@ -230,6 +245,10 @@ class GetTablesTest extends TestCase
         return [
             'status' => 'success',
             'tables' => [
+                [
+                    'name' => 'chars',
+                    'schema' => 'default',
+                ],
                 [
                     'name' => 'incremental',
                     'schema' => 'default',
