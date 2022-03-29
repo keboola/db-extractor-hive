@@ -2,4 +2,5 @@ Starting Kerberos "kinit" authentication as "hive/localhost".
 Kerberos authentication successful.
 Creating ODBC connection to "Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=hive2-kerberos;Port=10000;Schema=default;UseNativeQuery=1;DefaultStringColumnLength=65536;BinaryColumnLength=65536;UseUnicodeSqlCharacterTypes=1;AuthMech=1;KrbHostFQDN=localhost;KrbServiceName=hive;KrbRealm=KEBOOLA.COM;SSL=1;AllowSelfSignedServerCert=0;CAIssuedCertNamesMismatch=0;TrustedCerts=/tmp/%A/ca-bundle.pem;".
 Exporting to "in.c-main.internal".
+Exported "2" rows to "in.c-main.internal".
 Extractor finished successfully.

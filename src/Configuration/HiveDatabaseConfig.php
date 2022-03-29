@@ -57,7 +57,7 @@ class HiveDatabaseConfig extends DatabaseConfig
         ?string $krb5Keytab,
         bool $connectThrough
     ) {
-        parent::__construct($host, $port, $username, $password, $database, $schema, $sslConnectionConfig);
+        parent::__construct($host, $port, $username, $password, $database, $schema, $sslConnectionConfig, []);
         $this->authType = $authType;
         $this->krb5KinitPrincipal = $krb5KInitPrincipal;
         $this->krb5ServicePrincipal = $krb5ServicePrincipal;

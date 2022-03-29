@@ -68,14 +68,9 @@ class Hive extends BaseExtractor
         );
     }
 
-    protected function getMetadataProvider(): MetadataProvider
+    public function createMetadataProvider(): MetadataProvider
     {
         return new OdbcNativeMetadataProvider($this->connection);
-    }
-
-    protected function getManifestMetadataSerializer(): ManifestSerializer
-    {
-        return new DefaultManifestSerializer();
     }
 
     public function validateIncrementalFetching(ExportConfig $exportConfig): void
