@@ -9,7 +9,6 @@ use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
 use Psr\Log\LoggerInterface;
 use Retry\BackOff\ExponentialBackOffPolicy;
-use Retry\Policy\SimpleRetryPolicy;
 use Retry\RetryProxy;
 
 class HiveOdbcConnection extends OdbcConnection
