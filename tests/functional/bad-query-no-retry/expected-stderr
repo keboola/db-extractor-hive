@@ -1,1 +1,1 @@
-[in.c-main.internal]: DB query failed: [Cloudera][Hardy] %s SemanticException [Error 10001]: Line 1:14 Table not found 'bad' 37000
+[in.c-main.internal]: DB query failed: [Cloudera][Hardy] (80) Syntax or semantic analysis error thrown in server while executing query. Error message from server: Error while compiling statement: FAILED: SemanticException [Error 10001]: Line 4:2 Table not found 'bad' 37000
