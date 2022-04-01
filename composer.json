@@ -8,6 +8,7 @@
         "ext-json": "*",
         "ext-odbc": "*",
         "ext-zlib": "*",
+        "jdorn/sql-formatter": "^1.2",
         "keboola/common-exceptions": "^1.0",
         "keboola/db-extractor-common": "^15.0",
         "keboola/db-extractor-config": "^1.4.7",

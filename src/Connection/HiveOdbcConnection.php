@@ -9,8 +9,8 @@ use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
 use Psr\Log\LoggerInterface;
 use Retry\BackOff\ExponentialBackOffPolicy;
-use Retry\Policy\SimpleRetryPolicy;
 use Retry\RetryProxy;
+use SqlFormatter;
 
 class HiveOdbcConnection extends OdbcConnection
 {
@@ -51,5 +51,13 @@ class HiveOdbcConnection extends OdbcConnection
         $retryPolicy = new HiveRetryPolicy($maxRetries, $this->getExpectedExceptionClasses());
         $backoffPolicy = new ExponentialBackOffPolicy(1000);
         return new RetryProxy($retryPolicy, $backoffPolicy, $this->logger);
+    }
+
+    /**
+     * @return mixed - returned value from $processor
+     */
+    public function queryAndProcess(string $query, int $maxRetries, callable $processor)
+    {
+        return parent::queryAndProcess(SqlFormatter::removeComments($query), $maxRetries, $processor);
     }
 }
