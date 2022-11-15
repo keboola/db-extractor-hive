@@ -39,7 +39,7 @@ class TestConnectionTest extends TestCase
 
         ob_start();
         $this->createApplication($config, new NullLogger())->execute();
-        $result = json_decode(ob_get_contents(), true);
+        $result = json_decode((string) ob_get_contents(), true);
         ob_end_clean();
 
         $this->assertEquals(['status' => 'success'], $result);

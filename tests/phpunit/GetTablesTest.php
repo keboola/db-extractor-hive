@@ -26,7 +26,7 @@ class GetTablesTest extends TestCase
 
         ob_start();
         $this->createApplication($config, new NullLogger())->execute();
-        $result = json_decode(ob_get_contents(), true);
+        $result = json_decode((string) ob_get_contents(), true);
         ob_end_clean();
 
         $expected = $this->getExpectedMetadataFull();
@@ -43,7 +43,7 @@ class GetTablesTest extends TestCase
 
         ob_start();
         $this->createApplication($config, new NullLogger())->execute();
-        $result = json_decode(ob_get_contents(), true);
+        $result = json_decode((string) ob_get_contents(), true);
         ob_end_clean();
 
         $expected = $this->getExpectedMetadataOnlyTables();
@@ -64,7 +64,7 @@ class GetTablesTest extends TestCase
         ];
         ob_start();
         $this->createApplication($config, new NullLogger())->execute();
-        $result = json_decode(ob_get_contents(), true);
+        $result = json_decode((string) ob_get_contents(), true);
         ob_end_clean();
 
         $expected = $this->getExpectedMetadataOneTable();

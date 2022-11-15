@@ -17,15 +17,9 @@ trait CreateApplicationTrait
     public function createApplication(
         array $config,
         LoggerInterface $logger,
-        ?string $dataFolder = null,
-        ?HandlerInterface $logHandler = null
+        ?string $dataFolder = null
     ): HiveApplication {
         $dataFolder = $dataFolder ?? $this->dataDir ?? '/data';
-        $handler = new TestHandler();
-
-        if ($logHandler) {
-            $logger->pushHandler($handler);
-        }
 
         JsonHelper::writeFile($dataFolder . '/config.json', $config);
 
