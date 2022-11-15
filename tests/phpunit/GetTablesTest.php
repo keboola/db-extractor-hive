@@ -6,17 +6,31 @@ namespace Keboola\DbExtractor\Tests;
 
 use Keboola\DbExtractor\Tests\Traits\CreateApplicationTrait;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 
 class GetTablesTest extends TestCase
 {
     use CreateApplicationTrait;
 
+    protected function setUp(): void
+    {
+        $this->dataDir = '/data';
+        putenv('KBC_DATADIR='. $this->dataDir);
+        parent::setUp();
+    }
+
     public function testGetTablesAction(): void
     {
         $config = $this->getConfig();
         $config['action'] = 'getTables';
-        $result = $this->createApplication($config)->run();
+
+        ob_start();
+        $this->createApplication($config, new NullLogger())->execute();
+        $result = json_decode(ob_get_contents(), true);
+        ob_end_clean();
+
         $expected = $this->getExpectedMetadataFull();
+
         $this->assertEquals($expected, $result);
     }
 
@@ -26,7 +40,12 @@ class GetTablesTest extends TestCase
         $config['action'] = 'getTables';
         $config['parameters']['tableListFilter'] = [];
         $config['parameters']['tableListFilter']['listColumns'] = false;
-        $result = $this->createApplication($config)->run();
+
+        ob_start();
+        $this->createApplication($config, new NullLogger())->execute();
+        $result = json_decode(ob_get_contents(), true);
+        ob_end_clean();
+
         $expected = $this->getExpectedMetadataOnlyTables();
         $this->assertEquals($expected, $result);
     }
@@ -43,7 +62,11 @@ class GetTablesTest extends TestCase
                 'schema' => 'default',
             ],
         ];
-        $result = $this->createApplication($config)->run();
+        ob_start();
+        $this->createApplication($config, new NullLogger())->execute();
+        $result = json_decode(ob_get_contents(), true);
+        ob_end_clean();
+
         $expected = $this->getExpectedMetadataOneTable();
         $this->assertEquals($expected, $result);
     }

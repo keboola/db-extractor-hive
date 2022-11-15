@@ -1,1 +1,1 @@
-Connection failed: 'Kerberos authentication failed. Command "kinit" was not successful: ; kinit: Configuration file does not specify default realm when parsing name init/localhost '
+Kerberos authentication failed. Command "kinit" was not successful: ; kinit: Configuration file does not specify default realm when parsing name init/localhost

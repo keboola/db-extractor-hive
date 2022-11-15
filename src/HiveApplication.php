@@ -9,23 +9,20 @@ use Keboola\DbExtractor\Configuration\HiveConfigRowDefinition;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
 use Keboola\DbExtractor\Exception\ApplicationException;
 use Keboola\DbExtractorConfig\Config;
-use Psr\Log\LoggerInterface;
 
 class HiveApplication extends Application
 {
-    public function __construct(array $config, LoggerInterface $logger, array $state = [], string $dataDir = '/data/')
+    protected function loadConfig(): void
     {
-        $config['parameters']['data_dir'] = $dataDir;
+        $config = $this->getRawConfig();
+        $action = $config['action'] ?? 'run';
+
         $config['parameters']['extractor_class'] = 'Hive';
+        $config['parameters']['data_dir'] = $this->getDataDir();
 
-        parent::__construct($config, $logger, $state);
-    }
-
-    protected function buildConfig(array $config): void
-    {
         $dbNode = new HiveDbNode();
         if ($this->isRowConfiguration($config)) {
-            $this->config = $this['action'] === 'run' ?
+            $this->config = $action === 'run' ?
                 new Config($config, new HiveConfigRowDefinition($dbNode)) :
                 new Config($config, new HiveActionConfigRowDefinition($dbNode));
         } else {

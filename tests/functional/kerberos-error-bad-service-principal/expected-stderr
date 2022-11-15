@@ -1,1 +1,1 @@
-Connection failed: 'Error connecting to DB: %AServer bad/principal@KEBOOLA.COM not found in Kerberos database%A
+Error connecting to DB: %AServer bad/principal@KEBOOLA.COM not found in Kerberos database%A

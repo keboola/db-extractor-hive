@@ -7,10 +7,18 @@ namespace Keboola\DbExtractor\Tests;
 use Keboola\CommonExceptions\UserExceptionInterface;
 use Keboola\DbExtractor\Tests\Traits\CreateApplicationTrait;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 
 class IncrementalFetchTest extends TestCase
 {
     use CreateApplicationTrait;
+
+    protected function setUp(): void
+    {
+        $this->dataDir = '/data';
+        putenv('KBC_DATADIR='. $this->dataDir);
+        parent::setUp();
+    }
 
     /**
      * @dataProvider invalidConfigProvider
@@ -19,9 +27,10 @@ class IncrementalFetchTest extends TestCase
     {
         $config = $this->getConfig();
         $config['parameters'] = $parameters + $config['parameters'];
+
         $this->expectException(UserExceptionInterface::class);
         $this->expectExceptionMessage($expectedMsg);
-        $this->createApplication($config)->run();
+        $this->createApplication($config, new NullLogger())->execute();
     }
 
     public function invalidConfigProvider(): array
