@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Tests;
 
-use Keboola\DbExtractor\Exception\UserException;
+use Keboola\DbExtractor\Adapter\Exception\UserException;
 use Keboola\DbExtractor\Tests\Traits\CreateApplicationTrait;
 use Keboola\DbExtractor\Tests\Traits\SshKeysTrait;
 use PHPUnit\Framework\TestCase;
