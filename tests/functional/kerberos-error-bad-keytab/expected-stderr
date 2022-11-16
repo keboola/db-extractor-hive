@@ -1,1 +1,1 @@
-Connection failed: 'Kerberos authentication failed. Command "kinit" was not successful: ; kinit: Unsupported key table format%A
+Kerberos authentication failed. Command "kinit" was not successful: ; kinit: Unsupported key table format%A

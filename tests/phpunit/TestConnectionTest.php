@@ -4,16 +4,24 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Tests;
 
-use Keboola\DbExtractor\Exception\UserException;
+use Keboola\DbExtractor\Adapter\Exception\UserException;
 use Keboola\DbExtractor\Tests\Traits\CreateApplicationTrait;
 use Keboola\DbExtractor\Tests\Traits\SshKeysTrait;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use Symfony\Component\Process\Process;
 
 class TestConnectionTest extends TestCase
 {
     use CreateApplicationTrait;
     use SshKeysTrait;
+
+    protected function setUp(): void
+    {
+        $this->dataDir = '/data';
+        putenv('KBC_DATADIR='. $this->dataDir);
+        parent::setUp();
+    }
 
     protected function tearDown(): void
     {
@@ -28,7 +36,12 @@ class TestConnectionTest extends TestCase
     public function testSuccessfullyConnection(array $config): void
     {
         $config['action'] = 'testConnection';
-        $result = $this->createApplication($config)->run();
+
+        ob_start();
+        $this->createApplication($config, new NullLogger())->execute();
+        $result = json_decode((string) ob_get_contents(), true);
+        ob_end_clean();
+
         $this->assertEquals(['status' => 'success'], $result);
     }
 
@@ -41,7 +54,7 @@ class TestConnectionTest extends TestCase
         $this->expectExceptionMessage($expectedExceptionMessage);
 
         $config['action'] = 'testConnection';
-        $this->createApplication($config)->run();
+        $this->createApplication($config, new NullLogger())->execute();
     }
 
     public function validConfigProvider(): array

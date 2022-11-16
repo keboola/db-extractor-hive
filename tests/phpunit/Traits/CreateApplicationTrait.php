@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Tests\Traits;
 
-use Keboola\Component\Logger;
+use Keboola\Component\JsonHelper;
 use Keboola\DbExtractor\HiveApplication;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\TestHandler;
+use Psr\Log\LoggerInterface;
 
 trait CreateApplicationTrait
 {
@@ -15,18 +16,13 @@ trait CreateApplicationTrait
 
     public function createApplication(
         array $config,
-        ?string $dataFolder = null,
-        array $state = [],
-        ?HandlerInterface $logHandler = null
+        LoggerInterface $logger,
+        ?string $dataFolder = null
     ): HiveApplication {
         $dataFolder = $dataFolder ?? $this->dataDir ?? '/data';
-        $handler = new TestHandler();
-        $logger = new Logger();
 
-        if ($logHandler) {
-            $logger->pushHandler($handler);
-        }
+        JsonHelper::writeFile($dataFolder . '/config.json', $config);
 
-        return new HiveApplication($config, $logger, $state, $dataFolder);
+        return new HiveApplication($logger);
     }
 }
