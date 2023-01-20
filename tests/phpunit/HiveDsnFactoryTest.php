@@ -77,7 +77,7 @@ class HiveDsnFactoryTest extends TestCase
             ],
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;' .
             'Schema=my-db;UseNativeQuery=1;DefaultStringColumnLength=65536;BinaryColumnLength=65536;'.
-            'UseUnicodeSqlCharacterTypes=1;AuthMech=3;',
+            'UseUnicodeSqlCharacterTypes=1;KeepAlive=1;AuthMech=3;',
         ];
 
         yield 'kerberos-auth' => [
@@ -95,7 +95,7 @@ class HiveDsnFactoryTest extends TestCase
                 ],
                 'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
                 'UseNativeQuery=1;DefaultStringColumnLength=65536;BinaryColumnLength=65536;'.
-                'UseUnicodeSqlCharacterTypes=1;AuthMech=1;'.
+                'UseUnicodeSqlCharacterTypes=1;KeepAlive=1;AuthMech=1;'.
                 'KrbHostFQDN=localhost;KrbServiceName=service;KrbRealm=EXAMPLE.COM;',
         ];
     }
