@@ -30,6 +30,7 @@ class HiveDsnFactory
         $parameters['DefaultStringColumnLength'] = '65536';
         $parameters['BinaryColumnLength'] = '65536';
         $parameters['UseUnicodeSqlCharacterTypes'] = '1';
+        $parameters['KeepAlive'] = '1';
 
         // Connect through
         if ($dbConfig->isConnectThroughEnabled()) {
