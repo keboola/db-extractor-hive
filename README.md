@@ -1,7 +1,5 @@
 # Apache Hive DB extractor
 
-[![Build Status](https://travis-ci.com/keboola/db-extractor-hive.svg?branch=master)](https://travis-ci.com/keboola/db-extractor-hive)
-
 [KBC](https://www.keboola.com/product/) Docker app for extracting data from [Apache Hive](https://hive.apache.org/) database.
 
 See [Extractors for SQL Databases](https://help.keboola.com/components/extractors/database/sqldb/) for more documentation.
