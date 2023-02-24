@@ -137,8 +137,12 @@ class TestConnectionTest extends TestCase
                 ],
             ],
             'invalid-database' => [
-                'Error connecting to DB: [Cloudera][Hardy] (101) ' .
-                'Incorrect database notfound specified. Please check your configuration.' ,
+                'Error connecting to DB: [Cloudera][Hardy] (68) Error returned trying to set notfound as the initial ' .
+                'database: [Cloudera][Hardy] (80) Syntax or semantic analysis error thrown in server while executing ' .
+                'query. Error message from server: Error while compiling statement: FAILED: SemanticException [Error ' .
+                '10072]: Database does not exist: notfound; Also tried quoting the database name `notfound` but the ' .
+                'query failed with the following error: [Cloudera][Hardy] (80) Syntax or semantic analysis error ' .
+                'thrown in server while executing query. S1000',
                 [
                     'parameters' => [
                         'db' => [
