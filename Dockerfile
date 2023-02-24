@@ -2,7 +2,7 @@ FROM quay.io/keboola/aws-cli
 ARG AWS_SECRET_ACCESS_KEY
 ARG AWS_ACCESS_KEY_ID
 
-RUN /usr/bin/aws s3 cp s3://keboola-drivers/hive-odbc/ClouderaHiveODBC-2.6.9.1009-1.x86_64.rpm /tmp/hive-odbc.rpm
+RUN /usr/bin/aws s3 cp s3://keboola-drivers/hive-odbc/ClouderaHiveODBC-2.6.13.1013-1.x86_64.rpm /tmp/hive-odbc.rpm
 
 FROM php:7.4-cli
 
@@ -66,12 +66,6 @@ RUN set -ex; \
     docker-php-ext-install odbc; \
     docker-php-source delete
 
-# MapR Hive Driver
-#RUN curl http://package.mapr.com/tools/MapR-ODBC/MapR_Hive/MapRHive_odbc_2.6.1.1001/MapRHiveODBC-2.6.1.1001-1.x86_64.rpm -o /tmp/hive-odbc.rpm \
-#    && alien -i /tmp/hive-odbc.rpm \
-#    && rm /tmp/hive-odbc.rpm \
-#    && cp /opt/mapr/hiveodbc/Setup/odbc.ini /etc/odbc.ini \
-#    && cp /opt/mapr/hiveodbc/Setup/odbcinst.ini /etc/odbcinst.ini
 # Clouder Hive Driver
 COPY --from=0 /tmp/hive-odbc.rpm /tmp/hive-odbc.rpm
 RUN alien -i /tmp/hive-odbc.rpm \
