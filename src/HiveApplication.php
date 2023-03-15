@@ -9,6 +9,7 @@ use Keboola\DbExtractor\Configuration\HiveConfigRowDefinition;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
 use Keboola\DbExtractor\Exception\ApplicationException;
 use Keboola\DbExtractorConfig\Config;
+use Symfony\Component\Filesystem\Filesystem;
 
 class HiveApplication extends Application
 {
@@ -28,5 +29,22 @@ class HiveApplication extends Application
         } else {
             throw new ApplicationException('Old config format is not supported. Please, use row configuration.');
         }
+    }
+
+    protected function run(): void
+    {
+        parent::run();
+
+        if ($this->getConfig()->getParameters()['db']['verboseLogging']) {
+            $this->writeVerboseLogsToArtifacts();
+        }
+    }
+
+    protected function writeVerboseLogsToArtifacts(): void
+    {
+        $fs = new Filesystem();
+        $artifactsPath = sprintf('%s/artifacts/out/current/', $this->getDataDir());
+        $fs->mkdir($artifactsPath);
+        $fs->mirror('/var/log/cloudera-odbc/', $artifactsPath);
     }
 }

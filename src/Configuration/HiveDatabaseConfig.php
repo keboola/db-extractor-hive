@@ -21,6 +21,10 @@ class HiveDatabaseConfig extends DatabaseConfig
 
     private bool $connectThrough;
 
+    private int $batchSize;
+
+    private bool $verboseLogging;
+
     public static function fromArray(array $data): self
     {
         $sslEnabled = !empty($data['ssl']) && !empty($data['ssl']['enabled']);
@@ -39,6 +43,8 @@ class HiveDatabaseConfig extends DatabaseConfig
             $data['kerberos']['config'] ?? null,
             $data['kerberos']['#keytab'] ?? null,
             $data['connectThrough'] ?? false,
+            $data['batchSize'] ?? 10000,
+            $data['verboseLogging'] ?? false,
         );
     }
 
@@ -55,7 +61,9 @@ class HiveDatabaseConfig extends DatabaseConfig
         ?string $krb5ServicePrincipal,
         ?string $krb5Config,
         ?string $krb5Keytab,
-        bool $connectThrough
+        bool $connectThrough,
+        int $batchSize,
+        bool $verboseLogging
     ) {
         parent::__construct($host, $port, $username, $password, $database, $schema, $sslConnectionConfig, []);
         $this->authType = $authType;
@@ -64,6 +72,8 @@ class HiveDatabaseConfig extends DatabaseConfig
         $this->krb5Config = $krb5Config;
         $this->krb5Keytab = $krb5Keytab;
         $this->connectThrough = $connectThrough;
+        $this->batchSize = $batchSize;
+        $this->verboseLogging = $verboseLogging;
     }
 
     public function getSslConnectionConfig(): HiveSslConnectionConfig
@@ -155,5 +165,15 @@ class HiveDatabaseConfig extends DatabaseConfig
     public function isConnectThroughEnabled(): bool
     {
         return $this->connectThrough;
+    }
+
+    public function getBatchSize(): string
+    {
+        return (string) $this->batchSize;
+    }
+
+    public function isVerboseLoggingEnabled(): bool
+    {
+        return $this->verboseLogging;
     }
 }

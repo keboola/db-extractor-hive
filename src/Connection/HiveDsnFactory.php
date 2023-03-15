@@ -9,6 +9,7 @@ use LogicException;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 class HiveDsnFactory
 {
@@ -20,7 +21,6 @@ class HiveDsnFactory
         HiveDatabaseConfig $dbConfig,
         HiveCertManager $certManager
     ): string {
-
         $parameters = [];
         $parameters['Driver'] = self::ODBC_DRIVER_NAME;
         $parameters['Host'] = $dbConfig->getHost();
@@ -31,6 +31,13 @@ class HiveDsnFactory
         $parameters['BinaryColumnLength'] = '65536';
         $parameters['UseUnicodeSqlCharacterTypes'] = '1';
         $parameters['KeepAlive'] = '1';
+        $parameters['RowsFetchedPerBlock'] = $dbConfig->getBatchSize();
+
+        if ($dbConfig->isVerboseLoggingEnabled()) {
+            (new Filesystem())->mkdir('/var/log/cloudera-odbc');
+            $parameters['LogLevel'] = '6';
+            $parameters['LogPath'] = '/var/log/cloudera-odbc/';
+        }
 
         // Connect through
         if ($dbConfig->isConnectThroughEnabled()) {
