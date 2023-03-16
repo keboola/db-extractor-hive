@@ -30,6 +30,8 @@ class HiveDbNode extends DbNode
         $this->addSshNode($builder);
         $this->addSslNode($builder);
         $this->addConnectThrough($builder);
+        $this->addBatchSize($builder);
+        $this->addVerboseLogging($builder);
 
         $this->validate()->always(function (array $v): array {
             // User and password keys are required for the authType = password
@@ -72,6 +74,14 @@ class HiveDbNode extends DbNode
                     $v['kerberos']['#keytab'],
                     'db.kerberos.#keytab'
                 );
+            }
+
+            if (filter_var(
+                $v['batchSize'],
+                FILTER_VALIDATE_INT,
+                ['options' => ['min_range' => 0, 'max_range' => 2147483647]]
+            ) === false) {
+                throw new InvalidConfigurationException('Parameter "batchSize" has to be positive 32bit int');
             }
 
             return $v;
@@ -119,14 +129,24 @@ class HiveDbNode extends DbNode
         $builder
             ->arrayNode('kerberos')
             ->children()
-                ->scalarNode('kinitPrincipal')->isRequired()->end()
-                ->scalarNode('servicePrincipal')->isRequired()->end()
-                ->scalarNode('config')->isRequired()->end()
-                ->scalarNode('#keytab')->isRequired()->end();
+            ->scalarNode('kinitPrincipal')->isRequired()->end()
+            ->scalarNode('servicePrincipal')->isRequired()->end()
+            ->scalarNode('config')->isRequired()->end()
+            ->scalarNode('#keytab')->isRequired()->end();
     }
 
     protected function addConnectThrough(NodeBuilder $builder): void
     {
         $builder->booleanNode('connectThrough')->defaultFalse();
+    }
+
+    protected function addBatchSize(NodeBuilder $builder): void
+    {
+        $builder->integerNode('batchSize')->defaultValue(10000);
+    }
+
+    protected function addVerboseLogging(NodeBuilder $builder): void
+    {
+        $builder->booleanNode('verboseLogging')->defaultFalse();
     }
 }

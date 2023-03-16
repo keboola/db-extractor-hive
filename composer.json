@@ -15,7 +15,9 @@
         "keboola/db-extractor-ssh-tunnel": "^1.1",
         "keboola/db-extractor-table-format": "^3.1.6",
         "keboola/php-component": "^9.3",
-        "keboola/php-temp": "^2.0"
+        "keboola/php-temp": "^2.0",
+        "symfony/filesystem": "^5.4",
+        "symfony/finder": "^5.4"
     },
     "require-dev": {
         "php-parallel-lint/php-parallel-lint": "^1.2",
