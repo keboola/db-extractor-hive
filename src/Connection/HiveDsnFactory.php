@@ -33,6 +33,14 @@ class HiveDsnFactory
         $parameters['KeepAlive'] = '1';
         $parameters['RowsFetchedPerBlock'] = $dbConfig->getBatchSize();
 
+        if ($dbConfig->getThriftTransport() !== null) {
+            $parameters['ThriftTransport'] = $dbConfig->getThriftTransport();
+        }
+
+        if ($dbConfig->getHttpPath() !== null) {
+            $parameters['HttpPath'] = $dbConfig->getHttpPath();
+        }
+
         if ($dbConfig->isVerboseLoggingEnabled()) {
             (new Filesystem())->mkdir('/var/log/cloudera-odbc');
             $parameters['LogLevel'] = '6';

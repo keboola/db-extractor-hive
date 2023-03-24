@@ -21,6 +21,10 @@ class HiveDatabaseConfig extends DatabaseConfig
 
     private bool $connectThrough;
 
+    private ?int $thriftTransport;
+
+    private ?string $httpPath;
+
     private int $batchSize;
 
     private bool $verboseLogging;
@@ -43,6 +47,8 @@ class HiveDatabaseConfig extends DatabaseConfig
             $data['kerberos']['config'] ?? null,
             $data['kerberos']['#keytab'] ?? null,
             $data['connectThrough'] ?? false,
+            $data['thriftTransport'] ?? null,
+            $data['httpPath'] ?? null,
             $data['batchSize'] ?? 10000,
             $data['verboseLogging'] ?? false,
         );
@@ -62,6 +68,8 @@ class HiveDatabaseConfig extends DatabaseConfig
         ?string $krb5Config,
         ?string $krb5Keytab,
         bool $connectThrough,
+        ?int $thriftTransport,
+        ?string $httpPath,
         int $batchSize,
         bool $verboseLogging
     ) {
@@ -72,6 +80,8 @@ class HiveDatabaseConfig extends DatabaseConfig
         $this->krb5Config = $krb5Config;
         $this->krb5Keytab = $krb5Keytab;
         $this->connectThrough = $connectThrough;
+        $this->thriftTransport = $thriftTransport;
+        $this->httpPath = $httpPath;
         $this->batchSize = $batchSize;
         $this->verboseLogging = $verboseLogging;
     }
@@ -165,6 +175,16 @@ class HiveDatabaseConfig extends DatabaseConfig
     public function isConnectThroughEnabled(): bool
     {
         return $this->connectThrough;
+    }
+
+    public function getThriftTransport(): ?int
+    {
+        return $this->thriftTransport;
+    }
+
+    public function getHttpPath(): ?string
+    {
+        return $this->httpPath;
     }
 
     public function getBatchSize(): string

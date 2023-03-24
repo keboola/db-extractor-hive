@@ -129,6 +129,23 @@ class HiveDsnFactoryTest extends TestCase
             'UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;LogLevel=6;'.
             'LogPath=/var/log/cloudera-odbc/;AuthMech=3;',
         ];
+
+        yield 'thrift transport and http path' => [
+            [
+                'host' => 'test-host.com',
+                'port' => '123',
+                'database' => 'my-db',
+                'authType' => 'password',
+                'user' => 'user',
+                '#password' => 'pass',
+                'thriftTransport' => 2,
+                'httpPath' => 'gateway/XXXXX/hive',
+            ],
+            'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
+            'UseNativeQuery=1;DefaultStringColumnLength=65536;BinaryColumnLength=65536;'.
+            'UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;ThriftTransport=2;'.
+            'HttpPath=gateway/XXXXX/hive;AuthMech=3;',
+        ];
     }
 
     public function getValidPrincipals(): iterable
