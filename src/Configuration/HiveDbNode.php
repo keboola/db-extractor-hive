@@ -30,6 +30,8 @@ class HiveDbNode extends DbNode
         $this->addSshNode($builder);
         $this->addSslNode($builder);
         $this->addConnectThrough($builder);
+        $this->addThriftTransport($builder);
+        $this->addHttpPath($builder);
         $this->addBatchSize($builder);
         $this->addVerboseLogging($builder);
 
@@ -138,6 +140,16 @@ class HiveDbNode extends DbNode
     protected function addConnectThrough(NodeBuilder $builder): void
     {
         $builder->booleanNode('connectThrough')->defaultFalse();
+    }
+
+    protected function addThriftTransport(NodeBuilder $builder): void
+    {
+        $builder->integerNode('thriftTransport')->defaultNull();
+    }
+
+    protected function addHttpPath(NodeBuilder $builder): void
+    {
+        $builder->scalarNode('httpPath')->defaultNull();
     }
 
     protected function addBatchSize(NodeBuilder $builder): void
