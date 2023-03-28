@@ -37,6 +37,17 @@ The configuration `config.json` contains following properties in `parameters` ke
         - To use this feature:
           - The SAML login to the Keboola Connection must be used.
           - SAML token must contain the required data and the stack must be set correctly.
+    - `thriftTransport` - int (optional, default Binary (`0`) if you are connecting to Hive Server 1. SASL (`1`)
+      if you are connecting to Hive Server 2.)
+      - Binary (`0`) 
+      - SASL (`1`)
+      - HTTP (`2`)
+    - `httpPath` - string (optional, default `/hive2` if using Windows Azure HDInsight Service (6). `/` if using non-Windows Azure HDInsight Service with Thrift Transport set to HTTP (2).)
+    - `batchSize` - positive 32-bit int (optional, default `10000`)
+      - it sets `RowsFetchedPerBlock` parameter
+    - `verboseLogging` - bool (optional, default `false`)
+      - when enabled it sets `LogLevel` to `6` (logs all driver activity)
+      - `artifacts` feature in KBC has to be enabled as the logs are uploaded there
     - `ssl` - object (optional):
         - `enabled` bool (optional): Default `false`.
         - `ca` or `#ca` string (optional): 
