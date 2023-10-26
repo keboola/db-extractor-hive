@@ -9,6 +9,7 @@ services:
     image: keboola-component-db-extractor-hive
     command: composer ci
     environment:
+      KBC_COMPONENT_RUN_MODE: "run"
       # DB credentials
       HIVE_DB_LDAP_HOST: hive2-ldap
       HIVE_DB_LDAP_PORT: 10000
