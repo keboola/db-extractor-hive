@@ -24,6 +24,7 @@ class DatadirTest extends DatadirTestCase
     protected function setUp(): void
     {
         parent::setUp();
+        putenv('KBC_COMPONENT_RUN_MODE=run');
         $this->cleanupKerberos();
 
         // Clear KBC_REALUSER env
