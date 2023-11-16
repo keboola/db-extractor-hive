@@ -1,0 +1,21 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property Keboola\\\\DbExtractor\\\\Connection\\\\HiveOdbcConnection\\:\\:\\$certManager is never read, only written\\.$#"
+			count: 1
+			path: src/Connection/HiveOdbcConnection.php
+
+		-
+			message: "#^Negated boolean expression is always true\\.$#"
+			count: 1
+			path: src/Connection/KerberosHelper.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: src/Connection/KerberosHelper.php
+
+		-
+			message: "#^Method Keboola\\\\DbExtractor\\\\Extractor\\\\Hive\\:\\:getMaxOfIncrementalFetchingColumn\\(\\) should return string\\|null but returns mixed\\.$#"
+			count: 1
+			path: src/Extractor/Hive.php

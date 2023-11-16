@@ -71,7 +71,7 @@ class HiveDatabaseConfig extends DatabaseConfig
         ?int $thriftTransport,
         ?string $httpPath,
         int $batchSize,
-        bool $verboseLogging
+        bool $verboseLogging,
     ) {
         parent::__construct($host, $port, $username, $password, $database, $schema, $sslConnectionConfig, []);
         $this->authType = $authType;

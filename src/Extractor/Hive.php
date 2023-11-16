@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Keboola\DbExtractor\Extractor;
 
 use InvalidArgumentException;
+use Keboola\Datatype\Definition\GenericStorage;
 use Keboola\DbExtractor\Adapter\ExportAdapter;
 use Keboola\DbExtractor\Adapter\Metadata\MetadataProvider;
 use Keboola\DbExtractor\Adapter\ODBC\OdbcConnection;
@@ -13,9 +14,8 @@ use Keboola\DbExtractor\Adapter\ODBC\OdbcNativeMetadataProvider;
 use Keboola\DbExtractor\Adapter\Query\DefaultQueryFactory;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Connection\HiveOdbcConnectionFactory;
-use Keboola\DbExtractor\TableResultFormat\Exception\ColumnNotFoundException;
-use Keboola\Datatype\Definition\GenericStorage;
 use Keboola\DbExtractor\Exception\UserException;
+use Keboola\DbExtractor\TableResultFormat\Exception\ColumnNotFoundException;
 use Keboola\DbExtractorConfig\Configuration\ValueObject\DatabaseConfig;
 use Keboola\DbExtractorConfig\Configuration\ValueObject\ExportConfig;
 
@@ -61,7 +61,7 @@ class Hive extends BaseExtractor
             $queryFactory,
             $resultWriter,
             $this->dataDir,
-            $this->state
+            $this->state,
         );
     }
 
@@ -78,7 +78,7 @@ class Hive extends BaseExtractor
         } catch (ColumnNotFoundException $e) {
             throw new UserException(sprintf(
                 'Incremental fetching column "%s" not found.',
-                $exportConfig->getIncrementalFetchingColumn()
+                $exportConfig->getIncrementalFetchingColumn(),
             ), 0, $e);
         }
 
@@ -100,7 +100,7 @@ class Hive extends BaseExtractor
             $this->connection->quoteIdentifier($exportConfig->getIncrementalFetchingColumn()),
             $this->connection->quoteIdentifier($exportConfig->getIncrementalFetchingColumn()),
             $this->connection->quoteIdentifier($exportConfig->getTable()->getSchema()),
-            $this->connection->quoteIdentifier($exportConfig->getTable()->getName())
+            $this->connection->quoteIdentifier($exportConfig->getTable()->getName()),
         );
         $result = $this->connection->query($sql, $exportConfig->getMaxRetries())->fetchAll();
         return $result ? $result[0][$exportConfig->getIncrementalFetchingColumn()] : null;

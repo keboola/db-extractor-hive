@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\FunctionalTests;
 
-use Keboola\DatadirTests\Exception\DatadirTestsException;
-use RuntimeException;
-use Keboola\DatadirTests\EnvVarProcessor;
-use Keboola\DbExtractor\Tests\Traits\CleanupKerberosTrait;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Process\Process;
-use Throwable;
-use Symfony\Component\Finder\Finder;
 use Keboola\DatadirTests\DatadirTestCase;
 use Keboola\DatadirTests\DatadirTestsProviderInterface;
+use Keboola\DatadirTests\EnvVarProcessor;
+use Keboola\DatadirTests\Exception\DatadirTestsException;
+use Keboola\DbExtractor\Tests\Traits\CleanupKerberosTrait;
+use RuntimeException;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Process;
+use Throwable;
 
 class DatadirTest extends DatadirTestCase
 {
@@ -59,7 +59,7 @@ class DatadirTest extends DatadirTestCase
     }
 
 
-    protected function runScript(string $datadirPath): Process
+    protected function runScript(string $datadirPath, ?string $runId = null): Process
     {
         $fs = new Filesystem();
 
@@ -67,7 +67,7 @@ class DatadirTest extends DatadirTestCase
         if (!$fs->exists($script)) {
             throw new DatadirTestsException(sprintf(
                 'Cannot open script file "%s"',
-                $script
+                $script,
             ));
         }
 

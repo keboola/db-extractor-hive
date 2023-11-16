@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Connection;
 
-use SplFileInfo;
-use LogicException;
-use Keboola\Temp\Temp;
-use Keboola\DbExtractor\Exception\UserException;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Configuration\HiveSslConnectionConfig;
 use Keboola\DbExtractor\Configuration\HiveSslNode;
+use Keboola\DbExtractor\Exception\UserException;
+use Keboola\Temp\Temp;
+use LogicException;
+use SplFileInfo;
 use Symfony\Component\Process\Process;
 
 class HiveCertManager
@@ -111,7 +111,7 @@ class HiveCertManager
             throw new UserException(sprintf(
                 'Cannot convert CA certificate bundle from JKS to PEM format: %s %s',
                 $convertProcess->getOutput(),
-                $convertProcess->getErrorOutput()
+                $convertProcess->getErrorOutput(),
             ));
         }
 

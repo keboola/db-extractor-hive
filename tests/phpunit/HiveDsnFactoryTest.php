@@ -27,7 +27,7 @@ class HiveDsnFactoryTest extends TestCase
         $this->expectException(UserException::class);
         $this->expectExceptionMessage(
             'Unexpected format of the Kerberos principal. '.
-            'Expected "service/host@EXAMPLE.COM". Given "host@EXAMPLE.COM".'
+            'Expected "service/host@EXAMPLE.COM". Given "host@EXAMPLE.COM".',
         );
         HiveDsnFactory::parsePrincipal('host@EXAMPLE.COM');
     }
@@ -37,7 +37,7 @@ class HiveDsnFactoryTest extends TestCase
         $this->expectException(UserException::class);
         $this->expectExceptionMessage(
             'Unexpected format of the Kerberos principal. ' .
-            'Expected "service/host@EXAMPLE.COM". Given "service///host@EXAMPLE.COM".'
+            'Expected "service/host@EXAMPLE.COM". Given "service///host@EXAMPLE.COM".',
         );
         HiveDsnFactory::parsePrincipal('service///host@EXAMPLE.COM');
     }
@@ -47,7 +47,7 @@ class HiveDsnFactoryTest extends TestCase
         $this->expectException(UserException::class);
         $this->expectExceptionMessage(
             'Unexpected format of the Kerberos principal. ' .
-            'Expected "service/host@EXAMPLE.COM". Given "".'
+            'Expected "service/host@EXAMPLE.COM". Given "".',
         );
         HiveDsnFactory::parsePrincipal('');
     }

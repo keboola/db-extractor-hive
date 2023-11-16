@@ -4,7 +4,7 @@ ARG AWS_ACCESS_KEY_ID
 
 RUN /usr/bin/aws s3 cp s3://keboola-drivers/hive-odbc/ClouderaHiveODBC-2.6.13.1013-1.x86_64.rpm /tmp/hive-odbc.rpm
 
-FROM php:7.4-cli
+FROM php:8.2-cli-buster
 
 ARG COMPOSER_FLAGS="--prefer-dist --no-interaction"
 ARG DEBIAN_FRONTEND=noninteractive
@@ -87,6 +87,7 @@ RUN mkdir "$BUNDLED_FILES_PATH" && \
 ## Composer - deps always cached unless changed
 # First copy only composer files
 COPY composer.* /code/
+COPY patches /code/patches
 
 # Download dependencies, but don't run scripts or init autoloaders as the app is missing
 RUN composer install $COMPOSER_FLAGS --no-scripts --no-autoloader

@@ -41,7 +41,7 @@ class HiveSslNode extends SslNode
                 if (!preg_match('~^[a-zA-Z0-9.\-_+]+$~', $certFileName)) {
                     throw new InvalidConfigurationException(sprintf(
                         'The "ca" parameter is invalid. The filename "%s" contains illegal characters.',
-                        $certFileName
+                        $certFileName,
                     ));
                 }
 
@@ -51,7 +51,7 @@ class HiveSslNode extends SslNode
                 if (!$certFileContent) {
                     throw new InvalidConfigurationException(sprintf(
                         'Certificate "%s" not found.',
-                        $certFilePath
+                        $certFilePath,
                     ));
                 }
 
@@ -61,7 +61,7 @@ class HiveSslNode extends SslNode
                 // Base64 decode (JKS is binary file)
                 $v['ca'] = ConfigUtils::base64Decode(
                     $v['ca'],
-                    'db.ssl.ca'
+                    'db.ssl.ca',
                 );
             }
 

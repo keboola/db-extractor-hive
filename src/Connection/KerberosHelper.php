@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Connection;
 
-use Psr\Log\LoggerInterface;
-use RuntimeException;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Exception\UserException;
+use Psr\Log\LoggerInterface;
+use RuntimeException;
 use Symfony\Component\Process\Process;
 
 class KerberosHelper
@@ -45,7 +45,7 @@ class KerberosHelper
             throw new RuntimeException(sprintf(
                 '. Command "kdestroy" failed %s; %s',
                 $process->getOutput(),
-                $process->getErrorOutput()
+                $process->getErrorOutput(),
             ));
         }
     }
@@ -54,7 +54,7 @@ class KerberosHelper
     {
         $this->logger->info(sprintf(
             'Starting Kerberos "kinit" authentication as "%s".',
-            $this->dbConfig->getKrb5KinitPrincipal()
+            $this->dbConfig->getKrb5KinitPrincipal(),
         ));
 
         $process = $this->runProcess([
@@ -68,7 +68,7 @@ class KerberosHelper
             throw new UserException(sprintf(
                 'Kerberos authentication failed. Command "kinit" was not successful: %s; %s',
                 $process->getOutput(),
-                $process->getErrorOutput()
+                $process->getErrorOutput(),
             ));
         }
     }

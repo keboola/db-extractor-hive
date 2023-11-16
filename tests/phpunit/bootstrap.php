@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Keboola\DbExtractor\Connection\HiveOdbcConnectionFactory;
 use Keboola\CommonExceptions\UserExceptionInterface;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Configuration\HiveSslNode;
+use Keboola\DbExtractor\Connection\HiveOdbcConnectionFactory;
 use Psr\Log\NullLogger;
 
 require __DIR__ . '/../../vendor/autoload.php';
@@ -33,10 +33,10 @@ function waitForHive(array $dbConfigArray): void
                     sprintf(
                         'boostrap.php: Cannot connect to Hive DB "%s": %s',
                         $dbConfigArray['host'],
-                        $e->getMessage()
+                        $e->getMessage(),
                     ),
                     0,
-                    $e
+                    $e,
                 );
             }
 

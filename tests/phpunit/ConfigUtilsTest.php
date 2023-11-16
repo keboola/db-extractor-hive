@@ -15,7 +15,7 @@ class ConfigUtilsTest extends TestCase
     {
         Assert::assertSame(
             'test',
-            ConfigUtils::base64Decode(base64_encode('test'), 'foo.bar')
+            ConfigUtils::base64Decode(base64_encode('test'), 'foo.bar'),
         );
     }
 
