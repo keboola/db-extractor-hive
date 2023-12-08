@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "851a50ee73e18f62664eeccaa8612008",
+    "content-hash": "1ba78f066f77d54b8f3565f76949ecb4",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -172,16 +172,16 @@
         },
         {
             "name": "keboola/csv",
-            "version": "3.2.0",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/php-csv.git",
-                "reference": "ea1e00e255de657ad51b5ad3cef79e3ef9f2df9d"
+                "reference": "4d7785e982b31f3768ac71d559aeebdc1722b03c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/php-csv/zipball/ea1e00e255de657ad51b5ad3cef79e3ef9f2df9d",
-                "reference": "ea1e00e255de657ad51b5ad3cef79e3ef9f2df9d",
+                "url": "https://api.github.com/repos/keboola/php-csv/zipball/4d7785e982b31f3768ac71d559aeebdc1722b03c",
+                "reference": "4d7785e982b31f3768ac71d559aeebdc1722b03c",
                 "shasum": ""
             },
             "require": {
@@ -193,7 +193,7 @@
                 "php-parallel-lint/php-parallel-lint": "^1.3",
                 "phpstan/phpdoc-parser": "1.5.*",
                 "phpstan/phpstan": "^1.4",
-                "phpunit/phpunit": ">=7.5"
+                "phpunit/phpunit": ">=7.5 <=9.6"
             },
             "type": "library",
             "autoload": {
@@ -219,9 +219,9 @@
             ],
             "support": {
                 "issues": "https://github.com/keboola/php-csv/issues",
-                "source": "https://github.com/keboola/php-csv/tree/3.2.0"
+                "source": "https://github.com/keboola/php-csv/tree/3.3.0"
             },
-            "time": "2022-11-02T15:02:35+00:00"
+            "time": "2023-12-08T09:16:32+00:00"
         },
         {
             "name": "keboola/db-extractor-adapter",
@@ -4051,12 +4051,12 @@
             "version": "3.7.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+                "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
                 "reference": "ed8e00df0a83aa96acf703f8c2979ff33341f879"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/ed8e00df0a83aa96acf703f8c2979ff33341f879",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/ed8e00df0a83aa96acf703f8c2979ff33341f879",
                 "reference": "ed8e00df0a83aa96acf703f8c2979ff33341f879",
                 "shasum": ""
             },
@@ -4101,6 +4101,20 @@
                 "source": "https://github.com/squizlabs/PHP_CodeSniffer",
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
+            "funding": [
+                {
+                    "url": "https://github.com/PHPCSStandards",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/jrfnl",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/php_codesniffer",
+                    "type": "open_collective"
+                }
+            ],
             "time": "2023-02-22T23:07:41+00:00"
         },
         {
