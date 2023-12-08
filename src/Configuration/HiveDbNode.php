@@ -41,14 +41,14 @@ class HiveDbNode extends DbNode
                 if (empty($v['user']) || empty($v['#password'])) {
                     throw new InvalidConfigurationException(sprintf(
                         'Keys "db.user" and "db.#password" must be configured for the "authType" = "%s".',
-                        self::AUTH_TYPE_PASSWORD
+                        self::AUTH_TYPE_PASSWORD,
                     ));
                 }
 
                 if (!empty($v['kerberos'])) {
                     throw new InvalidConfigurationException(sprintf(
                         'Key "db.kerberos" is not expected for "authType" = "%s".',
-                        self::AUTH_TYPE_PASSWORD
+                        self::AUTH_TYPE_PASSWORD,
                     ));
                 }
             }
@@ -58,14 +58,14 @@ class HiveDbNode extends DbNode
                 if (empty($v['kerberos'])) {
                     throw new InvalidConfigurationException(sprintf(
                         'Key "db.kerberos" must be configured for the "authType" = "%s".',
-                        self::AUTH_TYPE_KERBEROS
+                        self::AUTH_TYPE_KERBEROS,
                     ));
                 }
 
                 if (!empty($v['user']) || !empty($v['#password'])) {
                     throw new InvalidConfigurationException(sprintf(
                         'Keys "db.user" and "db.#password" are not expected for "authType" = "%s".',
-                        self::AUTH_TYPE_KERBEROS
+                        self::AUTH_TYPE_KERBEROS,
                     ));
                 }
             }
@@ -74,14 +74,14 @@ class HiveDbNode extends DbNode
             if (isset($v['kerberos']['#keytab'])) {
                 $v['kerberos']['#keytab'] = ConfigUtils::base64Decode(
                     $v['kerberos']['#keytab'],
-                    'db.kerberos.#keytab'
+                    'db.kerberos.#keytab',
                 );
             }
 
             if (filter_var(
                 $v['batchSize'],
                 FILTER_VALIDATE_INT,
-                ['options' => ['min_range' => 0, 'max_range' => 2147483647]]
+                ['options' => ['min_range' => 0, 'max_range' => 2147483647]],
             ) === false) {
                 throw new InvalidConfigurationException('Parameter "batchSize" has to be positive 32bit int');
             }

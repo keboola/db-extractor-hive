@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Connection;
 
-use Keboola\DbExtractor\Exception\UserException;
-use LogicException;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
+use Keboola\DbExtractor\Exception\UserException;
+use LogicException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -19,7 +19,7 @@ class HiveDsnFactory
     public function create(
         LoggerInterface $logger,
         HiveDatabaseConfig $dbConfig,
-        HiveCertManager $certManager
+        HiveCertManager $certManager,
     ): string {
         $parameters = [];
         $parameters['Driver'] = self::ODBC_DRIVER_NAME;
@@ -55,7 +55,7 @@ class HiveDsnFactory
                 $parameters['DelegationUID'] = $realUser;
             } else {
                 throw new UserException(
-                    'Connect through is enabled, but "KBC_REALUSER" environment variable is not set.'
+                    'Connect through is enabled, but "KBC_REALUSER" environment variable is not set.',
                 );
             }
         }
@@ -97,7 +97,7 @@ class HiveDsnFactory
         if (!preg_match('~^([^/@]+)/([^/@]+)@(.+)$~', $principal, $m)) {
             throw new UserException(sprintf(
                 'Unexpected format of the Kerberos principal. Expected "service/host@EXAMPLE.COM". Given "%s".',
-                $principal
+                $principal,
             ));
         };
 

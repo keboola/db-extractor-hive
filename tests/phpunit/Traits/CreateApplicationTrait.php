@@ -6,8 +6,6 @@ namespace Keboola\DbExtractor\Tests\Traits;
 
 use Keboola\Component\JsonHelper;
 use Keboola\DbExtractor\HiveApplication;
-use Monolog\Handler\HandlerInterface;
-use Monolog\Handler\TestHandler;
 use Psr\Log\LoggerInterface;
 
 trait CreateApplicationTrait
@@ -17,7 +15,7 @@ trait CreateApplicationTrait
     public function createApplication(
         array $config,
         LoggerInterface $logger,
-        ?string $dataFolder = null
+        ?string $dataFolder = null,
     ): HiveApplication {
         $dataFolder = $dataFolder ?? $this->dataDir ?? '/data';
 

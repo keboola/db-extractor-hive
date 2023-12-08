@@ -13,7 +13,7 @@ class HiveOdbcConnectionFactory
     public function create(
         LoggerInterface $logger,
         HiveDatabaseConfig $dbConfig,
-        bool $isSyncAction = false
+        bool $isSyncAction = false,
     ): HiveOdbcConnection {
         $certManager = new HiveCertManager($dbConfig);
         $connectRetries = $isSyncAction ? 1 : OdbcConnection::CONNECT_DEFAULT_MAX_RETRIES;
@@ -21,7 +21,7 @@ class HiveOdbcConnectionFactory
             $logger,
             $dbConfig,
             $certManager,
-            $connectRetries
+            $connectRetries,
         );
     }
 }

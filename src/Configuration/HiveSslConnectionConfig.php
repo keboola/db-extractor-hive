@@ -20,7 +20,7 @@ class HiveSslConnectionConfig extends SSLConnectionConfig
             $data['caFileType'] ?? null,
             null,
             $data['verifyServerCert'] ?? true,
-            $data['ignoreCertificateCn'] ?? false
+            $data['ignoreCertificateCn'] ?? false,
         );
     }
 
@@ -31,7 +31,7 @@ class HiveSslConnectionConfig extends SSLConnectionConfig
         ?string $caFileType,
         ?string $cipher,
         bool $verifyServerCert,
-        bool $ignoreCertificateCn
+        bool $ignoreCertificateCn,
     ) {
         $this->caFileType = $caFileType;
         parent::__construct($key, $cert, $ca, $cipher, $verifyServerCert, $ignoreCertificateCn);

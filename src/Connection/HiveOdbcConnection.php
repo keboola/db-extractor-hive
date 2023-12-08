@@ -20,7 +20,7 @@ class HiveOdbcConnection extends OdbcConnection
         LoggerInterface $logger,
         HiveDatabaseConfig $dbConfig,
         HiveCertManager $certManager,
-        int $connectMaxRetries
+        int $connectMaxRetries,
     ) {
         // We will save the reference to the certification manager.
         // Method HiveCertManager::__destruct deletes temp certificates from disk.
@@ -56,7 +56,7 @@ class HiveOdbcConnection extends OdbcConnection
     /**
      * @return mixed - returned value from $processor
      */
-    public function queryAndProcess(string $query, int $maxRetries, callable $processor)
+    public function queryAndProcess(string $query, int $maxRetries, callable $processor): mixed
     {
         return parent::queryAndProcess(SqlFormatter::removeComments($query), $maxRetries, $processor);
     }
