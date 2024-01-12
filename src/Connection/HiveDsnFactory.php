@@ -32,6 +32,10 @@ class HiveDsnFactory
         $parameters['UseUnicodeSqlCharacterTypes'] = '1';
         $parameters['KeepAlive'] = '1';
         $parameters['RowsFetchedPerBlock'] = $dbConfig->getBatchSize();
+        $parameters['ConnectionTimeout'] = 25;
+        $parameters['QueryTimeout'] = 25;
+        $parameters['LogLevel'] = '6';
+        $parameters['LogPath'] = '/var/log/cloudera-odbc/';
 
         if ($dbConfig->getThriftTransport() !== null) {
             $parameters['ThriftTransport'] = $dbConfig->getThriftTransport();

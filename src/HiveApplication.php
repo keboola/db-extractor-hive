@@ -10,6 +10,7 @@ use Keboola\DbExtractor\Configuration\HiveDbNode;
 use Keboola\DbExtractor\Exception\ApplicationException;
 use Keboola\DbExtractorConfig\Config;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 class HiveApplication extends Application
 {
@@ -38,6 +39,36 @@ class HiveApplication extends Application
         if ($this->getConfig()->getParameters()['db']['verboseLogging']) {
             $this->writeVerboseLogsToArtifacts();
         }
+    }
+
+    protected function getTablesAction(): array
+    {
+        $extractorFactory = new ExtractorFactory(
+            $this->getConfig()->getParameters(),
+            $this->getInputState()
+        );
+
+        $extractor = $extractorFactory->create($this->getLogger(), $this->getConfig()->getAction());
+
+        try {
+            $output = [
+                'tables' => $extractor->getTables(),
+                'status' => 'success',
+            ];
+        } catch (\Throwable $e) {
+            $finder = new Finder();
+            $finder->files()->in('/var/log/cloudera-odbc/')->name('/clouderaodbcdriverforapachehive_connection_\d+\.log$/');
+            $filesArray = iterator_to_array($finder);
+            /** @var \Symfony\Component\Finder\SplFileInfo|false $file */
+            $file = reset($filesArray);
+            $output = [
+                'status' => 'error',
+                'error' => $e->getMessage(),
+                'log' => file_get_contents($file->getRealPath()),
+            ];
+        }
+
+        return $output;
     }
 
     protected function writeVerboseLogsToArtifacts(): void
