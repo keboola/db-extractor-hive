@@ -63,8 +63,7 @@ class HiveApplication extends Application
             $file = reset($filesArray);
             $output = [
                 'status' => 'error',
-                'error' => $e->getMessage(),
-                'log' => file_get_contents($file->getRealPath()),
+                'error' => $e->getMessage() . file_get_contents($file->getRealPath()),
             ];
         }
 
