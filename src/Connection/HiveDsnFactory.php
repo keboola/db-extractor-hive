@@ -33,6 +33,8 @@ class HiveDsnFactory
         $parameters['KeepAlive'] = '1';
         $parameters['RowsFetchedPerBlock'] = $dbConfig->getBatchSize();
         $parameters['Timeout'] = 20;
+        $parameters['ConnectionTimeout'] = 20;
+        $parameters['QueryTimeout'] = 20;
         $parameters['LogLevel'] = '6';
         $parameters['LogPath'] = '/var/log/cloudera-odbc/';
 
