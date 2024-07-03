@@ -1,147 +1,64 @@
 {
     "destination": "in.c-main.internal",
     "incremental": false,
-    "metadata": [
-        {
-            "key": "KBC.name",
-            "value": "internal"
-        },
-        {
-            "key": "KBC.sanitizedName",
-            "value": "internal"
-        },
-        {
-            "key": "KBC.schema",
-            "value": "default"
-        },
-        {
-            "key": "KBC.catalog",
-            "value": "HIVE"
-        },
-        {
-            "key": "KBC.type",
-            "value": "table"
-        }
-    ],
-    "column_metadata": {
-        "product_name": [
-            {
-                "key": "KBC.datatype.type",
-                "value": "STRING"
-            },
-            {
-                "key": "KBC.datatype.nullable",
-                "value": true
-            },
-            {
-                "key": "KBC.datatype.basetype",
-                "value": "STRING"
-            },
-            {
-                "key": "KBC.datatype.default",
-                "value": ""
-            },
-            {
-                "key": "KBC.sourceName",
-                "value": "product_name"
-            },
-            {
-                "key": "KBC.sanitizedName",
-                "value": "product_name"
-            },
-            {
-                "key": "KBC.primaryKey",
-                "value": false
-            },
-            {
-                "key": "KBC.uniqueKey",
-                "value": false
-            },
-            {
-                "key": "KBC.ordinalPosition",
-                "value": 1
-            }
-        ],
-        "price": [
-            {
-                "key": "KBC.datatype.type",
-                "value": "DOUBLE"
-            },
-            {
-                "key": "KBC.datatype.nullable",
-                "value": true
-            },
-            {
-                "key": "KBC.datatype.basetype",
-                "value": "FLOAT"
-            },
-            {
-                "key": "KBC.datatype.default",
-                "value": ""
-            },
-            {
-                "key": "KBC.sourceName",
-                "value": "price"
-            },
-            {
-                "key": "KBC.sanitizedName",
-                "value": "price"
-            },
-            {
-                "key": "KBC.primaryKey",
-                "value": false
-            },
-            {
-                "key": "KBC.uniqueKey",
-                "value": false
-            },
-            {
-                "key": "KBC.ordinalPosition",
-                "value": 2
-            }
-        ],
-        "comment": [
-            {
-                "key": "KBC.datatype.type",
-                "value": "STRING"
-            },
-            {
-                "key": "KBC.datatype.nullable",
-                "value": true
-            },
-            {
-                "key": "KBC.datatype.basetype",
-                "value": "STRING"
-            },
-            {
-                "key": "KBC.datatype.default",
-                "value": ""
-            },
-            {
-                "key": "KBC.sourceName",
-                "value": "comment"
-            },
-            {
-                "key": "KBC.sanitizedName",
-                "value": "comment"
-            },
-            {
-                "key": "KBC.primaryKey",
-                "value": false
-            },
-            {
-                "key": "KBC.uniqueKey",
-                "value": false
-            },
-            {
-                "key": "KBC.ordinalPosition",
-                "value": 3
-            }
-        ]
+    "table_metadata": {
+        "KBC.name": "internal",
+        "KBC.sanitizedName": "internal",
+        "KBC.schema": "default",
+        "KBC.catalog": "HIVE",
+        "KBC.type": "table"
     },
-    "columns": [
-        "product_name",
-        "price",
-        "comment"
+    "schema": [
+        {
+            "nullable": true,
+            "primary_key": false,
+            "metadata": {
+                "KBC.sourceName": "product_name",
+                "KBC.sanitizedName": "product_name",
+                "KBC.uniqueKey": false,
+                "KBC.ordinalPosition": 1
+            },
+            "name": "product_name",
+            "data_type": {
+                "base": {
+                    "default": "",
+                    "type": "STRING"
+                }
+            }
+        },
+        {
+            "nullable": true,
+            "primary_key": false,
+            "metadata": {
+                "KBC.sourceName": "price",
+                "KBC.sanitizedName": "price",
+                "KBC.uniqueKey": false,
+                "KBC.ordinalPosition": 2
+            },
+            "name": "price",
+            "data_type": {
+                "base": {
+                    "default": "",
+                    "type": "FLOAT"
+                }
+            }
+        },
+        {
+            "nullable": true,
+            "primary_key": false,
+            "metadata": {
+                "KBC.sourceName": "comment",
+                "KBC.sanitizedName": "comment",
+                "KBC.uniqueKey": false,
+                "KBC.ordinalPosition": 3
+            },
+            "name": "comment",
+            "data_type": {
+                "base": {
+                    "default": "",
+                    "type": "STRING"
+                }
+            }
+        }
     ]
 }
