@@ -1,4 +1,3 @@
-version: '3'
 services:
   tests: &tests
     build:
@@ -10,6 +9,7 @@ services:
     command: composer ci
     environment:
       KBC_COMPONENT_RUN_MODE: "run"
+      KBC_DATA_TYPE_SUPPORT: "none"
       # DB credentials
       HIVE_DB_LDAP_HOST: hive2-ldap
       HIVE_DB_LDAP_PORT: 10000
