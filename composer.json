@@ -12,11 +12,11 @@
         "keboola/common-exceptions": "^1.0",
         "keboola/csv": "^3.3",
         "keboola/db-extractor-adapter": "^1.13",
-        "keboola/db-extractor-common": "^16.2",
-        "keboola/db-extractor-config": "^1.14",
+        "keboola/db-extractor-common": "^17.0",
+        "keboola/db-extractor-config": "^1.15",
         "keboola/db-extractor-ssh-tunnel": "^1.2",
         "keboola/db-extractor-table-format": "^3.8",
-        "keboola/php-component": "^9.4",
+        "keboola/php-component": "^10.1",
         "keboola/php-temp": "^2.0",
         "symfony/filesystem": "^5.4",
         "symfony/finder": "^5.4"
@@ -42,7 +42,7 @@
     },
     "scripts": {
         "tests-phpunit": "phpunit",
-        "tests-datadir": "phpunit tests/functional",
+        "tests-datadir": "phpunit --verbose --debug --testdox tests/functional",
         "tests": [
             "@tests-phpunit",
             "@tests-datadir"

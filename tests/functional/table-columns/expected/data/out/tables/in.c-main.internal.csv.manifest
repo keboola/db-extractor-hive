@@ -23,12 +23,12 @@
             "value": "table"
         }
     ],
+    "columns": [
+        "price",
+        "product_name"
+    ],
     "column_metadata": {
         "price": [
-            {
-                "key": "KBC.datatype.type",
-                "value": "DOUBLE"
-            },
             {
                 "key": "KBC.datatype.nullable",
                 "value": true
@@ -50,10 +50,6 @@
                 "value": "price"
             },
             {
-                "key": "KBC.primaryKey",
-                "value": false
-            },
-            {
                 "key": "KBC.uniqueKey",
                 "value": false
             },
@@ -63,10 +59,6 @@
             }
         ],
         "product_name": [
-            {
-                "key": "KBC.datatype.type",
-                "value": "STRING"
-            },
             {
                 "key": "KBC.datatype.nullable",
                 "value": true
@@ -88,10 +80,6 @@
                 "value": "product_name"
             },
             {
-                "key": "KBC.primaryKey",
-                "value": false
-            },
-            {
                 "key": "KBC.uniqueKey",
                 "value": false
             },
@@ -100,9 +88,5 @@
                 "value": 1
             }
         ]
-    },
-    "columns": [
-        "price",
-        "product_name"
-    ]
+    }
 }

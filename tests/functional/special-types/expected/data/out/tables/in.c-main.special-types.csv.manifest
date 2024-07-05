@@ -23,12 +23,16 @@
             "value": "table"
         }
     ],
+    "columns": [
+        "id",
+        "bin",
+        "map",
+        "array",
+        "union",
+        "struct"
+    ],
     "column_metadata": {
         "id": [
-            {
-                "key": "KBC.datatype.type",
-                "value": "INT"
-            },
             {
                 "key": "KBC.datatype.nullable",
                 "value": true
@@ -50,10 +54,6 @@
                 "value": "id"
             },
             {
-                "key": "KBC.primaryKey",
-                "value": false
-            },
-            {
                 "key": "KBC.uniqueKey",
                 "value": false
             },
@@ -63,10 +63,6 @@
             }
         ],
         "bin": [
-            {
-                "key": "KBC.datatype.type",
-                "value": "BINARY"
-            },
             {
                 "key": "KBC.datatype.nullable",
                 "value": true
@@ -86,10 +82,6 @@
             {
                 "key": "KBC.sanitizedName",
                 "value": "bin"
-            },
-            {
-                "key": "KBC.primaryKey",
-                "value": false
             },
             {
                 "key": "KBC.uniqueKey",
@@ -102,10 +94,6 @@
         ],
         "map": [
             {
-                "key": "KBC.datatype.type",
-                "value": "STRING"
-            },
-            {
                 "key": "KBC.datatype.nullable",
                 "value": true
             },
@@ -124,10 +112,6 @@
             {
                 "key": "KBC.sanitizedName",
                 "value": "map"
-            },
-            {
-                "key": "KBC.primaryKey",
-                "value": false
             },
             {
                 "key": "KBC.uniqueKey",
@@ -140,10 +124,6 @@
         ],
         "array": [
             {
-                "key": "KBC.datatype.type",
-                "value": "STRING"
-            },
-            {
                 "key": "KBC.datatype.nullable",
                 "value": true
             },
@@ -162,10 +142,6 @@
             {
                 "key": "KBC.sanitizedName",
                 "value": "array"
-            },
-            {
-                "key": "KBC.primaryKey",
-                "value": false
             },
             {
                 "key": "KBC.uniqueKey",
@@ -178,10 +154,6 @@
         ],
         "union": [
             {
-                "key": "KBC.datatype.type",
-                "value": "STRING"
-            },
-            {
                 "key": "KBC.datatype.nullable",
                 "value": true
             },
@@ -200,10 +172,6 @@
             {
                 "key": "KBC.sanitizedName",
                 "value": "union"
-            },
-            {
-                "key": "KBC.primaryKey",
-                "value": false
             },
             {
                 "key": "KBC.uniqueKey",
@@ -216,10 +184,6 @@
         ],
         "struct": [
             {
-                "key": "KBC.datatype.type",
-                "value": "STRING"
-            },
-            {
                 "key": "KBC.datatype.nullable",
                 "value": true
             },
@@ -240,10 +204,6 @@
                 "value": "struct"
             },
             {
-                "key": "KBC.primaryKey",
-                "value": false
-            },
-            {
                 "key": "KBC.uniqueKey",
                 "value": false
             },
@@ -252,13 +212,5 @@
                 "value": 6
             }
         ]
-    },
-    "columns": [
-        "id",
-        "bin",
-        "map",
-        "array",
-        "union",
-        "struct"
-    ]
+    }
 }

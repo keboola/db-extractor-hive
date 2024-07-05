@@ -1,0 +1,64 @@
+{
+    "destination": "in.c-main.internal",
+    "incremental": false,
+    "table_metadata": {
+        "KBC.name": "internal",
+        "KBC.sanitizedName": "internal",
+        "KBC.schema": "default",
+        "KBC.catalog": "HIVE",
+        "KBC.type": "table"
+    },
+    "schema": [
+        {
+            "nullable": true,
+            "primary_key": false,
+            "metadata": {
+                "KBC.sourceName": "product_name",
+                "KBC.sanitizedName": "product_name",
+                "KBC.uniqueKey": false,
+                "KBC.ordinalPosition": 1
+            },
+            "name": "product_name",
+            "data_type": {
+                "base": {
+                    "default": "",
+                    "type": "STRING"
+                }
+            }
+        },
+        {
+            "nullable": true,
+            "primary_key": false,
+            "metadata": {
+                "KBC.sourceName": "price",
+                "KBC.sanitizedName": "price",
+                "KBC.uniqueKey": false,
+                "KBC.ordinalPosition": 2
+            },
+            "name": "price",
+            "data_type": {
+                "base": {
+                    "default": "",
+                    "type": "FLOAT"
+                }
+            }
+        },
+        {
+            "nullable": true,
+            "primary_key": false,
+            "metadata": {
+                "KBC.sourceName": "comment",
+                "KBC.sanitizedName": "comment",
+                "KBC.uniqueKey": false,
+                "KBC.ordinalPosition": 3
+            },
+            "name": "comment",
+            "data_type": {
+                "base": {
+                    "default": "",
+                    "type": "STRING"
+                }
+            }
+        }
+    ]
+}
