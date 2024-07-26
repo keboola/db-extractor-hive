@@ -50,4 +50,9 @@ class HiveResultWriter extends DefaultResultWriter
         // Save the list of binary columns so we can encode them to base64.
         $this->binaryColumns = $binaryColumns;
     }
+
+    public function hasCsvHeader(ExportConfig $exportConfig): bool
+    {
+        return false;
+    }
 }
