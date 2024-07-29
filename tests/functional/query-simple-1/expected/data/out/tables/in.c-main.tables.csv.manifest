@@ -1,4 +1,27 @@
 {
     "destination": "in.c-main.tables",
-    "incremental": false
+    "incremental": false,
+    "columns": [
+        "tab_name"
+    ],
+    "column_metadata": {
+        "tab_name": [
+            {
+                "key": "KBC.datatype.nullable",
+                "value": true
+            },
+            {
+                "key": "KBC.sourceName",
+                "value": "tab_name"
+            },
+            {
+                "key": "KBC.sanitizedName",
+                "value": "tab_name"
+            },
+            {
+                "key": "KBC.uniqueKey",
+                "value": false
+            }
+        ]
+    }
 }

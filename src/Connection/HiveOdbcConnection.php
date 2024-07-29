@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace Keboola\DbExtractor\Connection;
 
+use Keboola\DbExtractor\Adapter\Exception\OdbcException;
 use Keboola\DbExtractor\Adapter\ODBC\OdbcConnection;
+use Keboola\DbExtractor\Adapter\ODBC\OdbcQueryResult;
+use Keboola\DbExtractor\Adapter\ValueObject\QueryResult;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
 use Psr\Log\LoggerInterface;
 use Retry\BackOff\ExponentialBackOffPolicy;
 use Retry\RetryProxy;
 use SqlFormatter;
+use Throwable;
 
 class HiveOdbcConnection extends OdbcConnection
 {
@@ -59,5 +63,24 @@ class HiveOdbcConnection extends OdbcConnection
     public function queryAndProcess(string $query, int $maxRetries, callable $processor): mixed
     {
         return parent::queryAndProcess(SqlFormatter::removeComments($query), $maxRetries, $processor);
+    }
+
+    protected function doQuery(string $query): QueryResult
+    {
+        try {
+            /** @var resource|false $stmt */
+            $stmt = @odbc_exec($this->connection, $query);
+        } catch (Throwable $e) {
+            throw new OdbcException($e->getMessage(), $e->getCode(), $e);
+        }
+
+        // "odbc_exec" can generate warning, if "set_error_handler" is not set, so we are checking it manually
+        if ($stmt === false) {
+            throw new OdbcException(odbc_errormsg($this->connection) . ' ' . odbc_error($this->connection));
+        }
+
+        $queryMetadata = $this->getQueryMetadata($query, $stmt);
+        $queryMetadata->getColumns();
+        return new OdbcQueryResult($query, $queryMetadata, $stmt);
     }
 }

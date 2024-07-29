@@ -1,4 +1,3 @@
-"usergender","usercity","usersentiment","zipcode","sku","createdat","category","price","county","countycode","userstate","categorygroup","internal_price"
 "Female","Austin","-1","42142","ZD111197","2013-09-24 08:34:03","Home Repair","5","Barren","21009","Kentucky","Books",""
 "Male","Beverly","0","08010","ZD111179","2013-09-24 08:33:49","History","5","Burlington","34005","New Jersey","Books",""
 "Female","Berea","0","44135","ZD111145","2013-09-24 08:35:03","Cooking","5","Cuyahoga","39035","Ohio","Books",""

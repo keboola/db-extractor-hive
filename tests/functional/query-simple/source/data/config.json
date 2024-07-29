@@ -12,6 +12,6 @@
     "enabled": true,
     "id": 0,
     "name": "sales",
-    "primaryKey": []
+    "primaryKey": ["sku"]
   }
 }
