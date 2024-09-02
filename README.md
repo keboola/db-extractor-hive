@@ -183,15 +183,15 @@ git clone https://github.com/keboola/db-extractor-hive
 cd db-extractor-hive
 export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=
-docker-compose build
-docker-compose run --rm wait
-docker-compose run --rm dev composer install --no-scripts
+docker compose build
+docker compose run --rm wait
+docker compose run --rm dev composer install --no-scripts
 ```
 
 Run the test suite using this command:
 
 ```
-docker-compose run --rm dev composer tests
+docker compose run --rm dev composer tests
 ```
  
 # Integration
