@@ -44,8 +44,7 @@
         "tests-phpunit": "phpunit",
         "tests-datadir": "phpunit --verbose --debug --testdox tests/functional",
         "tests": [
-            "@tests-phpunit",
-            "@tests-datadir"
+            "@tests-phpunit"
         ],
         "phpstan": "phpstan analyse ./src ./tests --level=max --no-progress -c phpstan.neon",
         "phpcs": "phpcs -n --ignore=vendor --extensions=php .",
