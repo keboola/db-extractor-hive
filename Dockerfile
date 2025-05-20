@@ -73,6 +73,17 @@ RUN alien -i /tmp/hive-odbc.rpm \
     && cp /opt/cloudera/hiveodbc/Setup/odbc.ini /etc/odbc.ini \
     && cp /opt/cloudera/hiveodbc/Setup/odbcinst.ini /etc/odbcinst.ini
 
+# Create odbc logs dir
+RUN mkdir -p /var/log/hive-odbc \
+    && chown root:root /var/log/hive-odbc \
+    && chmod 755 /var/log/hive-odbc
+
+# Enable verbose (full debug) logging in the Cloudera Hive ODBC driver
+RUN sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a \
+    LogLevel = 6\n\
+    LogPath = /var/log/hive-odbc/' \
+    /etc/odbcinst.ini
+
 ENV LANGUAGE=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
