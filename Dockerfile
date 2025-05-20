@@ -8,9 +8,6 @@ ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
     AWS_DEFAULT_REGION=${AWS_REGION}   \
     AWS_REGION=${AWS_REGION}
 
-RUN aws sts get-caller-identity && \
-    aws s3 ls s3://keboola-drivers/hive-odbc/ --no-sign-request
-
 RUN aws s3 cp \
       s3://keboola-drivers/hive-odbc/ClouderaHiveODBC-2.6.13.1013-1.x86_64.rpm \
       /tmp/hive-odbc.rpm
