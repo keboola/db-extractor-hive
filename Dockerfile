@@ -1,8 +1,13 @@
-FROM quay.io/keboola/aws-cli
-ARG AWS_SECRET_ACCESS_KEY
-ARG AWS_ACCESS_KEY_ID
+FROM amazon/aws-cli:2.13.0 AS awscli
 
-RUN /usr/bin/aws s3 cp s3://keboola-drivers/hive-odbc/ClouderaHiveODBC-2.6.13.1013-1.x86_64.rpm /tmp/hive-odbc.rpm
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
+    AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+
+RUN aws s3 cp \
+      s3://keboola-drivers/hive-odbc/ClouderaHiveODBC-2.6.13.1013-1.x86_64.rpm \
+      /tmp/hive-odbc.rpm
 
 FROM php:8.2-cli-buster
 
@@ -67,7 +72,7 @@ RUN set -ex; \
     docker-php-source delete
 
 # Clouder Hive Driver
-COPY --from=0 /tmp/hive-odbc.rpm /tmp/hive-odbc.rpm
+COPY --from=awscli /tmp/hive-odbc.rpm /tmp/hive-odbc.rpm
 RUN alien -i /tmp/hive-odbc.rpm \
     && rm /tmp/hive-odbc.rpm \
     && cp /opt/cloudera/hiveodbc/Setup/odbc.ini /etc/odbc.ini \
