@@ -9,8 +9,8 @@ ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
     AWS_REGION=${AWS_REGION}
 
 RUN aws s3 cp \
-      s3://keboola-drivers/hive-odbc/ClouderaHiveODBC-2.6.13.1013-1.x86_64.rpm \
-      /tmp/hive-odbc.rpm
+      s3://keboola-drivers/hive-odbc/clouderahiveodbc_2.8.2.1002-2_amd64.deb \
+      /tmp/hive-odbc.deb
 
 FROM php:8.2-cli-buster
 
@@ -27,7 +27,6 @@ COPY docker/php/composer-install.sh /tmp/composer-install.sh
 # https://github.com/debuerreotype/docker-debian-artifacts/issues/24
 RUN mkdir -p /usr/share/man/man1 && \
     apt-get update && apt-get install -y --no-install-recommends \
-        alien \
         ssh \
         git \
         locales \
@@ -46,11 +45,11 @@ RUN mkdir -p /usr/share/man/man1 && \
         libzip-dev \
         # keytool is in JRE
         default-jre \
-	&& rm -r /var/lib/apt/lists/* \
-	&& sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
-	&& locale-gen \
-	&& chmod +x /tmp/composer-install.sh \
-	&& /tmp/composer-install.sh
+    && rm -r /var/lib/apt/lists/* \
+    && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
+    && locale-gen \
+    && chmod +x /tmp/composer-install.sh \
+    && /tmp/composer-install.sh
 
 # INTL
 RUN docker-php-ext-configure intl \
@@ -74,11 +73,14 @@ RUN set -ex; \
     docker-php-ext-install odbc; \
     docker-php-source delete
 
-# Clouder Hive Driver
-COPY --from=awscli /tmp/hive-odbc.rpm /tmp/hive-odbc.rpm
-RUN alien -i /tmp/hive-odbc.rpm \
-    && rm /tmp/hive-odbc.rpm \
-    && cp /opt/cloudera/hiveodbc/Setup/odbc.ini /etc/odbc.ini \
+# Cloudera Hive Driver
+COPY --from=awscli /tmp/hive-odbc.deb /tmp/hive-odbc.deb
+RUN dpkg -i /tmp/hive-odbc.deb || true \
+    && apt-get update \
+    && apt-get install -f -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm /tmp/hive-odbc.deb \
+    && cp /opt/cloudera/hiveodbc/Setup/odbc.ini   /etc/odbc.ini \
     && cp /opt/cloudera/hiveodbc/Setup/odbcinst.ini /etc/odbcinst.ini
 
 # Create odbc logs dir
