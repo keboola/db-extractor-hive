@@ -32,13 +32,13 @@ services:
       SSH_PORT: 22
       SSH_USER: root
     depends_on:
-      - hive2-ldap
-      - hive2-kerberos
+#      - hive2-ldap
+#      - hive2-kerberos
       - ssh-tunnel
     volumes:
       - ssh-keys:/root/.ssh:ro
-      - hive2-kerberos-conf:/root/hive-conf:z
-      - ./docker/hive2-kerberos/files/kerberos/krb5.client.conf:/etc/krb5-test.conf
+#      - hive2-kerberos-conf:/root/hive-conf:z
+#      - ./docker/hive2-kerberos/files/kerberos/krb5.client.conf:/etc/krb5-test.conf
 
   # Test connection to kerberos:
   # > docker-compose run dev bash
@@ -50,14 +50,14 @@ services:
     command: bash
     volumes:
       - ssh-keys:/root/.ssh:z
-      - hive2-kerberos-conf:/root/hive-conf:z
+#      - hive2-kerberos-conf:/root/hive-conf:z
       - ./:/code
-      - ./docker/hive2-kerberos/files/kerberos/krb5.client.conf:/etc/krb5-test.conf
+#      - ./docker/hive2-kerberos/files/kerberos/krb5.client.conf:/etc/krb5-test.conf
 
   wait:
     image: waisbrot/wait
     depends_on:
-      - hive2-ldap
+#      - hive2-ldap
       - ssh-tunnel
     environment:
       - TARGETS=hive2-ldap:10000,ssh-tunnel:22
@@ -68,67 +68,67 @@ services:
     image: keboola/db-component-ssh-proxy:latest
     volumes:
       - ssh-keys:/root/.ssh:z
-    links:
-      - hive2-ldap:hive2-ldap-behind-ssh
-
-  # LDAP authentication server for Hive (external auth must be provided)
-  # Test cmd: docker-compose exec ldap ldapsearch -x -H ldap://localhost -b dc=keboola-test,dc=com -D "uid=admin,dc=keboola-test,dc=com" -w 'admin'
-  # Modify command: docker-compose exec ldap ldapmodify -H ldap://localhost -D "uid=admin,dc=keboola-test,dc=com" -w 'admin'
-  ldap:
-    image: osixia/openldap:1.3.0-amd64
-    command: --copy-service
-    environment:
-      LDAP_TLS: 'false'
-      LDAP_ORGANISATION: Keboola Test
-      LDAP_DOMAIN: keboola-test.com
-      LDAP_ADMIN_PASSWORD: admin
-    volumes:
-      # LDAP initialization files
-      - ./docker/ldap/init:/container/service/slapd/assets/config/bootstrap/ldif/custom:ro
-
-  # HIVE - no auth, base image
-  # Test cmd:
-  # > docker-compose run hive2-no-auth bash
-  # >>> /root/startup.sh &
-  # >>> (wait for all services, "INFO exited: bootstrap (exit status 0; expected)")
-  # >>> beeline -u jdbc:hive2://localhost:10000 -e "SHOW TABLES;"
-  hive2-no-auth:
-    image: keboola-hive2-no-auth
-    build: ./docker/hive2-no-auth
-    command: sleep 1000000
-
-  # HIVE - LDAP image
-  # Test cmd:
-  # > docker-compose run hive2-ldap bash
-  # >>> /root/startup.sh &
-  # >>> (wait for all services, "INFO exited: bootstrap (exit status 0; expected)")
-  # >>> beeline -u jdbc:hive2://localhost:10000 -n hive -p 'p#a!s@sw:o&r%^d' -e "SHOW TABLES;"
-  hive2-ldap:
-    image: keboola-hive2-ldap
-    build: ./docker/hive2-ldap
-    depends_on:
-      - hive2-no-auth
-      - ldap
-
-  # HIVE - KERBEROS image
-  # Test cmd:
-  # > docker-compose run hive2-kerberos bash
-  # >>> /root/startup.sh &
-  # >>> (wait for all services, "INFO exited: bootstrap (exit status 0; expected)")
-  # >>> export KRB5_CONFIG=/etc/krb5.conf
-  # >>> kinit -kt /etc/hive/conf/hive.keytab hive/localhost@KEBOOLA.COM
-  # >>> klist
-  # >>> beeline -u "jdbc:hive2://localhost:10000/default;auth=kerberos;principal=hive/localhost@KEBOOLA.COM" -e "SHOW TABLES;"
-  hive2-kerberos:
-    image: keboola-hive2-kerberos
-    build: ./docker/hive2-kerberos
-    depends_on:
-      - hive2-no-auth
-    volumes:
-      - hive2-kerberos-conf:/etc/hive/conf:z
-      - hive2-kerberos-data:/var/kerberos:z
+#    links:
+#      - hive2-ldap:hive2-ldap-behind-ssh
+#
+#  # LDAP authentication server for Hive (external auth must be provided)
+#  # Test cmd: docker-compose exec ldap ldapsearch -x -H ldap://localhost -b dc=keboola-test,dc=com -D "uid=admin,dc=keboola-test,dc=com" -w 'admin'
+#  # Modify command: docker-compose exec ldap ldapmodify -H ldap://localhost -D "uid=admin,dc=keboola-test,dc=com" -w 'admin'
+#  ldap:
+#    image: osixia/openldap:1.3.0-amd64
+#    command: --copy-service
+#    environment:
+#      LDAP_TLS: 'false'
+#      LDAP_ORGANISATION: Keboola Test
+#      LDAP_DOMAIN: keboola-test.com
+#      LDAP_ADMIN_PASSWORD: admin
+#    volumes:
+#      # LDAP initialization files
+#      - ./docker/ldap/init:/container/service/slapd/assets/config/bootstrap/ldif/custom:ro
+#
+#  # HIVE - no auth, base image
+#  # Test cmd:
+#  # > docker-compose run hive2-no-auth bash
+#  # >>> /root/startup.sh &
+#  # >>> (wait for all services, "INFO exited: bootstrap (exit status 0; expected)")
+#  # >>> beeline -u jdbc:hive2://localhost:10000 -e "SHOW TABLES;"
+#  hive2-no-auth:
+#    image: keboola-hive2-no-auth
+#    build: ./docker/hive2-no-auth
+#    command: sleep 1000000
+#
+#  # HIVE - LDAP image
+#  # Test cmd:
+#  # > docker-compose run hive2-ldap bash
+#  # >>> /root/startup.sh &
+#  # >>> (wait for all services, "INFO exited: bootstrap (exit status 0; expected)")
+#  # >>> beeline -u jdbc:hive2://localhost:10000 -n hive -p 'p#a!s@sw:o&r%^d' -e "SHOW TABLES;"
+#  hive2-ldap:
+#    image: keboola-hive2-ldap
+#    build: ./docker/hive2-ldap
+#    depends_on:
+#      - hive2-no-auth
+#      - ldap
+#
+#  # HIVE - KERBEROS image
+#  # Test cmd:
+#  # > docker-compose run hive2-kerberos bash
+#  # >>> /root/startup.sh &
+#  # >>> (wait for all services, "INFO exited: bootstrap (exit status 0; expected)")
+#  # >>> export KRB5_CONFIG=/etc/krb5.conf
+#  # >>> kinit -kt /etc/hive/conf/hive.keytab hive/localhost@KEBOOLA.COM
+#  # >>> klist
+#  # >>> beeline -u "jdbc:hive2://localhost:10000/default;auth=kerberos;principal=hive/localhost@KEBOOLA.COM" -e "SHOW TABLES;"
+#  hive2-kerberos:
+#    image: keboola-hive2-kerberos
+#    build: ./docker/hive2-kerberos
+#    depends_on:
+#      - hive2-no-auth
+#    volumes:
+#      - hive2-kerberos-conf:/etc/hive/conf:z
+#      - hive2-kerberos-data:/var/kerberos:z
 
 volumes:
   ssh-keys:
-  hive2-kerberos-conf:
-  hive2-kerberos-data:
+#  hive2-kerberos-conf:
+#  hive2-kerberos-data:
