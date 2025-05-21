@@ -33,7 +33,7 @@ RUN mkdir -p /usr/share/man/man1 && \
         unzip \
         unixodbc \
         unixodbc-dev \
-        libiodbc2-dev \
+        libiodbc2 \
         libicu-dev \
         libsasl2-dev \
         libsasl2-2 \
@@ -47,6 +47,8 @@ RUN mkdir -p /usr/share/man/man1 && \
         # keytool is in JRE
         default-jre \
     && rm -r /var/lib/apt/lists/* \
+    && REAL_SO=$(find /usr/lib -name 'libiodbcinst.so.*' | head -n1) \
+    && ln -sf "$REAL_SO" /usr/lib/libiodbcinst.so \
     && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
     && locale-gen \
     && chmod +x /tmp/composer-install.sh \
