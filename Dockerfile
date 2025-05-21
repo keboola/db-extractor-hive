@@ -33,6 +33,7 @@ RUN mkdir -p /usr/share/man/man1 && \
         unzip \
         unixodbc \
         unixodbc-dev \
+        libiodbc2-dev \
         libicu-dev \
         libsasl2-dev \
         libsasl2-2 \
