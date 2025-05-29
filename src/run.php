@@ -14,6 +14,17 @@ try {
     $app->execute();
     exit(0);
 } catch (Throwable $e) {
+    $logger->critical(
+        get_class($e) . ':' . $e->getMessage(),
+        [
+            'errFile' => $e->getFile(),
+            'errLine' => $e->getLine(),
+            'errCode' => $e->getCode(),
+            'errTrace' => $e->getTraceAsString(),
+            'errPrevious' => is_object($e->getPrevious()) ? get_class($e->getPrevious()) : '',
+        ],
+    );
+
     // Copy odbc logs to file output
     $sourceDir = '/var/log/hive-odbc';
     $destDir   = '/data/out/files';
@@ -30,7 +41,7 @@ try {
     if ($logFiles === false) {
         $logger->critical(sprintf('Failed to read log directory: %s', $sourceDir));
     }
-    $this->logger->info(sprintf('Found %d log files in %s', count($logFiles), $sourceDir));
+    $logger->info(sprintf('Found %d log files in %s', count($logFiles), $sourceDir));
 
     // Copy each log file
     foreach ($logFiles as $filePath) {
@@ -45,17 +56,6 @@ try {
             echo "Copied: $fileName\n";
         }
     }
-
-    $logger->critical(
-        get_class($e) . ':' . $e->getMessage(),
-        [
-            'errFile' => $e->getFile(),
-            'errLine' => $e->getLine(),
-            'errCode' => $e->getCode(),
-            'errTrace' => $e->getTraceAsString(),
-            'errPrevious' => is_object($e->getPrevious()) ? get_class($e->getPrevious()) : '',
-        ],
-    );
 
     exit(0);
 }
