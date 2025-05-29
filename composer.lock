@@ -229,12 +229,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/db-extractor-adapter.git",
-                "reference": "5b27554bfce928d292379327b56a19f8f0a03abf"
+                "reference": "140c2d094e2d2816bc16ba8326312b7f0f1072f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/db-extractor-adapter/zipball/5b27554bfce928d292379327b56a19f8f0a03abf",
-                "reference": "5b27554bfce928d292379327b56a19f8f0a03abf",
+                "url": "https://api.github.com/repos/keboola/db-extractor-adapter/zipball/140c2d094e2d2816bc16ba8326312b7f0f1072f4",
+                "reference": "140c2d094e2d2816bc16ba8326312b7f0f1072f4",
                 "shasum": ""
             },
             "require": {
@@ -280,7 +280,7 @@
             "support": {
                 "source": "https://github.com/keboola/db-extractor-adapter/tree/miro-odbc-primary-keys"
             },
-            "time": "2025-05-29T11:17:55+00:00"
+            "time": "2025-05-29T13:49:32+00:00"
         },
         {
             "name": "keboola/db-extractor-common",
