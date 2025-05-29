@@ -44,7 +44,6 @@ RUN mkdir -p /usr/share/man/man1 && \
         libsasl2-modules-ldap \
         krb5-user \
         libzip-dev \
-        # keytool is in JRE
         default-jre \
     && rm -r /var/lib/apt/lists/* \
     && REAL_SO=$(find /usr/lib -name 'libiodbcinst.so.*' | head -n1) \
@@ -84,7 +83,11 @@ RUN dpkg -i /tmp/hive-odbc.deb || true \
     && rm -rf /var/lib/apt/lists/* \
     && rm /tmp/hive-odbc.deb \
     && cp /opt/cloudera/hiveodbc/Setup/odbc.ini   /etc/odbc.ini \
-    && cp /opt/cloudera/hiveodbc/Setup/odbcinst.ini /etc/odbcinst.ini
+    && cp /opt/cloudera/hiveodbc/Setup/odbcinst.ini /etc/odbcinst.ini \
+    # Set default maximum string column length for Hive ODBC (DSN-level)
+    && sed -i '/^\[/a DefaultStringColumnLength = 65535' /etc/odbc.ini \
+    # Set default maximum string column length for Hive ODBC (driver-level)
+    && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a DefaultStringColumnLength = 65535' /etc/odbcinst.ini
 
 # Create odbc logs dir
 RUN mkdir -p /var/log/hive-odbc \
