@@ -77,7 +77,8 @@ class HiveDsnFactoryTest extends TestCase
             ],
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;' .
             'Schema=my-db;UseNativeQuery=1;DefaultStringColumnLength=16777216;DefaultVarcharColumnLength=16777216;'.
-            'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;AuthMech=3;',
+            'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
+            'RowsFetchedPerBlock=10000;AuthMech=3;',
         ];
 
         yield 'kerberos-auth' => [
@@ -111,7 +112,8 @@ class HiveDsnFactoryTest extends TestCase
             ],
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
             'UseNativeQuery=1;DefaultStringColumnLength=16777216;DefaultVarcharColumnLength=16777216;'.
-            'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=3000;AuthMech=3;',
+            'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
+            'RowsFetchedPerBlock=3000;AuthMech=3;',
         ];
 
         yield 'verbose logging' => [
@@ -126,7 +128,8 @@ class HiveDsnFactoryTest extends TestCase
             ],
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
             'UseNativeQuery=1;DefaultStringColumnLength=16777216;DefaultVarcharColumnLength=16777216;'.
-            'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;LogLevel=6;'.
+            'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
+            'RowsFetchedPerBlock=10000;LogLevel=6;'.
             'LogPath=/var/log/cloudera-odbc/;AuthMech=3;',
         ];
 
