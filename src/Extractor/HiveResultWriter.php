@@ -80,6 +80,10 @@ class HiveResultWriter extends DefaultResultWriter
         $string = iconv('UTF-8', 'UTF-8//IGNORE', $string);
 
         // Method 3: If all else fails, use mb_convert_encoding with a fallback encoding
+        if ($string === false) {
+            return '';
+        }
+
         return mb_convert_encoding($string, 'UTF-8', 'UTF-8');
     }
 
