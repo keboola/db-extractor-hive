@@ -41,7 +41,7 @@ class HiveResultWriter extends DefaultResultWriter
                 if (!$this->isValidUtf8($value)) {
                     // 2. Try to convert from other encodings
                     $sanitized = $this->sanitizeUtf8($value);
-                    
+
                     // 3. If still invalid, encode as base64 and mark it
                     if (!$this->isValidUtf8($sanitized)) {
                         $row[$key] = base64_encode($value);
@@ -75,10 +75,10 @@ class HiveResultWriter extends DefaultResultWriter
                 return mb_convert_encoding($string, 'UTF-8', $encoding);
             }
         }
-        
+
         // Method 2: Remove or replace invalid characters
         $string = iconv('UTF-8', 'UTF-8//IGNORE', $string);
-        
+
         // Method 3: If all else fails, use mb_convert_encoding with a fallback encoding
         return mb_convert_encoding($string, 'UTF-8', 'UTF-8');
     }
