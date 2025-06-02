@@ -10,6 +10,7 @@ use Keboola\DbExtractor\Adapter\ODBC\OdbcQueryResult;
 use Keboola\DbExtractor\Adapter\ValueObject\QueryResult;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Configuration\HiveDbNode;
+use Keboola\DbExtractor\Extractor\HiveOdbcQueryResult;
 use Psr\Log\LoggerInterface;
 use Retry\BackOff\ExponentialBackOffPolicy;
 use Retry\RetryProxy;
@@ -81,6 +82,6 @@ class HiveOdbcConnection extends OdbcConnection
 
         $queryMetadata = $this->getQueryMetadata($query, $stmt);
         $queryMetadata->getColumns();
-        return new OdbcQueryResult($query, $queryMetadata, $stmt);
+        return new HiveOdbcQueryResult($query, $queryMetadata, $stmt);
     }
 }
