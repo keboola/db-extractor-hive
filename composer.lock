@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95b2f4e5e1a687aef43ac337d020f294",
+    "content-hash": "ee222287352c6f055bb1c74e7bc8a4b5",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -225,16 +225,16 @@
         },
         {
             "name": "keboola/db-extractor-adapter",
-            "version": "dev-miro-odbc-primary-keys",
+            "version": "1.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/db-extractor-adapter.git",
-                "reference": "1cfc4c235ed1faa8d69cd0e5db3add3e6b3b9f4c"
+                "reference": "4b8df10bcf752cf763c82842314e6e2709573f34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/db-extractor-adapter/zipball/1cfc4c235ed1faa8d69cd0e5db3add3e6b3b9f4c",
-                "reference": "1cfc4c235ed1faa8d69cd0e5db3add3e6b3b9f4c",
+                "url": "https://api.github.com/repos/keboola/db-extractor-adapter/zipball/4b8df10bcf752cf763c82842314e6e2709573f34",
+                "reference": "4b8df10bcf752cf763c82842314e6e2709573f34",
                 "shasum": ""
             },
             "require": {
@@ -278,9 +278,9 @@
             ],
             "description": "Set of connection adapters for DB extractors.",
             "support": {
-                "source": "https://github.com/keboola/db-extractor-adapter/tree/miro-odbc-primary-keys"
+                "source": "https://github.com/keboola/db-extractor-adapter/tree/1.15.2"
             },
-            "time": "2025-05-22T12:55:40+00:00"
+            "time": "2025-06-03T08:03:45+00:00"
         },
         {
             "name": "keboola/db-extractor-common",
@@ -4569,18 +4569,9 @@
             "time": "2024-07-21T23:26:44+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "keboola/db-extractor-adapter",
-            "version": "dev-miro-odbc-primary-keys",
-            "alias": "1.15.2",
-            "alias_normalized": "1.15.2.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "keboola/db-extractor-adapter": 20
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
