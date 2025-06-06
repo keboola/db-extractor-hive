@@ -35,6 +35,8 @@ class HiveApplication extends Application
     {
         parent::run();
 
+        $this->getLogger()->info('Hive extractor finished.');
+
         if ($this->getConfig()->getParameters()['db']['verboseLogging']) {
             $this->writeVerboseLogsToArtifacts();
         }
