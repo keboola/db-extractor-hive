@@ -1,5 +1,5 @@
 [%s] DEBUG: Component initialization completed [] []
-Creating ODBC connection to "Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=hive2-ldap;Port=10000;Schema=default;UseNativeQuery=1;DefaultStringColumnLength=16777216;DefaultVarcharColumnLength=16777216;BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;AuthMech=3;".
+Creating ODBC connection to "Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=hive2-ldap;Port=10000;Schema=default;UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;AuthMech=3;".
 [%s] DEBUG: Running query "set hive.resultset.use.unique.column.names=false". [] []
 Exporting to "in.c-main.internal".
 [%s] DEBUG: Running query "SELECT    *  FROM    `default`.`internal`". [] []

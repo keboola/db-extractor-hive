@@ -27,9 +27,9 @@ class HiveDsnFactory
         $parameters['Port'] = $dbConfig->getPort();
         $parameters['Schema'] = $dbConfig->getDatabase();
         $parameters['UseNativeQuery'] = '1';
-        $parameters['DefaultStringColumnLength'] = '16777216';
-        $parameters['DefaultVarcharColumnLength'] = '16777216';
-        $parameters['BinaryColumnLength'] = '16777216';
+        $parameters['DefaultStringColumnLength'] = '134217728';
+        $parameters['DefaultVarcharColumnLength'] = '134217728';
+        $parameters['BinaryColumnLength'] = '134217728';
         $parameters['UseUnicodeSqlCharacterTypes'] = '1';
         $parameters['KeepAlive'] = '1';
         $parameters['RowsFetchedPerBlock'] = $dbConfig->getBatchSize();

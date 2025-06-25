@@ -23,7 +23,7 @@ class HiveOdbcQueryResult extends OdbcQueryResult implements QueryResult
         $row = null;
         $numCols = odbc_num_fields($this->stmt);
 
-        odbc_longreadlen($this->stmt, 33554432);
+        odbc_longreadlen($this->stmt, 134217728);
         odbc_binmode($this->stmt, ODBC_BINMODE_RETURN);
 
         if (odbc_fetch_row($this->stmt)) {
