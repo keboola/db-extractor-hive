@@ -85,9 +85,9 @@ RUN dpkg -i /tmp/hive-odbc.deb || true \
     && cp /opt/cloudera/hiveodbc/Setup/odbc.ini   /etc/odbc.ini \
     && cp /opt/cloudera/hiveodbc/Setup/odbcinst.ini /etc/odbcinst.ini \
     # Set default maximum string column length for Hive ODBC (DSN-level)
-    && sed -i '/^\[/a DefaultStringColumnLength = 16777216' /etc/odbc.ini \
+    && sed -i '/^\[/a DefaultStringColumnLength = 134217728' /etc/odbc.ini \
     # Set default maximum string column length for Hive ODBC (driver-level)
-    && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a DefaultStringColumnLength = 16777216' /etc/odbcinst.ini
+    && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a DefaultStringColumnLength = 134217728' /etc/odbcinst.ini
 
 # Create odbc logs dir
 RUN mkdir -p /var/log/hive-odbc \

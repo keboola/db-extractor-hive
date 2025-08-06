@@ -76,8 +76,8 @@ class HiveDsnFactoryTest extends TestCase
                 '#password' => '123',
             ],
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;' .
-            'Schema=my-db;UseNativeQuery=1;DefaultStringColumnLength=16777216;DefaultVarcharColumnLength=16777216;'.
-            'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
+            'Schema=my-db;UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
+            'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
             'RowsFetchedPerBlock=10000;AuthMech=3;',
         ];
 
@@ -95,8 +95,8 @@ class HiveDsnFactoryTest extends TestCase
                 ],
                 ],
                 'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
-                'UseNativeQuery=1;DefaultStringColumnLength=16777216;DefaultVarcharColumnLength=16777216;'.
-                'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;'.
+                'UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
+                'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;'.
                 'AuthMech=1;KrbHostFQDN=localhost;KrbServiceName=service;KrbRealm=EXAMPLE.COM;',
         ];
 
@@ -111,8 +111,8 @@ class HiveDsnFactoryTest extends TestCase
                 'batchSize' => 3000,
             ],
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
-            'UseNativeQuery=1;DefaultStringColumnLength=16777216;DefaultVarcharColumnLength=16777216;'.
-            'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
+            'UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
+            'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
             'RowsFetchedPerBlock=3000;AuthMech=3;',
         ];
 
@@ -127,8 +127,8 @@ class HiveDsnFactoryTest extends TestCase
                 'verboseLogging' => true,
             ],
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
-            'UseNativeQuery=1;DefaultStringColumnLength=16777216;DefaultVarcharColumnLength=16777216;'.
-            'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
+            'UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
+            'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
             'RowsFetchedPerBlock=10000;LogLevel=6;'.
             'LogPath=/var/log/cloudera-odbc/;AuthMech=3;',
         ];
@@ -145,8 +145,8 @@ class HiveDsnFactoryTest extends TestCase
                 'httpPath' => 'gateway/XXXXX/hive',
             ],
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
-            'UseNativeQuery=1;DefaultStringColumnLength=16777216;DefaultVarcharColumnLength=16777216;'.
-            'BinaryColumnLength=16777216;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;'.
+            'UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
+            'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;'.
             'ThriftTransport=2;HttpPath=gateway/XXXXX/hive;AuthMech=3;',
         ];
     }
