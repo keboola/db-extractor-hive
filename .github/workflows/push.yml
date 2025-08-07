@@ -23,6 +23,7 @@ jobs:
         run: |
           docker login --username "$DOCKERHUB_USER" --password "$DOCKERHUB_TOKEN"
           docker build --build-arg AWS_ACCESS_KEY_ID --build-arg AWS_SECRET_ACCESS_KEY -t $APP_IMAGE .
+          docker build -t keboola-hive2-no-auth ./docker/hive2-no-auth
           docker compose run --rm wait
           docker compose run --rm tests composer ci
       - name: Push image to ECR
