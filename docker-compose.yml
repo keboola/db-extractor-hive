@@ -120,7 +120,7 @@ services:
   # >>> klist
   # >>> beeline -u "jdbc:hive2://localhost:10000/default;auth=kerberos;principal=hive/localhost@KEBOOLA.COM" -e "SHOW TABLES;"
   hive2-kerberos:
-    #image: keboola-hive2-kerberos
+    image: keboola-hive2-kerberos
     build: ./docker/hive2-kerberos
     depends_on:
       - hive2-no-auth
