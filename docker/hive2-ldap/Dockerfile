@@ -1,4 +1,4 @@
-FROM keboola-hive2-no-auth
+FROM keboola-hive2-no-auth:latest
 
 # Import test data
 RUN BEELINE_ARGS="-u 'jdbc:hive2://localhost:10000'" /tmp/data/data-init.sh
