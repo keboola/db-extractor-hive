@@ -104,7 +104,7 @@ services:
   # >>> (wait for all services, "INFO exited: bootstrap (exit status 0; expected)")
   # >>> beeline -u jdbc:hive2://localhost:10000 -n hive -p 'p#a!s@sw:o&r%^d' -e "SHOW TABLES;"
   hive2-ldap:
-    image: keboola-hive2-ldap
+    #image: keboola-hive2-ldap
     build: ./docker/hive2-ldap
     depends_on:
       - hive2-no-auth
@@ -120,7 +120,7 @@ services:
   # >>> klist
   # >>> beeline -u "jdbc:hive2://localhost:10000/default;auth=kerberos;principal=hive/localhost@KEBOOLA.COM" -e "SHOW TABLES;"
   hive2-kerberos:
-    image: keboola-hive2-kerberos
+    #image: keboola-hive2-kerberos
     build: ./docker/hive2-kerberos
     depends_on:
       - hive2-no-auth
