@@ -67,7 +67,7 @@ class Hive extends BaseExtractor
 
     public function createMetadataProvider(): MetadataProvider
     {
-        return new OdbcNativeMetadataProvider($this->connection);
+        return new HiveOdbcNativeMetadataProvider($this->connection);
     }
 
     public function validateIncrementalFetching(ExportConfig $exportConfig): void
