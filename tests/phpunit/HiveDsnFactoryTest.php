@@ -78,7 +78,7 @@ class HiveDsnFactoryTest extends TestCase
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;' .
             'Schema=my-db;UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
             'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
-            'RowsFetchedPerBlock=10000;AuthMech=3;',
+            'RowsFetchedPerBlock=10000;ErrorMsgLength=8192;DriverManagerEncoding=UTF-8;AuthMech=3;',
         ];
 
         yield 'kerberos-auth' => [
@@ -97,7 +97,7 @@ class HiveDsnFactoryTest extends TestCase
                 'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
                 'UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
                 'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;'.
-                'AuthMech=1;KrbHostFQDN=localhost;KrbServiceName=service;KrbRealm=EXAMPLE.COM;',
+                'ErrorMsgLength=8192;DriverManagerEncoding=UTF-8;AuthMech=1;KrbHostFQDN=localhost;KrbServiceName=service;KrbRealm=EXAMPLE.COM;',
         ];
 
         yield 'batch size' => [
@@ -113,7 +113,7 @@ class HiveDsnFactoryTest extends TestCase
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
             'UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
             'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
-            'RowsFetchedPerBlock=3000;AuthMech=3;',
+            'RowsFetchedPerBlock=3000;ErrorMsgLength=8192;DriverManagerEncoding=UTF-8;AuthMech=3;',
         ];
 
         yield 'verbose logging' => [
@@ -129,7 +129,7 @@ class HiveDsnFactoryTest extends TestCase
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
             'UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
             'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;'.
-            'RowsFetchedPerBlock=10000;LogLevel=6;'.
+            'RowsFetchedPerBlock=10000;ErrorMsgLength=8192;DriverManagerEncoding=UTF-8;LogLevel=6;'.
             'LogPath=/var/log/cloudera-odbc/;AuthMech=3;',
         ];
 
@@ -147,7 +147,7 @@ class HiveDsnFactoryTest extends TestCase
             'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
             'UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
             'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;'.
-            'ThriftTransport=2;HttpPath=gateway/XXXXX/hive;AuthMech=3;',
+            'ErrorMsgLength=8192;DriverManagerEncoding=UTF-8;ThriftTransport=2;HttpPath=gateway/XXXXX/hive;AuthMech=3;',
         ];
     }
 
