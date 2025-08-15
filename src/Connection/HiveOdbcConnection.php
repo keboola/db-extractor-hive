@@ -68,19 +68,55 @@ class HiveOdbcConnection extends OdbcConnection
 
     protected function doQuery(string $query): QueryResult
     {
+        // Set locale to ensure proper character encoding
+        $oldLocale = setlocale(LC_ALL, 0);
+        setlocale(LC_ALL, 'en_US.UTF-8');
+        
         try {
             /** @var resource|false $stmt */
             $stmt = @odbc_exec($this->connection, $query);
         } catch (Throwable $e) {
+            // Restore locale
+            setlocale(LC_ALL, $oldLocale);
             throw new OdbcException($e->getMessage(), $e->getCode(), $e);
         }
 
         // "odbc_exec" can generate warning, if "set_error_handler" is not set, so we are checking it manually
         if ($stmt === false) {
-            $errorMsg = odbc_errormsg($this->connection);
-            $errorCode = odbc_error($this->connection);
-            throw new OdbcException($errorMsg . ' ' . $errorCode);
+            // Try to get more detailed error information
+            $errorMsg = '';
+            $errorCode = '';
+            
+            // Get error message with proper encoding handling
+            $rawErrorMsg = odbc_errormsg($this->connection);
+            if ($rawErrorMsg) {
+                // Ensure proper UTF-8 encoding
+                if (mb_check_encoding($rawErrorMsg, 'UTF-8')) {
+                    $errorMsg = $rawErrorMsg;
+                } else {
+                    // Try to convert from common encodings
+                    $errorMsg = mb_convert_encoding($rawErrorMsg, 'UTF-8', ['ISO-8859-1', 'Windows-1252', 'UTF-8']);
+                }
+            }
+            
+            $rawErrorCode = odbc_error($this->connection);
+            if ($rawErrorCode) {
+                $errorCode = $rawErrorCode;
+            }
+            
+            // If we still don't have a proper error message, provide a fallback
+            if (empty($errorMsg) || strlen(trim($errorMsg)) < 3) {
+                $errorMsg = 'ODBC query execution failed with empty or truncated error message';
+            }
+            
+            $fullErrorMessage = $errorMsg . ($errorCode ? ' ' . $errorCode : '');
+            // Restore locale before throwing exception
+            setlocale(LC_ALL, $oldLocale);
+            throw new OdbcException($fullErrorMessage);
         }
+
+        // Restore locale
+        setlocale(LC_ALL, $oldLocale);
 
         $queryMetadata = $this->getQueryMetadata($query, $stmt);
         $queryMetadata->getColumns();
