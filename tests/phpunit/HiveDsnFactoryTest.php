@@ -97,7 +97,8 @@ class HiveDsnFactoryTest extends TestCase
                 'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
                 'UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
                 'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;'.
-                'ErrorMsgLength=8192;DriverManagerEncoding=UTF-8;AuthMech=1;KrbHostFQDN=localhost;KrbServiceName=service;KrbRealm=EXAMPLE.COM;',
+                'ErrorMsgLength=8192;DriverManagerEncoding=UTF-8;AuthMech=1;KrbHostFQDN=localhost;'.
+                'KrbServiceName=service;KrbRealm=EXAMPLE.COM;',
         ];
 
         yield 'batch size' => [
