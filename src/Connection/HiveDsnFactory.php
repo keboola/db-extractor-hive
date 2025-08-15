@@ -33,6 +33,8 @@ class HiveDsnFactory
         $parameters['UseUnicodeSqlCharacterTypes'] = '1';
         $parameters['KeepAlive'] = '1';
         $parameters['RowsFetchedPerBlock'] = $dbConfig->getBatchSize();
+        $parameters['ErrorMsgLength'] = '8192';
+        $parameters['DriverManagerEncoding'] = 'UTF-8';
 
         if ($dbConfig->getThriftTransport() !== null) {
             $parameters['ThriftTransport'] = $dbConfig->getThriftTransport();
