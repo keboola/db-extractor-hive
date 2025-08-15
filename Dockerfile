@@ -93,16 +93,7 @@ RUN dpkg -i /tmp/hive-odbc.deb || true \
     && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a DefaultStringColumnLength = 134217728' /etc/odbcinst.ini \
     # Add error message buffer settings to improve error handling
     && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a ErrorMsgLength = 8192' /etc/odbcinst.ini \
-    && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a DriverManagerEncoding = UTF-8' /etc/odbcinst.ini \
-    # Add UnixODBC configuration for better error handling
-    && echo '[ODBC]' > /etc/odbcinst.ini.tmp \
-    && echo 'Trace = No' >> /etc/odbcinst.ini.tmp \
-    && echo 'TraceFile = /tmp/odbc.log' >> /etc/odbcinst.ini.tmp \
-    && echo 'ForceTrace = No' >> /etc/odbcinst.ini.tmp \
-    && echo 'Pooling = No' >> /etc/odbcinst.ini.tmp \
-    && echo '' >> /etc/odbcinst.ini.tmp \
-    && cat /etc/odbcinst.ini >> /etc/odbcinst.ini.tmp \
-    && mv /etc/odbcinst.ini.tmp /etc/odbcinst.ini
+    && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a DriverManagerEncoding = UTF-8' /etc/odbcinst.ini
 
 # Create odbc logs dir
 RUN mkdir -p /var/log/hive-odbc \
