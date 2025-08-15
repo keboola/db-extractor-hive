@@ -72,14 +72,14 @@ class HiveOdbcConnection extends OdbcConnection
             /** @var resource|false $stmt */
             $stmt = @odbc_exec($this->connection, $query);
         } catch (Throwable $e) {
-            var_dump($e->getMessage());
             throw new OdbcException($e->getMessage(), $e->getCode(), $e);
         }
 
         // "odbc_exec" can generate warning, if "set_error_handler" is not set, so we are checking it manually
         if ($stmt === false) {
-            var_dump(odbc_errormsg($this->connection) . ' ' . odbc_error($this->connection));
-            throw new OdbcException(odbc_errormsg($this->connection) . ' ' . odbc_error($this->connection));
+            $errorMsg = odbc_errormsg($this->connection);
+            $errorCode = odbc_error($this->connection);
+            throw new OdbcException($errorMsg . ' ' . $errorCode);
         }
 
         $queryMetadata = $this->getQueryMetadata($query, $stmt);

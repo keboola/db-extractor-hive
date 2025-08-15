@@ -30,6 +30,7 @@ RUN mkdir -p /usr/share/man/man1 && \
         ssh \
         git \
         locales \
+        locales-all \
         unzip \
         unixodbc \
         unixodbc-dev \
@@ -49,7 +50,9 @@ RUN mkdir -p /usr/share/man/man1 && \
     && REAL_SO=$(find /usr/lib -name 'libiodbcinst.so.*' | head -n1) \
     && ln -sf "$REAL_SO" /usr/lib/libiodbcinst.so \
     && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
+    && sed -i 's/^# *\(C.UTF-8\)/\1/' /etc/locale.gen \
     && locale-gen \
+    && update-locale LANG=en_US.UTF-8 \
     && chmod +x /tmp/composer-install.sh \
     && /tmp/composer-install.sh
 
@@ -87,7 +90,10 @@ RUN dpkg -i /tmp/hive-odbc.deb || true \
     # Set default maximum string column length for Hive ODBC (DSN-level)
     && sed -i '/^\[/a DefaultStringColumnLength = 134217728' /etc/odbc.ini \
     # Set default maximum string column length for Hive ODBC (driver-level)
-    && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a DefaultStringColumnLength = 134217728' /etc/odbcinst.ini
+    && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a DefaultStringColumnLength = 134217728' /etc/odbcinst.ini \
+    # Add error message buffer settings to improve error handling
+    && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a ErrorMsgLength = 8192' /etc/odbcinst.ini \
+    && sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a DriverManagerEncoding = UTF-8' /etc/odbcinst.ini
 
 # Create odbc logs dir
 RUN mkdir -p /var/log/hive-odbc \
@@ -103,9 +109,12 @@ RUN sed -i '/^\[Cloudera ODBC Driver for Apache Hive 64-bit\]/a \
 ENV LANGUAGE=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
+ENV LC_CTYPE=en_US.UTF-8
 ENV KRB5_CONFIG='/tmp/php-krb5.conf'
 ENV KRB5_KEYTAB='/tmp/php-krb5.keytab'
 ENV BUNDLED_FILES_PATH='/var/bundled-files'
+ENV ODBCSYSINI=/etc
+ENV ODBCINI=/etc/odbc.ini
 
 # Some large certificates cannot be in stack parameters and must be packed in the component.
 RUN mkdir "$BUNDLED_FILES_PATH" && \
