@@ -15,6 +15,7 @@ use Keboola\DbExtractor\Adapter\Query\DefaultQueryFactory;
 use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Connection\HiveOdbcConnectionFactory;
 use Keboola\DbExtractor\Exception\UserException;
+use Keboola\DbExtractor\Metadata\OptimizedMetadataProvider;
 use Keboola\DbExtractor\TableResultFormat\Exception\ColumnNotFoundException;
 use Keboola\DbExtractorConfig\Configuration\ValueObject\DatabaseConfig;
 use Keboola\DbExtractorConfig\Configuration\ValueObject\ExportConfig;
@@ -39,21 +40,6 @@ class Hive extends BaseExtractor
     public function testConnection(): void
     {
         $this->connection->testConnection();
-    }
-
-    /**
-     * Override getTables to optimize for sync actions
-     * For sync actions, skip loading columns to avoid timeout (reduces ODBC calls by 66%)
-     */
-    public function getTables(array $tableListFilter = []): array
-    {
-        // For sync actions, disable column loading by default to avoid timeouts
-        if ($this->isSyncAction() && !isset($tableListFilter['listColumns'])) {
-            $tableListFilter['listColumns'] = false;
-        }
-
-        // Call parent method with optimized parameters
-        return parent::getTables($tableListFilter);
     }
 
     protected function createConnection(DatabaseConfig $dbConfig): void
@@ -82,7 +68,11 @@ class Hive extends BaseExtractor
 
     public function createMetadataProvider(): MetadataProvider
     {
-        return new OdbcNativeMetadataProvider($this->connection);
+        $provider = new OdbcNativeMetadataProvider($this->connection);
+
+        // Wrap with optimized provider for sync actions to avoid timeouts
+        // Reduces ODBC calls by 66% (skips column loading by default)
+        return new OptimizedMetadataProvider($provider, $this->isSyncAction());
     }
 
     public function validateIncrementalFetching(ExportConfig $exportConfig): void
