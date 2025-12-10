@@ -29,8 +29,26 @@ class GetTablesTest extends TestCase
         $result = json_decode((string) ob_get_contents(), true);
         ob_end_clean();
 
-        $expected = $this->getExpectedMetadataFull();
+        // After optimization, sync actions skip columns by default to avoid timeouts
+        $expected = $this->getExpectedMetadataOnlyTables();
 
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetTablesActionWithFullMetadata(): void
+    {
+        $config = $this->getConfig();
+        $config['action'] = 'getTables';
+        $config['parameters']['tableListFilter'] = [];
+        $config['parameters']['tableListFilter']['listColumns'] = true;
+
+        ob_start();
+        $this->createApplication($config, new NullLogger())->execute();
+        $result = json_decode((string) ob_get_contents(), true);
+        ob_end_clean();
+
+        // When explicitly requesting columns, full metadata should be returned
+        $expected = $this->getExpectedMetadataFull();
         $this->assertEquals($expected, $result);
     }
 
