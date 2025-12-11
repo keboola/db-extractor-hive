@@ -70,9 +70,13 @@ class Hive extends BaseExtractor
     {
         $provider = new OdbcNativeMetadataProvider($this->connection);
 
+        // Check if listColumns was explicitly set in the config (use array_key_exists to detect explicit false)
+        $tableListFilter = $this->parameters['tableListFilter'] ?? [];
+        $hasExplicitListColumns = array_key_exists('listColumns', $tableListFilter);
+
         // Wrap with optimized provider for sync actions to avoid timeouts
         // Reduces ODBC calls by 66% (skips column loading by default)
-        return new OptimizedMetadataProvider($provider, $this->isSyncAction());
+        return new OptimizedMetadataProvider($provider, $this->isSyncAction(), $hasExplicitListColumns);
     }
 
     public function validateIncrementalFetching(ExportConfig $exportConfig): void

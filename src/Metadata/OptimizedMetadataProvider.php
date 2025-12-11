@@ -16,17 +16,23 @@ class OptimizedMetadataProvider implements MetadataProvider
 {
     private MetadataProvider $innerProvider;
     private bool $isSyncAction;
+    private bool $hasExplicitListColumns;
 
-    public function __construct(MetadataProvider $innerProvider, bool $isSyncAction)
-    {
+    public function __construct(
+        MetadataProvider $innerProvider,
+        bool $isSyncAction,
+        bool $hasExplicitListColumns,
+    ) {
         $this->innerProvider = $innerProvider;
         $this->isSyncAction = $isSyncAction;
+        $this->hasExplicitListColumns = $hasExplicitListColumns;
     }
 
     public function listTables(array $whitelist = [], bool $loadColumns = true): TableCollection
     {
-        // For sync actions, disable column loading by default to avoid timeouts
-        if ($this->isSyncAction) {
+        // For sync actions, disable column loading by default to avoid timeouts,
+        // but respect any explicit listColumns setting from the config.
+        if ($this->isSyncAction && !$this->hasExplicitListColumns) {
             $loadColumns = false;
         }
 
