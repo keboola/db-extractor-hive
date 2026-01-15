@@ -34,6 +34,7 @@ class HiveDbNode extends DbNode
         $this->addHttpPath($builder);
         $this->addBatchSize($builder);
         $this->addVerboseLogging($builder);
+        $this->addDisableColumnNamePrefixing($builder);
 
         $this->validate()->always(function (array $v): array {
             // User and password keys are required for the authType = password
@@ -160,5 +161,10 @@ class HiveDbNode extends DbNode
     protected function addVerboseLogging(NodeBuilder $builder): void
     {
         $builder->booleanNode('verboseLogging')->defaultFalse();
+    }
+
+    protected function addDisableColumnNamePrefixing(NodeBuilder $builder): void
+    {
+        $builder->booleanNode('disableColumnNamePrefixing')->defaultFalse();
     }
 }

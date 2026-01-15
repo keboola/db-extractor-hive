@@ -29,6 +29,8 @@ class HiveDatabaseConfig extends DatabaseConfig
 
     private bool $verboseLogging;
 
+    private bool $disableColumnNamePrefixing;
+
     public static function fromArray(array $data): self
     {
         $sslEnabled = !empty($data['ssl']) && !empty($data['ssl']['enabled']);
@@ -51,6 +53,7 @@ class HiveDatabaseConfig extends DatabaseConfig
             $data['httpPath'] ?? null,
             $data['batchSize'] ?? 10000,
             $data['verboseLogging'] ?? false,
+            $data['disableColumnNamePrefixing'] ?? false,
         );
     }
 
@@ -72,6 +75,7 @@ class HiveDatabaseConfig extends DatabaseConfig
         ?string $httpPath,
         int $batchSize,
         bool $verboseLogging,
+        bool $disableColumnNamePrefixing,
     ) {
         parent::__construct($host, $port, $username, $password, $database, $schema, $sslConnectionConfig, []);
         $this->authType = $authType;
@@ -84,6 +88,7 @@ class HiveDatabaseConfig extends DatabaseConfig
         $this->httpPath = $httpPath;
         $this->batchSize = $batchSize;
         $this->verboseLogging = $verboseLogging;
+        $this->disableColumnNamePrefixing = $disableColumnNamePrefixing;
     }
 
     public function getSslConnectionConfig(): HiveSslConnectionConfig
@@ -195,5 +200,10 @@ class HiveDatabaseConfig extends DatabaseConfig
     public function isVerboseLoggingEnabled(): bool
     {
         return $this->verboseLogging;
+    }
+
+    public function isColumnNamePrefixingDisabled(): bool
+    {
+        return $this->disableColumnNamePrefixing;
     }
 }

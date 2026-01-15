@@ -149,6 +149,22 @@ class HiveDsnFactoryTest extends TestCase
             'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;'.
             'ThriftTransport=2;HttpPath=gateway/XXXXX/hive;AuthMech=3;',
         ];
+
+        yield 'disable column name prefixing' => [
+            [
+                'host' => 'test-host.com',
+                'port' => '123',
+                'database' => 'my-db',
+                'authType' => 'password',
+                'user' => 'user',
+                '#password' => 'pass',
+                'disableColumnNamePrefixing' => true,
+            ],
+            'Driver=Cloudera ODBC Driver for Apache Hive 64-bit;Host=test-host.com;Port=123;Schema=my-db;'.
+            'UseNativeQuery=1;DefaultStringColumnLength=134217728;DefaultVarcharColumnLength=134217728;'.
+            'BinaryColumnLength=134217728;UseUnicodeSqlCharacterTypes=1;KeepAlive=1;RowsFetchedPerBlock=10000;'.
+            'SSP_hive.resultset.use.unique.column.names=false;AuthMech=3;',
+        ];
     }
 
     public function getValidPrincipals(): iterable

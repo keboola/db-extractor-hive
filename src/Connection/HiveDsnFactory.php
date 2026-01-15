@@ -34,6 +34,12 @@ class HiveDsnFactory
         $parameters['KeepAlive'] = '1';
         $parameters['RowsFetchedPerBlock'] = $dbConfig->getBatchSize();
 
+        // Optionally disable Hive's unique column names feature to prevent table name prefixing
+        // See: https://community.cloudera.com/t5/Support-Questions/Remove-qualifier-from-column-name/m-p/213864
+        if ($dbConfig->isColumnNamePrefixingDisabled()) {
+            $parameters['SSP_hive.resultset.use.unique.column.names'] = 'false';
+        }
+
         if ($dbConfig->getThriftTransport() !== null) {
             $parameters['ThriftTransport'] = $dbConfig->getThriftTransport();
         }
