@@ -93,17 +93,20 @@ class Hive extends BaseExtractor
      * Hive into the incremental fetching window/lookback feature (the type is needed to resolve the
      * relative/absolute bounds). Reuses the same metadata lookup as validateIncrementalFetching().
      *
-     * GenericStorage maps a Hive DATE column to the "DATE" basetype, but the window/lookback resolver
-     * only understands TIMESTAMP/INTEGER/NUMERIC/FLOAT, so DATE is normalised to TIMESTAMP here (the
-     * resolver emits "Y-m-d H:i:s", which Hive accepts when comparing a DATE column). Every other type
-     * in self::INCREMENTAL_TYPES already maps to a supported basetype.
+     * GenericStorage maps a Hive DATE column to the "DATE" basetype, which the window/lookback resolver
+     * does not support (it handles only TIMESTAMP/INTEGER/NUMERIC/FLOAT). Rather than assume Hive
+     * compares a DATE column correctly against the resolver's "Y-m-d H:i:s" literal — which is not
+     * verified — DATE returns null here, so window/lookback reports "not supported by this extractor"
+     * for a DATE column while plain watermark keeps working. It can be enabled later once a DATE
+     * comparison is verified against the live Hive harness. Every other type in self::INCREMENTAL_TYPES
+     * maps to a supported basetype.
      */
     public function getIncrementalFetchingColumnType(ExportConfig $exportConfig): ?string
     {
         $datatype = new GenericStorage($this->getIncrementalFetchingColumn($exportConfig)->getType());
         $basetype = $datatype->getBasetype();
 
-        return $basetype === BaseType::DATE ? BaseType::TIMESTAMP : $basetype;
+        return $basetype === BaseType::DATE ? null : $basetype;
     }
 
     private function getIncrementalFetchingColumn(ExportConfig $exportConfig): Column
