@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Keboola\DbExtractor\Extractor;
 
 use InvalidArgumentException;
+use Keboola\Datatype\Definition\BaseType;
 use Keboola\Datatype\Definition\GenericStorage;
 use Keboola\DbExtractor\Adapter\ExportAdapter;
 use Keboola\DbExtractor\Adapter\Metadata\MetadataProvider;
@@ -16,6 +17,7 @@ use Keboola\DbExtractor\Configuration\HiveDatabaseConfig;
 use Keboola\DbExtractor\Connection\HiveOdbcConnectionFactory;
 use Keboola\DbExtractor\Exception\UserException;
 use Keboola\DbExtractor\TableResultFormat\Exception\ColumnNotFoundException;
+use Keboola\DbExtractor\TableResultFormat\Metadata\ValueObject\Column;
 use Keboola\DbExtractorConfig\Configuration\ValueObject\DatabaseConfig;
 use Keboola\DbExtractorConfig\Configuration\ValueObject\ExportConfig;
 
@@ -72,15 +74,7 @@ class Hive extends BaseExtractor
 
     public function validateIncrementalFetching(ExportConfig $exportConfig): void
     {
-        $table = $this->getMetadataProvider()->getTable($exportConfig->getTable());
-        try {
-            $column = $table->getColumns()->getByName($exportConfig->getIncrementalFetchingColumn());
-        } catch (ColumnNotFoundException $e) {
-            throw new UserException(sprintf(
-                'Incremental fetching column "%s" not found.',
-                $exportConfig->getIncrementalFetchingColumn(),
-            ), 0, $e);
-        }
+        $column = $this->getIncrementalFetchingColumn($exportConfig);
 
         $datatype = new GenericStorage($column->getType());
         if (!in_array($datatype->getType(), self::INCREMENTAL_TYPES, true)) {
@@ -90,6 +84,38 @@ class Hive extends BaseExtractor
                 $column->getName(),
                 implode(', ', self::INCREMENTAL_TYPES),
             ));
+        }
+    }
+
+    /**
+     * Detects the resolver basetype ("TIMESTAMP" | "INTEGER" | "NUMERIC" | "FLOAT") of the incremental
+     * fetching column. Overrides the default-null hook in db-extractor-common's BaseExtractor, opting
+     * Hive into the incremental fetching window/lookback feature (the type is needed to resolve the
+     * relative/absolute bounds). Reuses the same metadata lookup as validateIncrementalFetching().
+     *
+     * GenericStorage maps a Hive DATE column to the "DATE" basetype, but the window/lookback resolver
+     * only understands TIMESTAMP/INTEGER/NUMERIC/FLOAT, so DATE is normalised to TIMESTAMP here (the
+     * resolver emits "Y-m-d H:i:s", which Hive accepts when comparing a DATE column). Every other type
+     * in self::INCREMENTAL_TYPES already maps to a supported basetype.
+     */
+    public function getIncrementalFetchingColumnType(ExportConfig $exportConfig): ?string
+    {
+        $datatype = new GenericStorage($this->getIncrementalFetchingColumn($exportConfig)->getType());
+        $basetype = $datatype->getBasetype();
+
+        return $basetype === BaseType::DATE ? BaseType::TIMESTAMP : $basetype;
+    }
+
+    private function getIncrementalFetchingColumn(ExportConfig $exportConfig): Column
+    {
+        $table = $this->getMetadataProvider()->getTable($exportConfig->getTable());
+        try {
+            return $table->getColumns()->getByName($exportConfig->getIncrementalFetchingColumn());
+        } catch (ColumnNotFoundException $e) {
+            throw new UserException(sprintf(
+                'Incremental fetching column "%s" not found.',
+                $exportConfig->getIncrementalFetchingColumn(),
+            ), 0, $e);
         }
     }
 

@@ -3,6 +3,20 @@
     "license": "MIT",
     "type": "project",
     "description": "Reads data from Hive databases for Keboola Connection",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/keboola/db-extractor-config.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/keboola/db-extractor-adapter.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/keboola/db-extractor-common.git"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "ext-json": "*",
@@ -11,9 +25,9 @@
         "jdorn/sql-formatter": "^1.2",
         "keboola/common-exceptions": "^1.0",
         "keboola/csv": "^3.3",
-        "keboola/db-extractor-adapter": "1.15.2",
-        "keboola/db-extractor-common": "^17.1",
-        "keboola/db-extractor-config": "^1.15",
+        "keboola/db-extractor-adapter": "dev-cftl-771-incremental-fetching-window as 1.15.999",
+        "keboola/db-extractor-common": "dev-cftl-771-incremental-fetching-window as 17.1.999",
+        "keboola/db-extractor-config": "dev-cftl-771-incremental-fetching-window as 1.15.999",
         "keboola/db-extractor-ssh-tunnel": "^1.2",
         "keboola/db-extractor-table-format": "^3.8",
         "keboola/php-component": "^10.1",
