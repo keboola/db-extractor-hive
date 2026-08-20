@@ -76,6 +76,11 @@ RUN curl -fSL "$HIVE_ODBC_DEB_URL" -o /tmp/hive-odbc.deb \
     && apt-get install -f -y \
     && rm -rf /var/lib/apt/lists/* \
     && rm /tmp/hive-odbc.deb \
+    # The driver ships DriverManagerEncoding=UTF-32 (the iODBC default). The driver manager here is
+    # unixODBC, whose SQLWCHAR is 2 bytes (UTF-16) on Debian; the mismatch makes the driver read/write
+    # wide-char strings at the wrong width on connect, overflowing a buffer. It went unnoticed on
+    # bullseye but Trixie's hardened glibc traps it ("*** stack smashing detected ***"). Match unixODBC.
+    && sed -i 's/^DriverManagerEncoding=.*/DriverManagerEncoding=UTF-16/' /opt/cloudera/hiveodbc/lib/64/cloudera.hiveodbc.ini \
     && cp /opt/cloudera/hiveodbc/Setup/odbc.ini   /etc/odbc.ini \
     && cp /opt/cloudera/hiveodbc/Setup/odbcinst.ini /etc/odbcinst.ini \
     # Set default maximum string column length for Hive ODBC (DSN-level)
