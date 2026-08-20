@@ -1,21 +1,13 @@
-FROM amazon/aws-cli:2.13.0 AS awscli
-
-ARG AWS_ACCESS_KEY_ID
-ARG AWS_SECRET_ACCESS_KEY
-ARG AWS_REGION=eu-central-1
-ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
-    AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
-    AWS_DEFAULT_REGION=${AWS_REGION}   \
-    AWS_REGION=${AWS_REGION}
-
-RUN aws s3 cp \
-      s3://keboola-drivers/hive-odbc/clouderahiveodbc_2.8.2.1002-2_amd64.deb \
-      /tmp/hive-odbc.deb
-
-FROM php:8.2-cli-bullseye
+FROM php:8.2-cli-trixie
 
 ARG COMPOSER_FLAGS="--prefer-dist --no-interaction"
 ARG DEBIAN_FRONTEND=noninteractive
+# Cloudera Hive ODBC driver, fetched at build time from Cloudera's public CDN (the authoritative
+# source the keboola-drivers S3 bucket mirrors). 2.9.0.1001 is the first build that officially
+# supports Debian 13 (Trixie); the previous 2.8.2 connects but stack-smashes on query execution
+# under Trixie's hardened glibc. To pin a different build, override HIVE_ODBC_VERSION.
+ARG HIVE_ODBC_VERSION=2.9.0.1001
+ARG HIVE_ODBC_DEB_URL=https://downloads.cloudera.com/connectors/ClouderaHiveODBC-${HIVE_ODBC_VERSION}/Debian/clouderahiveodbc_${HIVE_ODBC_VERSION}-2_amd64.deb
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_PROCESS_TIMEOUT 3600
 
@@ -29,6 +21,8 @@ RUN mkdir -p /usr/share/man/man1 && \
     apt-get update && apt-get install -y --no-install-recommends \
         ssh \
         git \
+        curl \
+        ca-certificates \
         locales \
         unzip \
         unixodbc \
@@ -76,12 +70,17 @@ RUN set -ex; \
     docker-php-source delete
 
 # Cloudera Hive Driver
-COPY --from=awscli /tmp/hive-odbc.deb /tmp/hive-odbc.deb
-RUN dpkg -i /tmp/hive-odbc.deb || true \
+RUN curl -fSL "$HIVE_ODBC_DEB_URL" -o /tmp/hive-odbc.deb \
+    && { dpkg -i /tmp/hive-odbc.deb || true; } \
     && apt-get update \
     && apt-get install -f -y \
     && rm -rf /var/lib/apt/lists/* \
     && rm /tmp/hive-odbc.deb \
+    # The driver ships DriverManagerEncoding=UTF-32 (the iODBC default). The driver manager here is
+    # unixODBC, whose SQLWCHAR is 2 bytes (UTF-16) on Debian; the mismatch makes the driver read/write
+    # wide-char strings at the wrong width on connect, overflowing a buffer. It went unnoticed on
+    # bullseye but Trixie's hardened glibc traps it ("*** stack smashing detected ***"). Match unixODBC.
+    && sed -i 's/^DriverManagerEncoding=.*/DriverManagerEncoding=UTF-16/' /opt/cloudera/hiveodbc/lib/64/cloudera.hiveodbc.ini \
     && cp /opt/cloudera/hiveodbc/Setup/odbc.ini   /etc/odbc.ini \
     && cp /opt/cloudera/hiveodbc/Setup/odbcinst.ini /etc/odbcinst.ini \
     # Set default maximum string column length for Hive ODBC (DSN-level)
