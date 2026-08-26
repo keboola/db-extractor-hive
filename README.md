@@ -80,6 +80,10 @@ The configuration `config.json` contains following properties in `parameters` ke
 - `incremental` - bool (optional):  Enables [Incremental Loading](https://help.keboola.com/storage/tables/#incremental-loading)
 - `incrementalFetchingColumn` - string (optional): Name of column for [Incremental Fetching](https://help.keboola.com/components/extractors/database/#incremental-fetching)
 - `incrementalFetchingLimit` - integer (optional): Max number of rows fetched per one run
+- `incrementalFetchingMode` - string (optional): `watermark` (default) or `window`. In `watermark` mode the run resumes from the last fetched value stored in state; in `window` mode a fixed range is fetched every run and the stored watermark is ignored.
+- `incrementalFetchingLookback` - string (optional, `watermark` mode only): Re-fetch this far *behind* the last fetched value to catch rows committed late (below the watermark). A duration such as `20 minutes` for timestamp columns, or a number for numeric columns. Not supported for `DATE` columns. Requires a `primaryKey` so incremental loading can deduplicate the re-fetched rows.
+- `incrementalFetchingStart` - string (optional, `window` mode only): Inclusive lower bound of the window. Absolute (`2020-01-01 05:00:00`) or relative (`-2 days`) for timestamp columns, or a number for numeric columns. Not supported for `DATE` columns. Requires a `primaryKey`.
+- `incrementalFetchingEnd` - string (optional, `window` mode only): Inclusive upper bound of the window, same formats as `incrementalFetchingStart`.
 - `primaryKey` - string (optional): Sets primary key to specified column in output table
 - `retries` - integer (optional): Number of retries if an error occurred
 
@@ -168,6 +172,36 @@ Incremental fetching using timestamp column:
     "incremental": true,
     "incrementalFetchingColumn": "timestamp_col",
     "incrementalFetchingLimit": 100
+  }
+}
+```
+
+Incremental fetching with a lookback (re-fetches rows committed up to 20 minutes behind the watermark):
+```json
+{
+  "parameters": {
+    "db": { "host": "..." },
+    "outputTable": "in.c-main.incremental",
+    "primaryKey": ["id"],
+    "incremental": true,
+    "incrementalFetchingColumn": "timestamp_col",
+    "incrementalFetchingLookback": "20 minutes"
+  }
+}
+```
+
+Incremental fetching over an absolute window (watermark ignored):
+```json
+{
+  "parameters": {
+    "db": { "host": "..." },
+    "outputTable": "in.c-main.incremental",
+    "primaryKey": ["id"],
+    "incremental": true,
+    "incrementalFetchingColumn": "timestamp_col",
+    "incrementalFetchingMode": "window",
+    "incrementalFetchingStart": "2020-01-01 00:00:00",
+    "incrementalFetchingEnd": "2020-02-01 00:00:00"
   }
 }
 ```
